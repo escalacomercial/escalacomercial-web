@@ -1,13 +1,1121 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escala Comercial</title>
+
+  <!-- SEO -->
+  <title>Escala Comercial | Gerencia Comercial, Marketing y Ventas</title>
+
+  <meta name="description"
+    content="Escala Comercial integra estrategia, marketing, generación de leads, fuerza de ventas, tecnología e inteligencia comercial para impulsar proyectos inmobiliarios y equipos comerciales.">
+
+  <meta name="keywords"
+    content="gerencia comercial inmobiliaria, outsourcing comercial, fuerza de ventas, generación de leads, marketing inmobiliario, inteligencia comercial, analítica comercial, Meta Ads, Google Ads, CRM, ventas inmobiliarias, Lima Perú">
+
+  <meta name="author" content="Escala Comercial">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://escalacomercial.pe/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Escala Comercial | Estrategia, Marketing y Ventas">
+  <meta property="og:description"
+    content="Integramos estrategia, marketing, tecnología y fuerza de ventas para construir operaciones comerciales que escalan.">
+  <meta property="og:image" content="https://escalacomercial.pe/img/open-graph/og-image.png">
+  <meta property="og:url" content="https://escalacomercial.pe/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Escala Comercial">
+  <meta name="twitter:description"
+    content="Gerencia comercial, marketing, tecnología, leads y fuerza de ventas integrados.">
+  <meta name="twitter:image" content="https://escalacomercial.pe/img/open-graph/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/img/favicon/favicon.svg" type="image/svg+xml">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="/styles/styles.css">
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Escala Comercial",
+    "url": "https://escalacomercial.pe",
+    "logo": "https://escalacomercial.pe/img/logo/logo.png",
+    "description": "Empresa especializada en estrategia comercial, marketing, ventas, outsourcing e inteligencia comercial.",
+    "areaServed": "PE"
+  }
+  </script>
+
 </head>
-<body>
-  <h1>Escala Comercial</h1>
-  <p>Sitio web en construcción.</p>
+
+
+<body class="bg-white text-slate-900">
+
+  <!-- ==========================================
+       HEADER
+  =========================================== -->
+
+  <header
+    class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-slate-100">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+      <div class="h-20 flex justify-between items-center">
+
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center">
+          <img
+            src="/img/logo/logo.png"
+            alt="Escala Comercial"
+            class="h-11 w-auto">
+        </a>
+
+        <!-- Desktop -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+
+          <a href="#inicio"
+            class="text-slate-700 hover:text-blue-700 transition">
+            Inicio
+          </a>
+
+          <a href="#servicios"
+            class="text-slate-700 hover:text-blue-700 transition">
+            Servicios
+          </a>
+
+          <a href="#modelo"
+            class="text-slate-700 hover:text-blue-700 transition">
+            Cómo trabajamos
+          </a>
+
+          <a href="#inmobiliario"
+            class="text-slate-700 hover:text-blue-700 transition">
+            Inmobiliarias
+          </a>
+
+          <a href="#contacto"
+            class="text-slate-700 hover:text-blue-700 transition">
+            Contacto
+          </a>
+
+          <a href="#contacto"
+            class="bg-blue-700 text-white px-5 py-3 rounded-lg hover:bg-blue-800 transition">
+            Hablemos
+          </a>
+
+        </nav>
+
+        <!-- Mobile -->
+        <button
+          id="menu-toggle"
+          class="lg:hidden text-2xl"
+          aria-label="Abrir menú">
+
+          <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Mobile menu -->
+
+    <div
+      id="mobile-menu"
+      class="hidden lg:hidden bg-white border-t border-slate-100 px-5 py-5">
+
+      <div class="flex flex-col gap-4">
+
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#modelo">Cómo trabajamos</a>
+        <a href="#inmobiliario">Inmobiliarias</a>
+        <a href="#contacto">Contacto</a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- ==========================================
+         HERO
+    =========================================== -->
+
+    <section
+      id="inicio"
+      class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-slate-950">
+
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-950 to-slate-900">
+      </div>
+
+
+      <!-- decoración -->
+      <div
+        class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-3xl">
+      </div>
+
+
+      <div
+        class="relative max-w-7xl mx-auto px-5 lg:px-8 w-full">
+
+        <div
+          class="grid lg:grid-cols-2 gap-16 items-center">
+
+
+          <!-- Texto -->
+
+          <div data-aos="fade-up">
+
+            <div
+              class="inline-flex items-center gap-2 border border-blue-400/30 bg-blue-500/10 text-blue-200 rounded-full px-4 py-2 text-sm mb-7">
+
+              <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+
+              Estrategia · Marketing · Tecnología · Ventas
+
+            </div>
+
+
+            <h1
+              class="font-bold text-white text-4xl sm:text-5xl lg:text-6xl leading-[1.08] mb-7">
+
+              Convertimos tu operación comercial en un sistema que
+
+              <span class="text-blue-400">
+                genera, sigue y convierte.
+              </span>
+
+            </h1>
+
+
+            <p
+              class="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mb-9">
+
+              Integramos estrategia comercial, marketing,
+              generación de demanda, tecnología, analítica
+              y fuerza de ventas para ayudarte a crecer
+              con procesos medibles y decisiones basadas en datos.
+
+            </p>
+
+
+            <div class="flex flex-col sm:flex-row gap-4">
+
+              <a
+                href="#contacto"
+                class="inline-flex justify-center items-center bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-4 rounded-xl transition">
+
+                Quiero escalar mis ventas
+
+                <i class="fa-solid fa-arrow-right ml-3"></i>
+
+              </a>
+
+
+              <a
+                href="#servicios"
+                class="inline-flex justify-center items-center border border-white/20 text-white px-7 py-4 rounded-xl hover:bg-white/10 transition">
+
+                Conocer servicios
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- Visual -->
+
+          <div
+            class="hidden lg:block"
+            data-aos="fade-left">
+
+            <div
+              class="bg-white/5 border border-white/10 backdrop-blur rounded-3xl p-8">
+
+              <p class="text-sm text-blue-300 font-semibold mb-6">
+                ECOSISTEMA COMERCIAL
+              </p>
+
+
+              <div class="space-y-4">
+
+                <div
+                  class="bg-white/10 rounded-xl p-5 text-white flex items-center gap-4">
+
+                  <span class="text-2xl">🎯</span>
+
+                  <div>
+                    <strong>Marketing & Leads</strong>
+                    <p class="text-sm text-slate-400">
+                      Generación de demanda
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <div
+                  class="bg-white/10 rounded-xl p-5 text-white flex items-center gap-4">
+
+                  <span class="text-2xl">📞</span>
+
+                  <div>
+                    <strong>Seguimiento Comercial</strong>
+                    <p class="text-sm text-slate-400">
+                      Gestión de oportunidades
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <div
+                  class="bg-white/10 rounded-xl p-5 text-white flex items-center gap-4">
+
+                  <span class="text-2xl">🤝</span>
+
+                  <div>
+                    <strong>Fuerza de Ventas</strong>
+                    <p class="text-sm text-slate-400">
+                      Conversión y cierre
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <div
+                  class="bg-blue-600 rounded-xl p-5 text-white flex items-center gap-4">
+
+                  <span class="text-2xl">📊</span>
+
+                  <div>
+                    <strong>Inteligencia Comercial</strong>
+                    <p class="text-sm text-blue-100">
+                      Medición y optimización
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         PROBLEMA
+    =========================================== -->
+
+    <section class="py-24 bg-white">
+
+      <div class="max-w-5xl mx-auto px-5 text-center">
+
+        <p
+          class="text-blue-700 font-semibold uppercase tracking-widest text-sm mb-4">
+          Una visión integral
+        </p>
+
+        <h2
+          class="text-3xl lg:text-5xl font-bold leading-tight mb-7">
+
+          Generar leads no es suficiente.
+
+          <span class="text-slate-500">
+            Hay que convertirlos en ventas.
+          </span>
+
+        </h2>
+
+        <p
+          class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+
+          Muchas empresas tienen campañas, leads, vendedores,
+          CRMs y reportes funcionando por separado.
+
+          En Escala conectamos cada punto del proceso comercial
+          para identificar oportunidades, mejorar la conversión
+          y tomar mejores decisiones.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         SERVICIOS
+    =========================================== -->
+
+    <section
+      id="servicios"
+      class="py-24 bg-slate-50 scroll-mt-20">
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+        <div class="max-w-3xl mb-14">
+
+          <p
+            class="text-blue-700 font-semibold uppercase tracking-widest text-sm mb-3">
+            Lo que hacemos
+          </p>
+
+          <h2
+            class="text-3xl lg:text-5xl font-bold mb-5">
+
+            Una operación comercial necesita más que vendedores.
+
+          </h2>
+
+          <p class="text-lg text-slate-600">
+
+            Diseñamos, implementamos y operamos los componentes
+            necesarios para construir equipos comerciales de alto rendimiento.
+
+          </p>
+
+        </div>
+
+
+        <div
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+          <!-- 01 -->
+
+          <article
+            class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-xl transition"
+            data-aos="fade-up">
+
+            <span
+              class="text-blue-600 font-bold text-sm">
+              01
+            </span>
+
+            <h3
+              class="text-xl font-bold mt-5 mb-3">
+
+              Estrategia & Gerencia Comercial
+
+            </h3>
+
+            <p class="text-slate-600">
+
+              Diseñamos la estrategia, objetivos, procesos,
+              indicadores y estructura necesaria para dirigir
+              tu operación comercial.
+
+            </p>
+
+          </article>
+
+
+
+          <!-- 02 -->
+
+          <article
+            class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-xl transition"
+            data-aos="fade-up"
+            data-aos-delay="50">
+
+            <span class="text-blue-600 font-bold text-sm">
+              02
+            </span>
+
+            <h3 class="text-xl font-bold mt-5 mb-3">
+
+              Marketing & Generación de Leads
+
+            </h3>
+
+            <p class="text-slate-600">
+
+              Diseñamos campañas y estrategias de adquisición
+              utilizando Meta Ads, Google Ads y otros canales
+              orientados a oportunidades comerciales reales.
+
+            </p>
+
+          </article>
+
+
+
+          <!-- 03 -->
+
+          <article
+            class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-xl transition"
+            data-aos="fade-up"
+            data-aos-delay="100">
+
+            <span class="text-blue-600 font-bold text-sm">
+              03
+            </span>
+
+            <h3 class="text-xl font-bold mt-5 mb-3">
+
+              Fuerza de Ventas & Outsourcing
+
+            </h3>
+
+            <p class="text-slate-600">
+
+              Implementamos y gestionamos equipos comerciales
+              enfocados en seguimiento, conversión,
+              negociación y cierre.
+
+            </p>
+
+          </article>
+
+
+
+          <!-- 04 -->
+
+          <article
+            class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-xl transition"
+            data-aos="fade-up">
+
+            <span class="text-blue-600 font-bold text-sm">
+              04
+            </span>
+
+            <h3 class="text-xl font-bold mt-5 mb-3">
+
+              Inteligencia Comercial & Analytics
+
+            </h3>
+
+            <p class="text-slate-600">
+
+              Construimos indicadores, dashboards y modelos
+              de seguimiento para entender qué está funcionando
+              y dónde se encuentran las oportunidades.
+
+            </p>
+
+          </article>
+
+
+
+          <!-- 05 -->
+
+          <article
+            class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-xl transition"
+            data-aos="fade-up">
+
+            <span class="text-blue-600 font-bold text-sm">
+              05
+            </span>
+
+            <h3 class="text-xl font-bold mt-5 mb-3">
+
+              Capacitación Comercial
+
+            </h3>
+
+            <p class="text-slate-600">
+
+              Formamos equipos en prospección, seguimiento,
+              procesos de venta, herramientas digitales
+              y metodologías comerciales.
+
+            </p>
+
+          </article>
+
+
+
+          <!-- 06 -->
+
+          <article
+            class="bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-xl transition"
+            data-aos="fade-up">
+
+            <span class="text-blue-600 font-bold text-sm">
+              06
+            </span>
+
+            <h3 class="text-xl font-bold mt-5 mb-3">
+
+              Digitalización & Tracking
+
+            </h3>
+
+            <p class="text-slate-600">
+
+              Integramos CRM, automatizaciones, GA4,
+              Tag Manager, píxeles y herramientas de seguimiento
+              para tener trazabilidad del proceso comercial.
+
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         MODELO ESCALA
+    =========================================== -->
+
+    <section
+      id="modelo"
+      class="py-24 bg-slate-950 text-white scroll-mt-20">
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+        <div class="text-center max-w-3xl mx-auto mb-16">
+
+          <p
+            class="text-blue-400 uppercase tracking-widest font-semibold text-sm mb-4">
+            Modelo Escala
+          </p>
+
+          <h2
+            class="text-3xl lg:text-5xl font-bold mb-5">
+
+            Conectamos todo el ciclo comercial.
+
+          </h2>
+
+          <p class="text-slate-400 text-lg">
+
+            Desde la primera interacción con un prospecto
+            hasta el análisis del resultado de una venta.
+
+          </p>
+
+        </div>
+
+
+        <div
+          class="grid sm:grid-cols-2 lg:grid-cols-6 gap-4">
+
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <span class="text-3xl">📣</span>
+            <h3 class="font-semibold mt-4">Atracción</h3>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <span class="text-3xl">🎯</span>
+            <h3 class="font-semibold mt-4">Leads</h3>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <span class="text-3xl">📲</span>
+            <h3 class="font-semibold mt-4">Seguimiento</h3>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <span class="text-3xl">🤝</span>
+            <h3 class="font-semibold mt-4">Venta</h3>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <span class="text-3xl">📊</span>
+            <h3 class="font-semibold mt-4">Medición</h3>
+          </div>
+
+          <div class="bg-blue-600 p-6 rounded-2xl">
+            <span class="text-3xl">📈</span>
+            <h3 class="font-semibold mt-4">Optimización</h3>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         INMOBILIARIO
+    =========================================== -->
+
+    <section
+      id="inmobiliario"
+      class="py-24 bg-white scroll-mt-20">
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div
+          class="grid lg:grid-cols-2 gap-16 items-center">
+
+
+          <div>
+
+            <p
+              class="text-blue-700 uppercase tracking-widest font-semibold text-sm mb-4">
+
+              Especialización inmobiliaria
+
+            </p>
+
+            <h2
+              class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+
+              Una gerencia comercial preparada para vender proyectos inmobiliarios.
+
+            </h2>
+
+            <p
+              class="text-lg text-slate-600 mb-8">
+
+              Podemos complementar o administrar el ecosistema comercial
+              de un proyecto: estrategia, campañas, leads,
+              asesores, seguimiento, indicadores y optimización.
+
+            </p>
+
+
+            <ul class="space-y-4">
+
+              <li class="flex gap-3">
+                <span class="text-blue-600">✓</span>
+                Estrategia de lanzamiento y comercialización
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-blue-600">✓</span>
+                Generación y calificación de leads
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-blue-600">✓</span>
+                Seguimiento de asesores comerciales
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-blue-600">✓</span>
+                Control de embudos y conversiones
+              </li>
+
+              <li class="flex gap-3">
+                <span class="text-blue-600">✓</span>
+                Reportería para gerencia
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <div
+            class="bg-slate-100 rounded-3xl p-8 lg:p-12">
+
+            <p class="text-sm font-semibold text-slate-500 mb-6">
+              VISIÓN 360° DEL PROYECTO
+            </p>
+
+
+            <div class="space-y-4">
+
+              <div class="bg-white p-5 rounded-xl shadow-sm">
+                Marketing → ¿Cuántos leads estamos generando?
+              </div>
+
+              <div class="bg-white p-5 rounded-xl shadow-sm">
+                Ventas → ¿Qué tan rápido los estamos atendiendo?
+              </div>
+
+              <div class="bg-white p-5 rounded-xl shadow-sm">
+                Conversión → ¿En qué etapa estamos perdiendo oportunidades?
+              </div>
+
+              <div class="bg-blue-700 text-white p-5 rounded-xl">
+                Gerencia → ¿Qué debemos hacer para vender más?
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         TECNOLOGÍA
+    =========================================== -->
+
+    <section class="py-20 bg-slate-50">
+
+      <div class="max-w-7xl mx-auto px-5 text-center">
+
+        <p
+          class="text-blue-700 uppercase tracking-widest font-semibold text-sm mb-4">
+          Tecnología
+        </p>
+
+        <h2
+          class="text-3xl lg:text-4xl font-bold mb-5">
+
+          La tecnología al servicio de la venta.
+
+        </h2>
+
+        <p
+          class="text-slate-600 max-w-2xl mx-auto mb-12">
+
+          Utilizamos herramientas de marketing, medición
+          y seguimiento para construir una visión integral
+          de la operación comercial.
+
+        </p>
+
+
+        <div
+          class="flex flex-wrap justify-center gap-3">
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Meta Ads
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Google Ads
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Google Analytics 4
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Google Tag Manager
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Meta Pixel
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            CRM
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Looker Studio
+          </span>
+
+          <span class="bg-white border px-5 py-3 rounded-full">
+            Automatizaciones
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         CONTACTO
+    =========================================== -->
+
+    <section
+      id="contacto"
+      class="py-24 bg-blue-700 scroll-mt-20">
+
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div
+          class="grid lg:grid-cols-2 gap-14 items-center">
+
+
+          <!-- Texto -->
+
+          <div class="text-white">
+
+            <p
+              class="text-blue-200 uppercase tracking-widest font-semibold text-sm mb-4">
+
+              Conversemos
+
+            </p>
+
+            <h2
+              class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+
+              Cuéntanos qué necesitas mejorar en tu operación comercial.
+
+            </h2>
+
+            <p class="text-blue-100 text-lg">
+
+              Revisemos juntos tu estrategia, generación de leads,
+              proceso de seguimiento, equipo de ventas o sistema
+              de medición.
+
+            </p>
+
+          </div>
+
+
+          <!-- Form -->
+
+          <form
+            id="formulario-contacto"
+            action="https://formspree.io/f/TU_ID"
+            method="POST"
+            class="bg-white rounded-3xl p-7 lg:p-9 shadow-2xl">
+
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+
+              <div>
+                <label class="block text-sm font-medium mb-2">
+                  Nombre
+                </label>
+
+                <input
+                  type="text"
+                  name="nombre"
+                  required
+                  class="w-full border border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+
+
+              <div>
+                <label class="block text-sm font-medium mb-2">
+                  Empresa
+                </label>
+
+                <input
+                  type="text"
+                  name="empresa"
+                  class="w-full border border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+
+            </div>
+
+
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+
+              <div>
+                <label class="block text-sm font-medium mb-2">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="w-full border border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+
+
+              <div>
+                <label class="block text-sm font-medium mb-2">
+                  Teléfono
+                </label>
+
+                <input
+                  type="tel"
+                  name="telefono"
+                  class="w-full border border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+
+            </div>
+
+
+            <div class="mb-5">
+
+              <label class="block text-sm font-medium mb-2">
+                ¿En qué podemos ayudarte?
+              </label>
+
+              <textarea
+                name="mensaje"
+                rows="5"
+                required
+                class="w-full border border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="w-full bg-slate-950 hover:bg-slate-800 text-white font-semibold py-4 rounded-xl transition">
+
+              Quiero conversar con Escala
+
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- ==========================================
+       FOOTER
+  =========================================== -->
+
+  <footer class="bg-slate-950 text-slate-400 py-14">
+
+    <div
+      class="max-w-7xl mx-auto px-5 lg:px-8">
+
+      <div
+        class="grid md:grid-cols-3 gap-10">
+
+
+        <div>
+
+          <h3
+            class="text-white font-bold text-xl mb-4">
+
+            Escala Comercial
+
+          </h3>
+
+          <p class="text-sm leading-relaxed">
+
+            Estrategia, marketing, tecnología,
+            inteligencia comercial y ventas integradas
+            para construir negocios que escalan.
+
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h4
+            class="text-white font-semibold mb-4">
+
+            Servicios
+
+          </h4>
+
+          <div class="text-sm space-y-2">
+
+            <p>Gerencia Comercial</p>
+            <p>Marketing & Leads</p>
+            <p>Outsourcing de Ventas</p>
+            <p>Inteligencia Comercial</p>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h4
+            class="text-white font-semibold mb-4">
+
+            Contacto
+
+          </h4>
+
+          <p class="text-sm mb-2">
+            Lima, Perú
+          </p>
+
+          <p class="text-sm">
+            contacto@escalacomercial.pe
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="border-t border-slate-800 mt-12 pt-7 text-sm text-center">
+
+        © <span id="year"></span> Escala Comercial.
+        Todos los derechos reservados.
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- AOS -->
+
+  <script
+    src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+  </script>
+
+
+  <!-- JS -->
+
+  <script src="/scripts/scripts.js"></script>
+
+
 </body>
 </html>
