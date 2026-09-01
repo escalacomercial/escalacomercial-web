@@ -1,21 +1,1861 @@
+/* ==========================================
+   ESCALA COMERCIAL
+   STYLES.CSS
+========================================== */
+
+
+/* ==========================================
+   1. PALETA DE MARCA
+========================================== */
+
+:root {
+
+  /* Navy */
+  --escala-navy-950: #06152f;
+  --escala-navy-900: #0a2147;
+  --escala-navy-800: #0d2d5f;
+  --escala-navy-700: #123d79;
+  --escala-navy-600: #174f96;
+  --escala-navy-500: #1d64b5;
+
+  /* Gold */
+  --escala-gold-600: #c98a00;
+  --escala-gold-500: #e3a300;
+  --escala-gold-400: #f2b51d;
+  --escala-gold-300: #f7c84f;
+  --escala-gold-200: #fbdc8a;
+  --escala-gold-100: #fff4cf;
+  --escala-gold-50: #fffaf0;
+
+  /* Slate */
+  --escala-slate-950: #0f172a;
+  --escala-slate-900: #172033;
+  --escala-slate-800: #1e293b;
+  --escala-slate-700: #334155;
+  --escala-slate-600: #475569;
+  --escala-slate-500: #64748b;
+  --escala-slate-400: #94a3b8;
+  --escala-slate-300: #cbd5e1;
+  --escala-slate-200: #e2e8f0;
+  --escala-slate-100: #f1f5f9;
+  --escala-slate-50: #f8fafc;
+
+  --escala-white: #ffffff;
+
+  /* Sombras */
+  --escala-shadow-xs:
+    0 4px 14px rgba(6, 21, 47, 0.05);
+
+  --escala-shadow-sm:
+    0 8px 24px rgba(6, 21, 47, 0.08);
+
+  --escala-shadow-md:
+    0 16px 40px rgba(6, 21, 47, 0.14);
+
+  --escala-shadow-lg:
+    0 24px 60px rgba(6, 21, 47, 0.2);
+
+}
+
+
+/* ==========================================
+   2. BASE
+========================================== */
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  margin: 0;
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  background:
+    var(--escala-white);
+
+  color:
+    var(--escala-slate-950);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+
+/* ==========================================
+   3. TIPOGRAFÍA
+========================================== */
+
+/*
+  Inter será la tipografía general:
+  navegación, botones, tarjetas, formularios,
+  textos y títulos internos.
+*/
 
 h1,
 h2,
 h3,
 h4,
-h5 {
-  font-family: "Space Grotesk", sans-serif;
+h5,
+h6 {
+  margin-top: 0;
+
+  font-family:
+    "Inter",
+    sans-serif;
 }
 
+
+/*
+  Space Grotesk queda reservada
+  para los títulos principales.
+*/
+
+.font-display {
+  font-family:
+    "Space Grotesk",
+    sans-serif !important;
+
+  letter-spacing:
+    -0.025em;
+}
+
+
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing:
+    -0.01em;
+}
+
+
+button,
+input,
+textarea,
+select,
+a {
+  font-family:
+    "Inter",
+    sans-serif;
+}
+
+
 ::selection {
-  background: #2563eb;
-  color: white;
+  background:
+    var(--escala-gold-500);
+
+  color:
+    var(--escala-navy-950);
+}
+
+
+/* ==========================================
+   4. INTERACCIONES GENERALES
+========================================== */
+
+a,
+button {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+button {
+  cursor:
+    pointer;
+}
+
+button:disabled {
+  cursor:
+    not-allowed;
+
+  opacity:
+    0.7;
+}
+
+
+/* ==========================================
+   5. HEADER
+========================================== */
+
+#site-header {
+  transition:
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+#site-header.shadow-sm {
+  box-shadow:
+    0 8px 28px rgba(6, 21, 47, 0.08);
+}
+
+
+/* ==========================================
+   NAVEGACIÓN DESKTOP
+========================================== */
+
+.nav-link {
+  position:
+    relative;
+}
+
+
+.nav-link::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  bottom:
+    -8px;
+
+  width:
+    0;
+
+  height:
+    2px;
+
+  border-radius:
+    999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--escala-gold-500),
+      var(--escala-gold-300)
+    );
+
+  transition:
+    width 0.25s ease;
+}
+
+
+.nav-link:hover {
+  color:
+    var(--escala-navy-700) !important;
+}
+
+
+.nav-link:hover::after {
+  width:
+    100%;
+}
+
+
+/* ==========================================
+   MENÚ MOBILE
+========================================== */
+
+.mobile-nav-link {
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+
+.mobile-nav-link:hover {
+  color:
+    var(--escala-navy-700);
+
+  padding-left:
+    4px;
+}
+
+
+/* ==========================================
+   6. HERO
+========================================== */
+
+.hero-escala {
+  position:
+    relative;
+
+  min-height:
+    620px;
+}
+
+
+.hero-escala::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 21, 47, 0.2) 0%,
+      transparent 58%,
+      rgba(6, 21, 47, 0.04) 100%
+    );
+}
+
+
+/* ==========================================
+   7. FORMULARIOS BASE
+========================================== */
+
+input,
+textarea,
+button,
+select {
+  font:
+    inherit;
+}
+
+
+input,
+textarea,
+select {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+
+textarea {
+  resize:
+    vertical;
+}
+
+
+/* ==========================================
+   8. SERVICIOS
+========================================== */
+
+[data-section="servicios"] {
+  position:
+    relative;
+
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(227, 163, 0, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(23, 79, 150, 0.18),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      var(--escala-navy-950),
+      var(--escala-navy-900)
+    ) !important;
+}
+
+
+/* ==========================================
+   TABS SERVICIOS
+========================================== */
+
+.service-tab {
+  min-height:
+    76px;
+
+  padding:
+    1rem 1.25rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    0.85rem;
+
+  border-radius:
+    1rem;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  color:
+    var(--escala-slate-300);
+
+  font-size:
+    0.95rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.25;
+
+  text-align:
+    center;
+
+  backdrop-filter:
+    blur(7px);
+
+  -webkit-backdrop-filter:
+    blur(7px);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.service-tab i {
+  flex-shrink:
+    0;
+
+  color:
+    var(--escala-gold-400);
+
+  font-size:
+    1.15rem;
+}
+
+
+.service-tab:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(242, 181, 29, 0.42);
+
+  background:
+    rgba(255, 255, 255, 0.09);
+
+  color:
+    var(--escala-white);
+}
+
+
+.service-tab-active {
+  color:
+    var(--escala-white);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(18, 61, 121, 0.95),
+      rgba(23, 79, 150, 0.9)
+    );
+
+  border-color:
+    rgba(242, 181, 29, 0.75);
+
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(227, 163, 0, 0.1);
+}
+
+
+.service-tab-active i {
+  color:
+    var(--escala-gold-400);
+}
+
+
+/* ==========================================
+   PANEL SERVICIOS
+========================================== */
+
+.service-panel {
+  animation:
+    serviceFade 0.3s ease;
+}
+
+
+@keyframes serviceFade {
+
+  from {
+    opacity:
+      0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+    opacity:
+      1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* ==========================================
+   TARJETAS DE SERVICIOS
+========================================== */
+
+.service-card-image {
+  position:
+    relative;
+
+  min-height:
+    340px;
+
+  overflow:
+    hidden;
+
+  border-radius:
+    1.25rem;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  background-size:
+    cover;
+
+  background-position:
+    center;
+
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.2);
+
+  isolation:
+    isolate;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.service-card-image:hover {
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(242, 181, 29, 0.42);
+
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.3);
+}
+
+
+.service-card-overlay {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    1;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(6, 21, 47, 0.99) 0%,
+      rgba(6, 21, 47, 0.92) 35%,
+      rgba(6, 21, 47, 0.48) 72%,
+      rgba(6, 21, 47, 0.1) 100%
+    );
+}
+
+
+.service-card-content {
+  position:
+    absolute;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  bottom:
+    0;
+
+  z-index:
+    2;
+
+  padding:
+    1.6rem;
+}
+
+
+.service-card-icon {
+  width:
+    3rem;
+
+  height:
+    3rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  margin-bottom:
+    1.1rem;
+
+  border-radius:
+    9999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--escala-gold-400),
+      var(--escala-gold-600)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.32);
+
+  color:
+    var(--escala-navy-950);
+
+  font-size:
+    1.1rem;
+
+  box-shadow:
+    0 8px 20px rgba(227, 163, 0, 0.22);
+}
+
+
+.service-card-content h3 {
+  margin:
+    0 0 0.75rem;
+
+  color:
+    var(--escala-white);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    1.2rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    -0.015em;
+
+  line-height:
+    1.3;
+}
+
+
+.service-card-content p {
+  margin:
+    0;
+
+  color:
+    var(--escala-slate-300);
+
+  font-size:
+    0.92rem;
+
+  line-height:
+    1.65;
+}
+
+
+/* ==========================================
+   RESUMEN SERVICIOS
+========================================== */
+
+.service-summary {
+  margin-top:
+    1.75rem;
+
+  padding:
+    1.25rem 1.5rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    1.25rem;
+
+  border-radius:
+    1.1rem;
+
+  border:
+    1px solid rgba(227, 163, 0, 0.22);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 33, 71, 0.95),
+      rgba(13, 45, 95, 0.72)
+    );
+}
+
+
+.service-summary-icon {
+  width:
+    3.5rem;
+
+  height:
+    3.5rem;
+
+  flex-shrink:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    0.9rem;
+
+  background:
+    rgba(227, 163, 0, 0.12);
+
+  border:
+    1px solid rgba(227, 163, 0, 0.18);
+
+  color:
+    var(--escala-gold-400);
+
+  font-size:
+    1.35rem;
+}
+
+
+.service-summary p {
+  margin:
+    0;
+
+  color:
+    var(--escala-slate-300);
+
+  font-size:
+    0.94rem;
+
+  line-height:
+    1.65;
+}
+
+
+.service-summary strong {
+  color:
+    var(--escala-gold-300);
+
+  font-weight:
+    700;
+}
+
+
+/* ==========================================
+   9. MODELO ESCALA / RUTA COMERCIAL
+========================================== */
+
+[data-section="modelo"] {
+  position:
+    relative;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(227, 163, 0, 0.04),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fbfcfe 100%
+    ) !important;
+}
+
+
+/* ==========================================
+   PASOS DEL MODELO
+========================================== */
+
+.journey-step {
+  position:
+    relative;
+
+  z-index:
+    3;
+
+  width:
+    100%;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--escala-slate-600);
+
+  text-align:
+    center;
+
+  cursor:
+    pointer;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.journey-step:hover {
+  color:
+    var(--escala-navy-800);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* ==========================================
+   NÚMEROS MODELO
+========================================== */
+
+.journey-number {
+  display:
+    block;
+
+  margin-bottom:
+    0.65rem;
+
+  color:
+    var(--escala-slate-400);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    0.72rem;
+
+  font-weight:
+    700;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    0.14em;
+
+  transition:
+    color 0.25s ease;
+}
+
+
+.journey-step-active
+.journey-number {
+  color:
+    var(--escala-gold-600);
+}
+
+
+/* ==========================================
+   NODOS MODELO
+========================================== */
+
+.journey-node {
+  position:
+    relative;
+
+  z-index:
+    4;
+
+  width:
+    3.9rem;
+
+  height:
+    3.9rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  margin-bottom:
+    0.9rem;
+
+  border-radius:
+    1rem;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  background:
+    var(--escala-white);
+
+  color:
+    var(--escala-navy-700);
+
+  font-size:
+    1.15rem;
+
+  box-shadow:
+    0 10px 25px rgba(6, 21, 47, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.journey-step:hover
+.journey-node {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    var(--escala-gold-300);
+
+  box-shadow:
+    0 14px 32px rgba(6, 21, 47, 0.12);
+}
+
+
+.journey-step-active
+.journey-node {
+  background:
+    linear-gradient(
+      135deg,
+      var(--escala-gold-400),
+      var(--escala-gold-500)
+    );
+
+  border-color:
+    var(--escala-gold-500);
+
+  color:
+    var(--escala-navy-950);
+
+  box-shadow:
+    0 12px 30px rgba(227, 163, 0, 0.22);
+}
+
+
+/* ==========================================
+   ETIQUETA DE ETAPA
+========================================== */
+
+.journey-label {
+  display:
+    block;
+
+  color:
+    var(--escala-slate-600);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    0.88rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.35;
+
+  transition:
+    color 0.25s ease;
+}
+
+
+.journey-step:hover
+.journey-label {
+  color:
+    var(--escala-navy-800);
+}
+
+
+.journey-step-active
+.journey-label {
+  color:
+    var(--escala-navy-900);
+
+  font-weight:
+    700;
+}
+
+
+/* ==========================================
+   PANEL MODELO
+========================================== */
+
+#solution-title,
+#solution-title-mobile {
+  font-family:
+    "Inter",
+    sans-serif;
+
+  letter-spacing:
+    -0.02em;
+}
+
+
+#solution-description,
+#solution-description-mobile {
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+
+/* ==========================================
+   TAGS MODELO
+========================================== */
+
+.journey-tool {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    0.5rem 0.85rem;
+
+  border-radius:
+    9999px;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  background:
+    var(--escala-slate-50);
+
+  color:
+    var(--escala-slate-600);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    0.78rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.journey-tool:hover {
+  transform:
+    translateY(-1px);
+
+  background:
+    var(--escala-gold-50);
+
+  border-color:
+    var(--escala-gold-300);
+
+  color:
+    var(--escala-navy-800);
+}
+
+
+/* ==========================================
+   CAMBIO DE ETAPA
+========================================== */
+
+.journey-changing {
+  opacity:
+    0.5;
+
+  transform:
+    translateY(3px);
+}
+
+
+/* ==========================================
+   MOBILE TABS MODELO
+========================================== */
+
+.journey-mobile-tab {
+  flex-shrink:
+    0;
+
+  padding:
+    0.7rem 1rem;
+
+  border-radius:
+    9999px;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  background:
+    var(--escala-white);
+
+  color:
+    var(--escala-slate-600);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    0.82rem;
+
+  font-weight:
+    600;
+
+  white-space:
+    nowrap;
+
+  scroll-snap-align:
+    start;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.journey-mobile-tab:hover {
+  color:
+    var(--escala-navy-800);
+
+  border-color:
+    var(--escala-gold-300);
+}
+
+
+.journey-mobile-tab-active {
+  background:
+    var(--escala-navy-800);
+
+  border-color:
+    var(--escala-gold-400);
+
+  color:
+    var(--escala-white);
+
+  box-shadow:
+    0 8px 20px rgba(6, 21, 47, 0.15);
+}
+
+
+/* ==========================================
+   SCROLL MODELO MOBILE
+========================================== */
+
+[data-section="modelo"]
+.overflow-x-auto {
+  scrollbar-width:
+    none;
+}
+
+
+[data-section="modelo"]
+.overflow-x-auto::-webkit-scrollbar {
+  display:
+    none;
+}
+
+
+/* ==========================================
+   10. CONTACTO
+========================================== */
+
+[data-section="contacto"] {
+  position:
+    relative;
+
+  background:
+    radial-gradient(
+      circle at 12% 22%,
+      rgba(227, 163, 0, 0.11),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(23, 79, 150, 0.2),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      var(--escala-navy-700),
+      var(--escala-navy-900)
+    ) !important;
+}
+
+
+/* ==========================================
+   CAMPOS CONTACTO
+========================================== */
+
+.contact-field {
+  width:
+    100%;
+
+  box-sizing:
+    border-box;
+
+  padding:
+    0.78rem 0.95rem;
+
+  border:
+    1px solid #dbe3ee;
+
+  border-radius:
+    0.8rem;
+
+  background:
+    var(--escala-slate-50);
+
+  color:
+    var(--escala-slate-950);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    0.85rem;
+
+  line-height:
+    1.4;
+
+  outline:
+    none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.contact-field::placeholder {
+  color:
+    var(--escala-slate-400);
+}
+
+
+.contact-field:hover {
+  border-color:
+    var(--escala-slate-300);
+}
+
+
+.contact-field:focus {
+  background:
+    var(--escala-white);
+
+  border-color:
+    var(--escala-gold-500);
+
+  box-shadow:
+    0 0 0 3px rgba(227, 163, 0, 0.12);
+}
+
+
+.contact-textarea {
+  min-height:
+    105px;
+
+  resize:
+    vertical;
+}
+
+
+/* ==========================================
+   RADIO BUTTONS
+========================================== */
+
+.contact-radio {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.55rem;
+
+  color:
+    var(--escala-slate-600);
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  font-size:
+    0.86rem;
+
+  font-weight:
+    500;
+
+  cursor:
+    pointer;
+
+  user-select:
+    none;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+.contact-radio input[type="radio"] {
+  width:
+    1rem;
+
+  height:
+    1rem;
+
+  margin:
+    0;
+
+  accent-color:
+    var(--escala-gold-500);
+
+  cursor:
+    pointer;
+}
+
+
+.contact-radio:hover {
+  color:
+    var(--escala-navy-700);
+}
+
+
+/* ==========================================
+   11. FOOTER
+========================================== */
+
+[data-section="footer"] {
+  background:
+    var(--escala-navy-950) !important;
+
+  color:
+    var(--escala-slate-400);
+}
+
+
+[data-section="footer"] h3,
+[data-section="footer"] h4 {
+  font-family:
+    "Inter",
+    sans-serif;
+}
+
+
+.footer-social {
+  width:
+    2.2rem;
+
+  height:
+    2.2rem;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    0.65rem;
+
+  color:
+    var(--escala-white);
+
+  font-size:
+    1.1rem;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.footer-social:hover {
+  color:
+    var(--escala-gold-400);
+
+  background:
+    rgba(227, 163, 0, 0.08);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* ==========================================
+   12. OVERRIDES DE MARCA
+========================================== */
+
+/*
+  Tu HTML todavía utiliza varias clases Tailwind
+  blue-*.
+
+  Estos overrides permiten que mantengamos el HTML
+  limpio sin perder la identidad de Escala.
+*/
+
+
+.text-blue-700 {
+  color:
+    var(--escala-navy-700) !important;
+}
+
+
+.text-blue-600 {
+  color:
+    var(--escala-navy-600) !important;
+}
+
+
+/*
+  Blue 400 se utiliza como acento
+  en hero y footer.
+*/
+
+.text-blue-400 {
+  color:
+    var(--escala-gold-400) !important;
+}
+
+
+/*
+  Blue 300 se utiliza principalmente
+  en pequeños títulos.
+*/
+
+.text-blue-300 {
+  color:
+    var(--escala-gold-300) !important;
+}
+
+
+/*
+  Blue 200 aparece sobre fondos oscuros.
+*/
+
+.text-blue-200 {
+  color:
+    var(--escala-gold-100) !important;
+}
+
+
+/* ==========================================
+   BOTONES TAILWIND
+========================================== */
+
+.bg-blue-700 {
+  background-color:
+    var(--escala-navy-700) !important;
+}
+
+
+.bg-blue-600 {
+  background-color:
+    var(--escala-navy-600) !important;
+}
+
+
+.hover\:bg-blue-800:hover {
+  background-color:
+    var(--escala-navy-800) !important;
+}
+
+
+.hover\:bg-blue-500:hover {
+  background-color:
+    var(--escala-navy-700) !important;
+}
+
+
+/* ==========================================
+   13. CLASES UTILITARIAS DE MARCA
+========================================== */
+
+.brand-gold {
+  color:
+    var(--escala-gold-400);
+}
+
+
+.brand-gold-bg {
+  background:
+    var(--escala-gold-400);
+
+  color:
+    var(--escala-navy-950);
+}
+
+
+.brand-gold-border {
+  border-color:
+    var(--escala-gold-400);
+}
+
+
+.brand-navy {
+  color:
+    var(--escala-navy-800);
+}
+
+
+.brand-navy-bg {
+  background:
+    var(--escala-navy-800);
+
+  color:
+    var(--escala-white);
+}
+
+
+/* ==========================================
+   14. DESKTOP GRANDE
+========================================== */
+
+@media (min-width: 1280px) {
+
+  .hero-escala {
+    min-height:
+      640px;
+  }
+
+
+  .journey-node {
+    width:
+      4.15rem;
+
+    height:
+      4.15rem;
+  }
+
+
+  .journey-label {
+    font-size:
+      0.92rem;
+  }
+
+}
+
+
+/* ==========================================
+   15. TABLET / MOBILE
+========================================== */
+
+@media (max-width: 1023px) {
+
+  html {
+    scroll-padding-top:
+      80px;
+  }
+
+
+  .hero-escala {
+    min-height:
+      auto;
+  }
+
+}
+
+
+/* ==========================================
+   16. SERVICIOS TABLET / MOBILE
+========================================== */
+
+@media (max-width: 767px) {
+
+  .service-tab {
+    min-height:
+      66px;
+
+    padding:
+      0.85rem 0.75rem;
+
+    gap:
+      0.55rem;
+
+    font-size:
+      0.82rem;
+  }
+
+
+  .service-tab i {
+    font-size:
+      1rem;
+  }
+
+
+  .service-card-image {
+    min-height:
+      300px;
+  }
+
+
+  .service-summary {
+    align-items:
+      flex-start;
+  }
+
+
+  .service-summary-icon {
+    width:
+      3rem;
+
+    height:
+      3rem;
+
+    font-size:
+      1.15rem;
+  }
+
+}
+
+
+/* ==========================================
+   17. MOBILE
+========================================== */
+
+@media (max-width: 639px) {
+
+  .font-display {
+    letter-spacing:
+      -0.02em;
+  }
+
+
+  .service-tab {
+    flex-direction:
+      column;
+
+    min-height:
+      82px;
+
+    gap:
+      0.45rem;
+
+    padding:
+      0.75rem 0.5rem;
+
+    font-size:
+      0.76rem;
+
+    line-height:
+      1.2;
+  }
+
+
+  .service-card-content {
+    padding:
+      1.35rem;
+  }
+
+
+  .service-card-content h3 {
+    font-size:
+      1.1rem;
+  }
+
+
+  .service-card-content p {
+    font-size:
+      0.88rem;
+  }
+
+
+  .service-summary {
+    gap:
+      0.9rem;
+
+    padding:
+      1rem;
+  }
+
+
+  .service-summary p {
+    font-size:
+      0.86rem;
+  }
+
+
+  .journey-mobile-tab {
+    padding:
+      0.65rem 0.85rem;
+
+    font-size:
+      0.78rem;
+  }
+
+
+  .journey-tool {
+    padding:
+      0.46rem 0.72rem;
+
+    font-size:
+      0.74rem;
+  }
+
+
+  .contact-field {
+    padding:
+      0.78rem 0.9rem;
+
+    font-size:
+      0.84rem;
+  }
+
+
+  .contact-radio {
+    font-size:
+      0.82rem;
+  }
+
+
+  .footer-social {
+    width:
+      2rem;
+
+    height:
+      2rem;
+
+    font-size:
+      1rem;
+  }
+
+}
+
+
+/* ==========================================
+   18. TABLET MODELO
+========================================== */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+
+  .journey-mobile-tab {
+    padding:
+      0.72rem 1rem;
+
+    font-size:
+      0.84rem;
+  }
+
+}
+
+
+/* ==========================================
+   19. FOCUS / ACCESIBILIDAD
+========================================== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline:
+    2px solid var(--escala-gold-400);
+
+  outline-offset:
+    3px;
+}
+
+
+/* ==========================================
+   20. REDUCIR MOVIMIENTO
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior:
+      auto;
+  }
+
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+
+    scroll-behavior:
+      auto !important;
+  }
+
 }
