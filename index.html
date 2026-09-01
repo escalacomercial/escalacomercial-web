@@ -190,22 +190,40 @@
     rel="stylesheet">
 
 
-  <!-- ==========================================
-       FONT AWESOME
-  =========================================== -->
+<!-- ==========================================
+     FONT AWESOME
+=========================================== -->
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
-  <!-- ==========================================
-       CSS PROPIO
-  =========================================== -->
+<!-- ==========================================
+     LEAFLET MAPS
+=========================================== -->
 
-  <link
-    rel="stylesheet"
-    href="/styles/styles.css">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIINfQ3OQ2IWTKJ+MZ9D83MR2Rtr2rdM8Po="
+  crossorigin=""
+>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin="">
+</script>
+
+
+<!-- ==========================================
+     CSS PROPIO
+=========================================== -->
+
+<link
+  rel="stylesheet"
+  href="/styles/styles.css">
 
 
   <!-- ==========================================
@@ -1854,6 +1872,400 @@
 
 </section>
 
+<!-- ==========================================
+     RADAR INMOBILIARIO
+=========================================== -->
+
+<section
+  id="radar-inmobiliario"
+  data-section="radar-inmobiliario"
+  class="radar-section py-12 lg:py-14"
+>
+
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+    <!-- ========================================
+         ENCABEZADO
+    ========================================= -->
+
+    <div class="max-w-3xl mb-6">
+
+      <p
+        class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+      >
+        Radar inmobiliario
+      </p>
+
+      <h2
+        class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight"
+      >
+        Explora la oferta inmobiliaria
+
+        <span class="text-blue-700">
+          por zona.
+        </span>
+      </h2>
+
+    </div>
+
+
+    <!-- ========================================
+         BUSCADOR
+    ========================================= -->
+
+    <div class="radar-search-card">
+
+      <form
+        id="radar-form"
+        class="radar-search-form"
+      >
+
+        <div class="radar-search-field">
+
+          <i
+            class="fa-solid fa-location-dot radar-search-icon"
+            aria-hidden="true"
+          ></i>
+
+          <input
+            id="radar-query"
+            type="search"
+            placeholder="Ej. Barranco, Miraflores, Edifica..."
+            autocomplete="off"
+            aria-label="Buscar distrito, proyecto o inmobiliaria"
+          >
+
+        </div>
+
+
+        <button
+          id="radar-submit"
+          type="submit"
+          class="radar-search-button"
+        >
+
+          <i
+            class="fa-solid fa-magnifying-glass"
+            aria-hidden="true"
+          ></i>
+
+          Buscar
+
+        </button>
+
+      </form>
+
+
+      <!-- ========================================
+           FILTROS
+      ========================================= -->
+
+      <div
+        class="radar-filters"
+        aria-label="Filtrar resultados"
+      >
+
+        <button
+          type="button"
+          class="radar-filter radar-filter-active"
+          data-radar-filter="todos"
+          aria-pressed="true"
+        >
+          Todos
+        </button>
+
+        <button
+          type="button"
+          class="radar-filter"
+          data-radar-filter="proyectos"
+          aria-pressed="false"
+        >
+          Proyectos
+        </button>
+
+        <button
+          type="button"
+          class="radar-filter"
+          data-radar-filter="inmobiliarias"
+          aria-pressed="false"
+        >
+          Inmobiliarias
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================
+         BÚSQUEDAS SUGERIDAS
+    ========================================= -->
+
+    <div
+      class="radar-suggestions mt-4"
+      aria-label="Búsquedas sugeridas"
+    >
+
+      <span class="radar-suggestions-label">
+        Explorar:
+      </span>
+
+      <button
+        type="button"
+        class="radar-suggestion"
+        data-radar-query="Barranco"
+      >
+        Barranco
+      </button>
+
+      <button
+        type="button"
+        class="radar-suggestion"
+        data-radar-query="Miraflores"
+      >
+        Miraflores
+      </button>
+
+      <button
+        type="button"
+        class="radar-suggestion"
+        data-radar-query="San Isidro"
+      >
+        San Isidro
+      </button>
+
+      <button
+        type="button"
+        class="radar-suggestion"
+        data-radar-query="Santiago de Surco"
+      >
+        Santiago de Surco
+      </button>
+
+      <button
+        type="button"
+        class="radar-suggestion"
+        data-radar-query="Jesús María"
+      >
+        Jesús María
+      </button>
+
+    </div>
+
+
+    <!-- ========================================
+         ESTADO INICIAL
+    ========================================= -->
+
+    <div
+      id="radar-empty"
+      class="radar-empty"
+    >
+
+      <div class="radar-empty-icon">
+
+        <i
+          class="fa-solid fa-building-circle-check"
+          aria-hidden="true"
+        ></i>
+
+      </div>
+
+      <h3>
+        Descubre qué se está desarrollando en cada zona
+      </h3>
+
+      <p>
+        Busca un distrito para identificar proyectos,
+        inmobiliarias y precios referenciales.
+      </p>
+
+    </div>
+
+
+    <!-- ========================================
+         RESULTADOS
+    ========================================= -->
+
+    <div
+      id="radar-content"
+      class="hidden"
+    >
+
+
+      <!-- ========================================
+           CABECERA DE RESULTADOS
+      ========================================= -->
+
+      <div
+        class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4"
+      >
+
+        <div>
+
+          <p
+            class="text-sm text-slate-500 mb-1"
+          >
+            Radar de mercado
+          </p>
+
+          <h3
+            id="radar-result-title"
+            class="text-xl sm:text-2xl font-bold text-slate-950"
+          >
+            Explorando la zona
+          </h3>
+
+        </div>
+
+
+        <div class="flex items-center gap-2">
+
+          <span
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold"
+          >
+
+            <i
+              class="fa-solid fa-building"
+              aria-hidden="true"
+            ></i>
+
+            <span id="radar-result-count">
+              0 proyectos
+            </span>
+
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ========================================
+           LOADING
+      ========================================= -->
+
+      <div
+        id="radar-loading"
+        class="hidden radar-loading"
+      >
+
+        <i
+          class="fa-solid fa-circle-notch fa-spin"
+          aria-hidden="true"
+        ></i>
+
+        Consultando proyectos...
+
+      </div>
+
+
+      <!-- ========================================
+           CARRUSEL DE RESULTADOS
+      ========================================= -->
+
+      <div
+        id="radar-carousel-shell"
+        class="radar-carousel-shell"
+      >
+
+        <button
+          id="radar-prev"
+          type="button"
+          class="radar-carousel-arrow radar-carousel-arrow-left"
+          aria-label="Ver proyectos anteriores"
+        >
+
+          <i
+            class="fa-solid fa-chevron-left"
+            aria-hidden="true"
+          ></i>
+
+        </button>
+
+
+        <div
+          id="radar-results"
+          class="radar-carousel"
+          aria-live="polite"
+        ></div>
+
+
+        <button
+          id="radar-next"
+          type="button"
+          class="radar-carousel-arrow radar-carousel-arrow-right"
+          aria-label="Ver proyectos siguientes"
+        >
+
+          <i
+            class="fa-solid fa-chevron-right"
+            aria-hidden="true"
+          ></i>
+
+        </button>
+
+      </div>
+
+
+      <!-- ========================================
+           SIN RESULTADOS
+      ========================================= -->
+
+      <div
+        id="radar-no-results"
+        class="hidden radar-no-results"
+      >
+
+        <div class="radar-no-results-icon">
+
+          <i
+            class="fa-solid fa-magnifying-glass"
+            aria-hidden="true"
+          ></i>
+
+        </div>
+
+        <h4>
+          No encontramos resultados
+        </h4>
+
+        <p>
+          Prueba con otro distrito,
+          proyecto o inmobiliaria.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================
+         NOTA DE DATOS
+    ========================================= -->
+
+    <div
+      class="flex items-start gap-2 mt-5 text-xs text-slate-400 leading-relaxed"
+    >
+
+      <i
+        class="fa-solid fa-circle-info mt-0.5"
+        aria-hidden="true"
+      ></i>
+
+      <p>
+        Información referencial elaborada a partir de datos
+        inmobiliarios de acceso público y actualizada periódicamente.
+        La disponibilidad y los precios pueden cambiar.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
 
     <!-- ==========================================
          CONTACTO
@@ -2475,7 +2887,7 @@
 
 
             <a
-              href="https://www.facebook.com/escala.comercial/"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook de Escala Comercial"
@@ -2489,7 +2901,7 @@
 
 
             <a
-              href="https://www.instagram.com/escala.comercial/"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram de Escala Comercial"
