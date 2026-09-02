@@ -11,6 +11,7 @@
 :root {
 
   /* Navy */
+
   --escala-navy-950: #06152f;
   --escala-navy-900: #0a2147;
   --escala-navy-800: #0d2d5f;
@@ -18,7 +19,9 @@
   --escala-navy-600: #174f96;
   --escala-navy-500: #1d64b5;
 
+
   /* Gold */
+
   --escala-gold-600: #c98a00;
   --escala-gold-500: #e3a300;
   --escala-gold-400: #f2b51d;
@@ -27,7 +30,9 @@
   --escala-gold-100: #fff4cf;
   --escala-gold-50: #fffaf0;
 
+
   /* Slate */
+
   --escala-slate-950: #0f172a;
   --escala-slate-900: #172033;
   --escala-slate-800: #1e293b;
@@ -42,7 +47,9 @@
 
   --escala-white: #ffffff;
 
+
   /* Sombras */
+
   --escala-shadow-xs:
     0 4px 14px rgba(6, 21, 47, 0.05);
 
@@ -67,6 +74,7 @@ html {
   scroll-padding-top: 96px;
 }
 
+
 body {
   margin: 0;
 
@@ -89,12 +97,6 @@ body {
    3. TIPOGRAFÍA
 ========================================== */
 
-/*
-  Inter será la tipografía general:
-  navegación, botones, tarjetas, formularios,
-  textos y títulos internos.
-*/
-
 h1,
 h2,
 h3,
@@ -108,11 +110,6 @@ h6 {
     sans-serif;
 }
 
-
-/*
-  Space Grotesk queda reservada
-  para los títulos principales.
-*/
 
 .font-display {
   font-family:
@@ -163,10 +160,12 @@ button {
     transparent;
 }
 
+
 button {
   cursor:
     pointer;
 }
+
 
 button:disabled {
   cursor:
@@ -202,6 +201,9 @@ button:disabled {
 .nav-link {
   position:
     relative;
+
+  white-space:
+    nowrap;
 }
 
 
@@ -510,7 +512,7 @@ textarea {
 
 
 /* ==========================================
-   TARJETAS DE SERVICIOS
+   TARJETAS SERVICIOS
 ========================================== */
 
 .service-card-image {
@@ -781,7 +783,7 @@ textarea {
 
 
 /* ==========================================
-   9. MODELO ESCALA / RUTA COMERCIAL
+   9. MODELO ESCALA
 ========================================== */
 
 [data-section="modelo"] {
@@ -803,7 +805,7 @@ textarea {
 
 
 /* ==========================================
-   PASOS DEL MODELO
+   PASOS MODELO
 ========================================== */
 
 .journey-step {
@@ -871,10 +873,6 @@ textarea {
 
   color:
     var(--escala-slate-400);
-
-  font-family:
-    "Inter",
-    sans-serif;
 
   font-size:
     0.72rem;
@@ -990,7 +988,7 @@ textarea {
 
 
 /* ==========================================
-   ETIQUETA DE ETAPA
+   ETIQUETA ETAPA
 ========================================== */
 
 .journey-label {
@@ -999,10 +997,6 @@ textarea {
 
   color:
     var(--escala-slate-600);
-
-  font-family:
-    "Inter",
-    sans-serif;
 
   font-size:
     0.88rem;
@@ -1084,10 +1078,6 @@ textarea {
   color:
     var(--escala-slate-600);
 
-  font-family:
-    "Inter",
-    sans-serif;
-
   font-size:
     0.78rem;
 
@@ -1121,7 +1111,7 @@ textarea {
 
 
 /* ==========================================
-   CAMBIO DE ETAPA
+   CAMBIO ETAPA
 ========================================== */
 
 .journey-changing {
@@ -1155,10 +1145,6 @@ textarea {
 
   color:
     var(--escala-slate-600);
-
-  font-family:
-    "Inter",
-    sans-serif;
 
   font-size:
     0.82rem;
@@ -1205,10 +1191,6 @@ textarea {
 }
 
 
-/* ==========================================
-   SCROLL MODELO MOBILE
-========================================== */
-
 [data-section="modelo"]
 .overflow-x-auto {
   scrollbar-width:
@@ -1224,7 +1206,1466 @@ textarea {
 
 
 /* ==========================================
-   10. CONTACTO
+   10. EQUIPO ESCALA
+========================================== */
+
+[data-section="equipo"] {
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #f3f6fa 100%
+    ) !important;
+
+  border-top:
+    1px solid rgba(15, 23, 42, 0.04);
+
+  border-bottom:
+    1px solid rgba(15, 23, 42, 0.04);
+}
+
+
+/* ==========================================
+   TARJETAS DE GERENCIA
+========================================== */
+
+.team-leader-card {
+  display:
+    grid;
+
+  grid-template-columns:
+    155px minmax(0, 1fr);
+
+  min-height:
+    270px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    1.15rem;
+
+  background:
+    var(--escala-white);
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.team-leader-card:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    var(--escala-gold-300);
+
+  box-shadow:
+    0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ==========================================
+   FOTO GERENTES
+========================================== */
+
+.team-leader-photo {
+  position:
+    relative;
+
+  min-height:
+    100%;
+
+  overflow:
+    hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--escala-slate-200),
+      var(--escala-slate-100)
+    );
+}
+
+
+.team-leader-photo::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 52%,
+      rgba(6, 21, 47, 0.22) 100%
+    );
+}
+
+
+.team-leader-photo img {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  min-height:
+    270px;
+
+  display:
+    block;
+
+  object-fit:
+    cover;
+
+  object-position:
+    center top;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.team-leader-card:hover
+.team-leader-photo img {
+  transform:
+    scale(1.025);
+}
+
+
+/* ==========================================
+   BADGE GERENTES
+========================================== */
+
+.team-leader-badge {
+  position:
+    absolute;
+
+  left:
+    0.7rem;
+
+  bottom:
+    0.7rem;
+
+  z-index:
+    2;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    0.38rem 0.65rem;
+
+  border-radius:
+    999px;
+
+  font-size:
+    0.62rem;
+
+  font-weight:
+    700;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.08em;
+
+  box-shadow:
+    0 5px 15px rgba(15, 23, 42, 0.14);
+}
+
+
+.team-leader-badge-gold {
+  background:
+    var(--escala-gold-400);
+
+  color:
+    var(--escala-navy-950);
+}
+
+
+.team-leader-badge-blue {
+  background:
+    var(--escala-navy-700);
+
+  color:
+    var(--escala-white);
+}
+
+
+/* ==========================================
+   CONTENIDO GERENTES
+========================================== */
+
+.team-leader-content {
+  min-width:
+    0;
+
+  padding:
+    1.25rem 1.3rem;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+}
+
+
+.team-leader-content h3 {
+  line-height:
+    1.2;
+}
+
+
+/* ==========================================
+   TAGS / ESPECIALIDADES
+========================================== */
+
+.team-skill {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    0.36rem 0.62rem;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    999px;
+
+  background:
+    var(--escala-slate-50);
+
+  color:
+    var(--escala-slate-600);
+
+  font-size:
+    0.68rem;
+
+  font-weight:
+    600;
+
+  line-height:
+    1;
+}
+
+
+/* ==========================================
+   BLOQUE EQUIPO DE SOPORTE
+========================================== */
+
+.team-support-shell {
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  padding:
+    1.35rem;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius:
+    1.15rem;
+
+  background:
+    radial-gradient(
+      circle at 95% 10%,
+      rgba(227, 163, 0, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      var(--escala-navy-950),
+      var(--escala-navy-900)
+    );
+
+  box-shadow:
+    0 16px 38px rgba(6, 21, 47, 0.12);
+}
+
+
+/* ==========================================
+   FLECHAS EQUIPO
+========================================== */
+
+.team-carousel-arrow {
+  width:
+    2.25rem;
+
+  height:
+    2.25rem;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex-shrink:
+    0;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  color:
+    var(--escala-white);
+
+  font-size:
+    0.78rem;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.team-carousel-arrow:hover {
+  transform:
+    translateY(-1px);
+
+  background:
+    rgba(242, 181, 29, 0.14);
+
+  border-color:
+    rgba(242, 181, 29, 0.35);
+
+  color:
+    var(--escala-gold-300);
+}
+
+
+/* ==========================================
+   CARRUSEL DE ÁREAS
+========================================== */
+
+.team-roles-carousel {
+  display:
+    flex;
+
+  gap:
+    0.8rem;
+
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  overscroll-behavior-inline:
+    contain;
+
+  padding:
+    0.1rem 0 0.35rem;
+
+  scroll-snap-type:
+    x mandatory;
+
+  scroll-behavior:
+    smooth;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+  scrollbar-width:
+    none;
+}
+
+
+.team-roles-carousel::-webkit-scrollbar {
+  display:
+    none;
+}
+
+
+/* ==========================================
+   TARJETAS ÁREAS
+========================================== */
+
+.team-role-card {
+  flex:
+    0 0 205px;
+
+  min-width:
+    205px;
+
+  min-height:
+    145px;
+
+  padding:
+    0.95rem;
+
+  border:
+    1px solid rgba(148, 163, 184, 0.14);
+
+  border-radius:
+    0.85rem;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  scroll-snap-align:
+    start;
+
+  scroll-snap-stop:
+    always;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.team-role-card:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border-color:
+    rgba(245, 158, 11, 0.3);
+}
+
+
+.team-role-icon {
+  width:
+    2.25rem;
+
+  height:
+    2.25rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  margin-bottom:
+    0.75rem;
+
+  border-radius:
+    0.65rem;
+
+  background:
+    rgba(245, 158, 11, 0.12);
+
+  color:
+    var(--escala-gold-300);
+
+  font-size:
+    0.85rem;
+}
+
+
+.team-role-card h4 {
+  margin:
+    0 0 0.35rem;
+
+  color:
+    var(--escala-white);
+
+  font-size:
+    0.86rem;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.3;
+}
+
+
+.team-role-card p {
+  margin:
+    0;
+
+  color:
+    var(--escala-slate-400);
+
+  font-size:
+    0.72rem;
+
+  line-height:
+    1.5;
+}
+
+
+/* ==========================================
+   11. RADAR INMOBILIARIO
+========================================== */
+
+.radar-section {
+  background:
+    linear-gradient(
+      180deg,
+      #eef3f8 0%,
+      #f5f8fb 100%
+    );
+
+  border-top:
+    1px solid rgba(15, 23, 42, 0.04);
+
+  border-bottom:
+    1px solid rgba(15, 23, 42, 0.04);
+}
+
+
+/* ==========================================
+   BUSCADOR RADAR
+========================================== */
+
+.radar-search-card {
+  padding:
+    1rem;
+
+  background:
+    var(--escala-white);
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    1.25rem;
+
+  box-shadow:
+    var(--escala-shadow-sm);
+}
+
+
+.radar-search-form {
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr auto;
+
+  gap:
+    0.75rem;
+}
+
+
+.radar-search-field {
+  position:
+    relative;
+}
+
+
+.radar-search-icon {
+  position:
+    absolute;
+
+  left:
+    1rem;
+
+  top:
+    50%;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    var(--escala-gold-500);
+
+  pointer-events:
+    none;
+}
+
+
+.radar-search-field input {
+  width:
+    100%;
+
+  box-sizing:
+    border-box;
+
+  padding:
+    0.95rem
+    1rem
+    0.95rem
+    2.8rem;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    0.85rem;
+
+  background:
+    var(--escala-slate-50);
+
+  color:
+    var(--escala-slate-950);
+
+  outline:
+    none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.radar-search-field input:focus {
+  background:
+    var(--escala-white);
+
+  border-color:
+    var(--escala-gold-500);
+
+  box-shadow:
+    0 0 0 3px rgba(227, 163, 0, 0.12);
+}
+
+
+.radar-search-field input::placeholder {
+  color:
+    var(--escala-slate-400);
+}
+
+
+.radar-search-button {
+  min-width:
+    135px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    0.6rem;
+
+  padding:
+    0.9rem 1.25rem;
+
+  border:
+    0;
+
+  border-radius:
+    0.85rem;
+
+  background:
+    var(--escala-navy-800);
+
+  color:
+    var(--escala-white);
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.radar-search-button:hover {
+  background:
+    var(--escala-navy-700);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ==========================================
+   FILTROS RADAR
+========================================== */
+
+.radar-filters {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    0.5rem;
+
+  margin-top:
+    0.85rem;
+}
+
+
+.radar-filter {
+  padding:
+    0.5rem 0.9rem;
+
+  border-radius:
+    999px;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  background:
+    var(--escala-white);
+
+  color:
+    var(--escala-slate-600);
+
+  font-size:
+    0.8rem;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.radar-filter:hover {
+  border-color:
+    var(--escala-gold-300);
+
+  color:
+    var(--escala-navy-800);
+}
+
+
+.radar-filter-active {
+  border-color:
+    var(--escala-gold-400);
+
+  background:
+    var(--escala-gold-50);
+
+  color:
+    var(--escala-navy-900);
+}
+
+
+/* ==========================================
+   SUGERENCIAS RADAR
+========================================== */
+
+.radar-suggestions {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    0.5rem;
+}
+
+
+.radar-suggestions-label {
+  margin-right:
+    0.2rem;
+
+  color:
+    var(--escala-slate-500);
+
+  font-size:
+    0.78rem;
+
+  font-weight:
+    600;
+}
+
+
+.radar-suggestion {
+  padding:
+    0.38rem 0.7rem;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    999px;
+
+  background:
+    transparent;
+
+  color:
+    var(--escala-slate-600);
+
+  font-size:
+    0.76rem;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.radar-suggestion:hover {
+  border-color:
+    var(--escala-gold-300);
+
+  background:
+    var(--escala-gold-50);
+
+  color:
+    var(--escala-navy-900);
+}
+
+
+/* ==========================================
+   ESTADO INICIAL RADAR
+========================================== */
+
+.radar-empty {
+  margin-top:
+    1.5rem;
+
+  padding:
+    2.1rem 1.25rem;
+
+  text-align:
+    center;
+
+  border:
+    1px dashed var(--escala-slate-300);
+
+  border-radius:
+    1.2rem;
+
+  background:
+    rgba(255, 255, 255, 0.65);
+}
+
+
+.radar-empty-icon {
+  width:
+    3.2rem;
+
+  height:
+    3.2rem;
+
+  margin:
+    0 auto 0.85rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    0.9rem;
+
+  background:
+    var(--escala-gold-50);
+
+  color:
+    var(--escala-gold-600);
+
+  font-size:
+    1.15rem;
+}
+
+
+.radar-empty h3 {
+  margin-bottom:
+    0.4rem;
+
+  color:
+    var(--escala-slate-950);
+
+  font-size:
+    1rem;
+
+  font-weight:
+    700;
+}
+
+
+.radar-empty p {
+  max-width:
+    520px;
+
+  margin:
+    0 auto;
+
+  color:
+    var(--escala-slate-500);
+
+  font-size:
+    0.85rem;
+
+  line-height:
+    1.5;
+}
+
+
+/* ==========================================
+   CONTENIDO RADAR
+========================================== */
+
+#radar-content {
+  margin-top:
+    1.25rem;
+}
+
+
+/* ==========================================
+   LOADING RADAR
+========================================== */
+
+.radar-loading {
+  padding:
+    1.5rem 1rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    0.7rem;
+
+  color:
+    var(--escala-slate-500);
+
+  font-size:
+    0.85rem;
+}
+
+
+/* ==========================================
+   CARRUSEL RADAR
+========================================== */
+
+.radar-carousel-shell {
+  position:
+    relative;
+
+  width:
+    100%;
+}
+
+
+.radar-carousel {
+  display:
+    flex;
+
+  gap:
+    1rem;
+
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  overflow-y:
+    hidden;
+
+  overscroll-behavior-inline:
+    contain;
+
+  padding:
+    0.25rem 0.1rem 0.7rem;
+
+  scroll-behavior:
+    smooth;
+
+  scroll-snap-type:
+    x mandatory;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+  scrollbar-width:
+    none;
+}
+
+
+.radar-carousel::-webkit-scrollbar {
+  display:
+    none;
+}
+
+
+/* ==========================================
+   TARJETAS RADAR
+========================================== */
+
+.radar-result-card {
+  flex:
+    0
+    0
+    calc(33.333% - 0.7rem);
+
+  min-width:
+    260px;
+
+  min-height:
+    185px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  padding:
+    1rem;
+
+  scroll-snap-align:
+    start;
+
+  scroll-snap-stop:
+    always;
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    1rem;
+
+  background:
+    var(--escala-white);
+
+  box-shadow:
+    0 5px 18px rgba(15, 23, 42, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.radar-result-card:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    var(--escala-gold-300);
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+
+.radar-result-type {
+  align-self:
+    flex-start;
+
+  display:
+    inline-flex;
+
+  margin-bottom:
+    0.5rem;
+
+  padding:
+    0.22rem 0.48rem;
+
+  border-radius:
+    999px;
+
+  background:
+    var(--escala-gold-50);
+
+  color:
+    var(--escala-gold-600);
+
+  font-size:
+    0.6rem;
+
+  font-weight:
+    700;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+.radar-result-card h4 {
+  margin-bottom:
+    0.18rem;
+
+  color:
+    var(--escala-slate-950);
+
+  font-size:
+    0.98rem;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.35;
+}
+
+
+.radar-result-builder {
+  margin-bottom:
+    0.55rem;
+
+  color:
+    var(--escala-navy-700);
+
+  font-size:
+    0.72rem;
+
+  font-weight:
+    700;
+}
+
+
+.radar-result-address {
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    0.4rem;
+
+  color:
+    var(--escala-slate-500);
+
+  font-size:
+    0.74rem;
+
+  line-height:
+    1.45;
+}
+
+
+.radar-result-address-secondary {
+  margin-top:
+    0.55rem;
+}
+
+
+.radar-result-address i {
+  flex:
+    0 0 auto;
+
+  margin-top:
+    0.2rem;
+
+  color:
+    var(--escala-gold-500);
+}
+
+
+/* ==========================================
+   PRECIO RADAR
+========================================== */
+
+.radar-result-price {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    0.35rem;
+
+  margin-top:
+    auto;
+
+  padding-top:
+    0.75rem;
+
+  color:
+    var(--escala-navy-900);
+
+  font-size:
+    0.78rem;
+
+  font-weight:
+    700;
+}
+
+
+.radar-result-price i {
+  color:
+    var(--escala-gold-500);
+
+  font-size:
+    0.68rem;
+}
+
+
+/* ==========================================
+   ESTADO RADAR
+========================================== */
+
+.radar-result-status {
+  align-self:
+    flex-start;
+
+  display:
+    inline-flex;
+
+  margin-top:
+    0.55rem;
+
+  padding:
+    0.28rem 0.5rem;
+
+  border-radius:
+    0.45rem;
+
+  background:
+    var(--escala-slate-100);
+
+  color:
+    var(--escala-slate-600);
+
+  font-size:
+    0.66rem;
+
+  font-weight:
+    600;
+}
+
+
+/* ==========================================
+   FLECHAS CARRUSEL RADAR
+========================================== */
+
+.radar-carousel-arrow {
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  z-index:
+    5;
+
+  width:
+    2.35rem;
+
+  height:
+    2.35rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  transform:
+    translateY(-50%);
+
+  border:
+    1px solid var(--escala-slate-200);
+
+  border-radius:
+    999px;
+
+  background:
+    var(--escala-white);
+
+  color:
+    var(--escala-navy-800);
+
+  box-shadow:
+    0 5px 18px rgba(15, 23, 42, 0.1);
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.radar-carousel-arrow:hover {
+  background:
+    var(--escala-gold-50);
+
+  color:
+    var(--escala-navy-950);
+
+  box-shadow:
+    0 7px 20px rgba(15, 23, 42, 0.14);
+}
+
+
+.radar-carousel-arrow-left {
+  left:
+    -1.05rem;
+}
+
+
+.radar-carousel-arrow-right {
+  right:
+    -1.05rem;
+}
+
+
+/* ==========================================
+   SIN RESULTADOS RADAR
+========================================== */
+
+.radar-no-results {
+  padding:
+    2.5rem 1.25rem;
+
+  text-align:
+    center;
+}
+
+
+.radar-no-results-icon {
+  width:
+    3rem;
+
+  height:
+    3rem;
+
+  margin:
+    0 auto 0.85rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    0.85rem;
+
+  background:
+    var(--escala-slate-100);
+
+  color:
+    var(--escala-slate-500);
+}
+
+
+.radar-no-results h4 {
+  margin-bottom:
+    0.4rem;
+
+  color:
+    var(--escala-slate-950);
+
+  font-size:
+    0.95rem;
+
+  font-weight:
+    700;
+}
+
+
+.radar-no-results p {
+  margin:
+    0;
+
+  color:
+    var(--escala-slate-500);
+
+  font-size:
+    0.82rem;
+
+  line-height:
+    1.5;
+}
+
+
+/* ==========================================
+   12. CONTACTO
 ========================================== */
 
 [data-section="contacto"] {
@@ -1276,10 +2717,6 @@ textarea {
   color:
     var(--escala-slate-950);
 
-  font-family:
-    "Inter",
-    sans-serif;
-
   font-size:
     0.85rem;
 
@@ -1330,7 +2767,7 @@ textarea {
 
 
 /* ==========================================
-   RADIO BUTTONS
+   RADIO BUTTONS CONTACTO
 ========================================== */
 
 .contact-radio {
@@ -1345,10 +2782,6 @@ textarea {
 
   color:
     var(--escala-slate-600);
-
-  font-family:
-    "Inter",
-    sans-serif;
 
   font-size:
     0.86rem;
@@ -1392,7 +2825,7 @@ textarea {
 
 
 /* ==========================================
-   11. FOOTER
+   13. FOOTER
 ========================================== */
 
 [data-section="footer"] {
@@ -1457,17 +2890,135 @@ textarea {
 
 
 /* ==========================================
-   12. OVERRIDES DE MARCA
+   14. WHATSAPP FLOTANTE
 ========================================== */
 
-/*
-  Tu HTML todavía utiliza varias clases Tailwind
-  blue-*.
+.whatsapp-float {
+  position:
+    fixed;
 
-  Estos overrides permiten que mantengamos el HTML
-  limpio sin perder la identidad de Escala.
-*/
+  right:
+    1.5rem;
 
+  bottom:
+    1.5rem;
+
+  z-index:
+    50;
+
+  width:
+    3.6rem;
+
+  height:
+    3.6rem;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    999px;
+
+  background:
+    #25d366;
+
+  color:
+    #ffffff;
+
+  font-size:
+    1.65rem;
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.whatsapp-float:hover {
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  background:
+    #1ebe5d;
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.24);
+}
+
+
+.whatsapp-float::before {
+  content:
+    "Hablemos por WhatsApp";
+
+  position:
+    absolute;
+
+  right:
+    calc(100% + 0.75rem);
+
+  top:
+    50%;
+
+  transform:
+    translateY(-50%)
+    translateX(0.3rem);
+
+  padding:
+    0.5rem 0.7rem;
+
+  border-radius:
+    0.5rem;
+
+  background:
+    var(--escala-navy-900);
+
+  color:
+    #ffffff;
+
+  font-size:
+    0.72rem;
+
+  font-weight:
+    600;
+
+  white-space:
+    nowrap;
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.whatsapp-float:hover::before {
+  opacity:
+    1;
+
+  transform:
+    translateY(-50%)
+    translateX(0);
+}
+
+
+/* ==========================================
+   15. OVERRIDES DE MARCA
+========================================== */
 
 .text-blue-700 {
   color:
@@ -1481,21 +3032,11 @@ textarea {
 }
 
 
-/*
-  Blue 400 se utiliza como acento
-  en hero y footer.
-*/
-
 .text-blue-400 {
   color:
     var(--escala-gold-400) !important;
 }
 
-
-/*
-  Blue 300 se utiliza principalmente
-  en pequeños títulos.
-*/
 
 .text-blue-300 {
   color:
@@ -1503,19 +3044,11 @@ textarea {
 }
 
 
-/*
-  Blue 200 aparece sobre fondos oscuros.
-*/
-
 .text-blue-200 {
   color:
     var(--escala-gold-100) !important;
 }
 
-
-/* ==========================================
-   BOTONES TAILWIND
-========================================== */
 
 .bg-blue-700 {
   background-color:
@@ -1542,7 +3075,7 @@ textarea {
 
 
 /* ==========================================
-   13. CLASES UTILITARIAS DE MARCA
+   16. UTILIDADES DE MARCA
 ========================================== */
 
 .brand-gold {
@@ -1582,7 +3115,7 @@ textarea {
 
 
 /* ==========================================
-   14. DESKTOP GRANDE
+   17. DESKTOP GRANDE
 ========================================== */
 
 @media (min-width: 1280px) {
@@ -1607,11 +3140,26 @@ textarea {
       0.92rem;
   }
 
+
+  .team-leader-card {
+    grid-template-columns:
+      165px minmax(0, 1fr);
+  }
+
+
+  .team-role-card {
+    flex-basis:
+      215px;
+
+    min-width:
+      215px;
+  }
+
 }
 
 
 /* ==========================================
-   15. TABLET / MOBILE
+   18. TABLET
 ========================================== */
 
 @media (max-width: 1023px) {
@@ -1627,11 +3175,40 @@ textarea {
       auto;
   }
 
+
+  /* ========================================
+     Equipo
+  ======================================== */
+
+  .team-leader-card {
+    grid-template-columns:
+      145px minmax(0, 1fr);
+
+    min-height:
+      250px;
+  }
+
+
+  .team-leader-photo img {
+    min-height:
+      250px;
+  }
+
+
+  /* ========================================
+     Radar
+  ======================================== */
+
+  .radar-result-card {
+    flex-basis:
+      calc(50% - 0.5rem);
+  }
+
 }
 
 
 /* ==========================================
-   16. SERVICIOS TABLET / MOBILE
+   19. SERVICIOS TABLET / MOBILE
 ========================================== */
 
 @media (max-width: 767px) {
@@ -1680,11 +3257,42 @@ textarea {
       1.15rem;
   }
 
+
+  /* ========================================
+     Equipo tablet / mobile
+  ======================================== */
+
+  .team-leader-card {
+    grid-template-columns:
+      132px minmax(0, 1fr);
+
+    min-height:
+      245px;
+  }
+
+
+  .team-leader-photo img {
+    min-height:
+      245px;
+  }
+
+
+  .team-leader-content {
+    padding:
+      1.05rem;
+  }
+
+
+  .team-support-shell {
+    padding:
+      1.15rem;
+  }
+
 }
 
 
 /* ==========================================
-   17. MOBILE
+   20. MOBILE
 ========================================== */
 
 @media (max-width: 639px) {
@@ -1694,6 +3302,10 @@ textarea {
       -0.02em;
   }
 
+
+  /* ========================================
+     Servicios
+  ======================================== */
 
   .service-tab {
     flex-direction:
@@ -1749,6 +3361,10 @@ textarea {
   }
 
 
+  /* ========================================
+     Modelo
+  ======================================== */
+
   .journey-mobile-tab {
     padding:
       0.65rem 0.85rem;
@@ -1767,6 +3383,132 @@ textarea {
   }
 
 
+  /* ========================================
+     Equipo
+  ======================================== */
+
+  .team-leader-card {
+    grid-template-columns:
+      1fr;
+
+    min-height:
+      auto;
+  }
+
+
+  .team-leader-photo {
+    height:
+      210px;
+
+    min-height:
+      210px;
+  }
+
+
+  .team-leader-photo img {
+    height:
+      210px;
+
+    min-height:
+      210px;
+
+    object-position:
+      center 18%;
+  }
+
+
+  .team-leader-content {
+    padding:
+      1rem;
+  }
+
+
+  .team-leader-content h3 {
+    font-size:
+      1.25rem;
+  }
+
+
+  .team-skill {
+    font-size:
+      0.65rem;
+
+    padding:
+      0.33rem 0.56rem;
+  }
+
+
+  .team-support-shell {
+    padding:
+      1rem;
+
+    border-radius:
+      1rem;
+  }
+
+
+  .team-role-card {
+    flex:
+      0 0 78%;
+
+    min-width:
+      78%;
+
+    min-height:
+      140px;
+  }
+
+
+  .team-role-card p {
+    font-size:
+      0.71rem;
+  }
+
+
+  /* ========================================
+     Radar
+  ======================================== */
+
+  .radar-search-form {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .radar-search-button {
+    width:
+      100%;
+  }
+
+
+  .radar-result-card {
+    flex:
+      0 0 84%;
+
+    min-width:
+      84%;
+
+    min-height:
+      180px;
+  }
+
+
+  .radar-carousel-arrow {
+    display:
+      none;
+  }
+
+
+  .radar-suggestions-label {
+    width:
+      100%;
+  }
+
+
+  /* ========================================
+     Contacto
+  ======================================== */
+
   .contact-field {
     padding:
       0.78rem 0.9rem;
@@ -1782,6 +3524,10 @@ textarea {
   }
 
 
+  /* ========================================
+     Footer
+  ======================================== */
+
   .footer-social {
     width:
       2rem;
@@ -1793,11 +3539,39 @@ textarea {
       1rem;
   }
 
+
+  /* ========================================
+     WhatsApp
+  ======================================== */
+
+  .whatsapp-float {
+    right:
+      1rem;
+
+    bottom:
+      1rem;
+
+    width:
+      3.2rem;
+
+    height:
+      3.2rem;
+
+    font-size:
+      1.45rem;
+  }
+
+
+  .whatsapp-float::before {
+    display:
+      none;
+  }
+
 }
 
 
 /* ==========================================
-   18. TABLET MODELO
+   21. TABLET MODELO
 ========================================== */
 
 @media (min-width: 640px) and (max-width: 1023px) {
@@ -1814,7 +3588,7 @@ textarea {
 
 
 /* ==========================================
-   19. FOCUS / ACCESIBILIDAD
+   22. FOCUS / ACCESIBILIDAD
 ========================================== */
 
 a:focus-visible,
@@ -1831,7 +3605,7 @@ select:focus-visible {
 
 
 /* ==========================================
-   20. REDUCIR MOVIMIENTO
+   23. REDUCIR MOVIMIENTO
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1856,662 +3630,6 @@ select:focus-visible {
 
     scroll-behavior:
       auto !important;
-  }
-
-}
-
-/* ==========================================
-   RADAR INMOBILIARIO
-========================================== */
-
-.radar-section {
-  background:
-    linear-gradient(
-      180deg,
-      #eef3f8 0%,
-      #f5f8fb 100%
-    );
-
-  border-top:
-    1px solid rgba(15, 23, 42, 0.04);
-
-  border-bottom:
-    1px solid rgba(15, 23, 42, 0.04);
-}
-
-
-/* ==========================================
-   BUSCADOR
-========================================== */
-
-.radar-search-card {
-  padding: 1rem;
-  background: var(--escala-white);
-  border: 1px solid var(--escala-slate-200);
-  border-radius: 1.25rem;
-  box-shadow: var(--escala-shadow-sm);
-}
-
-.radar-search-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.75rem;
-}
-
-.radar-search-field {
-  position: relative;
-}
-
-.radar-search-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--escala-gold-500);
-  pointer-events: none;
-}
-
-.radar-search-field input {
-  width: 100%;
-  box-sizing: border-box;
-  padding:
-    0.95rem
-    1rem
-    0.95rem
-    2.8rem;
-  border: 1px solid var(--escala-slate-200);
-  border-radius: 0.85rem;
-  background: var(--escala-slate-50);
-  color: var(--escala-slate-950);
-  outline: none;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.radar-search-field input:focus {
-  background: var(--escala-white);
-  border-color: var(--escala-gold-500);
-  box-shadow:
-    0 0 0 3px rgba(227, 163, 0, 0.12);
-}
-
-.radar-search-field input::placeholder {
-  color: var(--escala-slate-400);
-}
-
-.radar-search-button {
-  min-width: 135px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.9rem 1.25rem;
-  border: 0;
-  border-radius: 0.85rem;
-  background: var(--escala-navy-800);
-  color: var(--escala-white);
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.radar-search-button:hover {
-  background: var(--escala-navy-700);
-  transform: translateY(-1px);
-}
-
-
-/* ==========================================
-   FILTROS
-========================================== */
-
-.radar-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.85rem;
-}
-
-.radar-filter {
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--escala-slate-200);
-  background: var(--escala-white);
-  color: var(--escala-slate-600);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
-    background 0.2s ease;
-}
-
-.radar-filter:hover {
-  border-color: var(--escala-gold-300);
-  color: var(--escala-navy-800);
-}
-
-.radar-filter-active {
-  border-color: var(--escala-gold-400);
-  background: var(--escala-gold-50);
-  color: var(--escala-navy-900);
-}
-
-
-/* ==========================================
-   BÚSQUEDAS SUGERIDAS
-========================================== */
-
-.radar-suggestions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.radar-suggestions-label {
-  margin-right: 0.2rem;
-  color: var(--escala-slate-500);
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-.radar-suggestion {
-  padding: 0.38rem 0.7rem;
-  border: 1px solid var(--escala-slate-200);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--escala-slate-600);
-  font-size: 0.76rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
-}
-
-.radar-suggestion:hover {
-  border-color: var(--escala-gold-300);
-  background: var(--escala-gold-50);
-  color: var(--escala-navy-900);
-}
-
-
-/* ==========================================
-   ESTADO INICIAL
-========================================== */
-
-.radar-empty {
-  margin-top: 1.5rem;
-  padding: 2.4rem 1.25rem;
-  text-align: center;
-  border: 1px dashed var(--escala-slate-300);
-  border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.65);
-}
-
-.radar-empty-icon {
-  width: 3.2rem;
-  height: 3.2rem;
-  margin: 0 auto 0.85rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.9rem;
-  background: var(--escala-gold-50);
-  color: var(--escala-gold-600);
-  font-size: 1.15rem;
-}
-
-.radar-empty h3 {
-  margin-bottom: 0.4rem;
-  color: var(--escala-slate-950);
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.radar-empty p {
-  max-width: 500px;
-  margin: 0 auto;
-  color: var(--escala-slate-500);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-
-/* ==========================================
-   CONTENIDO
-========================================== */
-
-#radar-content {
-  margin-top: 1.25rem;
-}
-
-
-/* ==========================================
-   RESUMEN
-========================================== */
-
-.radar-summary-item:last-child {
-  border-right: 0;
-}
-
-/* ==========================================
-   LOADING
-========================================== */
-
-.radar-loading {
-  padding: 1.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  color: var(--escala-slate-500);
-  font-size: 0.85rem;
-}
-
-
-/* ==========================================
-   CARRUSEL
-========================================== */
-
-.radar-carousel-shell {
-  position: relative;
-}
-
-.radar-carousel {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 0.2rem 0.1rem 0.55rem;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.radar-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-
-/* ==========================================
-   TARJETAS
-========================================== */
-
-.radar-result-card {
-  flex:
-    0
-    0
-    calc(33.333% - 0.7rem);
-
-  min-width: 260px;
-  min-height: 185px;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 1rem;
-
-  scroll-snap-align: start;
-
-  border: 1px solid var(--escala-slate-200);
-  border-radius: 1rem;
-
-  background: var(--escala-white);
-
-  box-shadow:
-    0 5px 18px rgba(15, 23, 42, 0.05);
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.radar-result-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--escala-gold-300);
-
-  box-shadow:
-    0 8px 24px rgba(15, 23, 42, 0.08);
-}
-
-.radar-result-type {
-  align-self: flex-start;
-
-  display: inline-flex;
-  margin-bottom: 0.5rem;
-  padding: 0.22rem 0.48rem;
-
-  border-radius: 999px;
-
-  background: var(--escala-gold-50);
-  color: var(--escala-gold-600);
-
-  font-size: 0.6rem;
-  font-weight: 700;
-
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.radar-result-card h4 {
-  margin-bottom: 0.18rem;
-  color: var(--escala-slate-950);
-  font-size: 0.98rem;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-.radar-result-builder {
-  margin-bottom: 0.55rem;
-  color: var(--escala-navy-700);
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.radar-result-address {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.4rem;
-
-  color: var(--escala-slate-500);
-  font-size: 0.74rem;
-  line-height: 1.45;
-}
-
-.radar-result-address i {
-  flex: 0 0 auto;
-  margin-top: 0.2rem;
-  color: var(--escala-gold-500);
-}
-
-
-/* ==========================================
-   PRECIO
-========================================== */
-
-.radar-result-price {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-
-  margin-top: auto;
-  padding-top: 0.75rem;
-
-  color: var(--escala-navy-900);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.radar-result-price i {
-  color: var(--escala-gold-500);
-  font-size: 0.68rem;
-}
-
-
-/* ==========================================
-   ESTADO
-========================================== */
-
-.radar-result-status {
-  align-self: flex-start;
-
-  display: inline-flex;
-
-  margin-top: 0.55rem;
-  padding: 0.28rem 0.5rem;
-
-  border-radius: 0.45rem;
-
-  background: var(--escala-slate-100);
-  color: var(--escala-slate-600);
-
-  font-size: 0.66rem;
-  font-weight: 600;
-}
-
-
-/* ==========================================
-   FLECHAS DEL CARRUSEL
-========================================== */
-
-.radar-carousel-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 5;
-
-  width: 2.35rem;
-  height: 2.35rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transform: translateY(-50%);
-
-  border: 1px solid var(--escala-slate-200);
-  border-radius: 999px;
-
-  background: var(--escala-white);
-  color: var(--escala-navy-800);
-
-  box-shadow:
-    0 5px 18px rgba(15, 23, 42, 0.1);
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.radar-carousel-arrow:hover {
-  background: var(--escala-gold-50);
-  color: var(--escala-navy-950);
-}
-
-.radar-carousel-arrow-left {
-  left: -1.1rem;
-}
-
-.radar-carousel-arrow-right {
-  right: -1.1rem;
-}
-
-
-/* ==========================================
-   SIN RESULTADOS
-========================================== */
-
-.radar-no-results {
-  padding: 2.5rem 1.25rem;
-  text-align: center;
-}
-
-.radar-no-results-icon {
-  width: 3rem;
-  height: 3rem;
-  margin: 0 auto 0.85rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 0.85rem;
-
-  background: var(--escala-slate-100);
-  color: var(--escala-slate-500);
-}
-
-.radar-no-results h4 {
-  margin-bottom: 0.4rem;
-  color: var(--escala-slate-950);
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.radar-no-results p {
-  color: var(--escala-slate-500);
-  font-size: 0.82rem;
-  line-height: 1.5;
-}
-
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 1023px) {
-
-  .radar-result-card {
-    flex-basis:
-      calc(50% - 0.5rem);
-  }
-
-}
-
-
-@media (max-width: 639px) {
-
-  .radar-search-form {
-    grid-template-columns: 1fr;
-  }
-
-  .radar-search-button {
-    width: 100%;
-  }
-
-  .radar-summary-item:last-child {
-    border-bottom: 0;
-  }
-
-  .radar-result-card {
-    flex-basis: 84%;
-    min-width: 84%;
-    min-height: 180px;
-  }
-
-
-  .radar-carousel-arrow {
-    display: none;
-  }
-
-
-  .radar-suggestions-label {
-    width: 100%;
-  }
-
-}
-
-/* ==========================================
-   WHATSAPP FLOTANTE
-========================================== */
-
-.whatsapp-float {
-  position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  z-index: 50;
-
-  width: 3.6rem;
-  height: 3.6rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 999px;
-
-  background: #25d366;
-  color: #ffffff;
-
-  font-size: 1.65rem;
-
-  box-shadow:
-    0 8px 24px rgba(15, 23, 42, 0.18);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
-
-.whatsapp-float:hover {
-  transform: translateY(-3px) scale(1.04);
-
-  background: #1ebe5d;
-
-  box-shadow:
-    0 12px 30px rgba(15, 23, 42, 0.24);
-}
-
-
-/* Tooltip */
-
-.whatsapp-float::before {
-  content: "Hablemos por WhatsApp";
-
-  position: absolute;
-  right: calc(100% + 0.75rem);
-  top: 50%;
-
-  transform:
-    translateY(-50%)
-    translateX(0.3rem);
-
-  padding: 0.5rem 0.7rem;
-
-  border-radius: 0.5rem;
-
-  background: var(--escala-navy-900);
-  color: #ffffff;
-
-  font-size: 0.72rem;
-  font-weight: 600;
-
-  white-space: nowrap;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.whatsapp-float:hover::before {
-  opacity: 1;
-
-  transform:
-    translateY(-50%)
-    translateX(0);
-}
-
-
-/* Móvil */
-
-@media (max-width: 639px) {
-
-  .whatsapp-float {
-    right: 1rem;
-    bottom: 1rem;
-
-    width: 3.2rem;
-    height: 3.2rem;
-
-    font-size: 1.45rem;
-  }
-
-  .whatsapp-float::before {
-    display: none;
   }
 
 }
