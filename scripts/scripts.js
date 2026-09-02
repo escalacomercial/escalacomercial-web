@@ -8,1224 +8,45 @@
 // CONFIGURACIÓN GENERAL
 // ======================================================
 
-window.dataLayer = window.dataLayer || [];
+window.dataLayer =
+  window.dataLayer || [];
 
 
 // ======================================================
-// HELPERS DE TRACKING
+// CONFIGURACIÓN DE CARRUSELES
 // ======================================================
 
-function formatearTexto(texto) {
-  const resultado = String(texto || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
+const RADAR_AUTOPLAY_MS =
+  4200;
 
-  return resultado || "sin-texto";
-}
-
-
-function detectarSeccion(elemento) {
-  let actual = elemento;
-
-  while (
-    actual &&
-    actual !== document.body
-  ) {
-    if (
-      actual.hasAttribute("data-section")
-    ) {
-      return actual.getAttribute(
-        "data-section"
-      );
-    }
-
-    actual =
-      actual.parentElement;
-  }
-
-  return "otros";
-}
+const TEAM_AUTOPLAY_MS =
+  3800;
 
 
 // ======================================================
-// DOM READY
+// ESTADO GLOBAL RADAR
 // ======================================================
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function () {
+let radarProyectos = [];
 
+let radarResultados = [];
 
-    // ==================================================
-    // AOS
-    // ==================================================
+let radarFiltroActual =
+  "todos";
 
-    if (
-      typeof AOS !== "undefined"
-    ) {
-      AOS.init({
-        duration: 700,
-        once: true,
-        offset: 70
-      });
-    }
+let radarConsultaActual =
+  "";
 
+let radarCarruselIntervalo =
+  null;
 
-    // ==================================================
-    // AÑO DEL FOOTER
-    // ==================================================
 
-    const year =
-      document.getElementById(
-        "year"
-      );
+// ======================================================
+// ESTADO GLOBAL EQUIPO
+// ======================================================
 
-    if (year) {
-      year.textContent =
-        new Date().getFullYear();
-    }
-
-
-    // ==================================================
-    // HEADER: SOMBRA AL HACER SCROLL
-    // ==================================================
-
-    const siteHeader =
-      document.getElementById(
-        "site-header"
-      );
-
-
-    function actualizarHeader() {
-      if (!siteHeader) {
-        return;
-      }
-
-      siteHeader.classList.toggle(
-        "shadow-sm",
-        window.scrollY > 20
-      );
-    }
-
-
-    actualizarHeader();
-
-
-    window.addEventListener(
-      "scroll",
-      actualizarHeader,
-      {
-        passive: true
-      }
-    );
-
-
-    // ==================================================
-    // MENÚ MÓVIL
-    // ==================================================
-
-    const toggle =
-      document.getElementById(
-        "menu-toggle"
-      );
-
-    const menu =
-      document.getElementById(
-        "mobile-menu"
-      );
-
-
-    if (
-      toggle &&
-      menu
-    ) {
-
-      toggle.addEventListener(
-        "click",
-        function () {
-
-          const estaAbierto =
-            !menu.classList.contains(
-              "hidden"
-            );
-
-          menu.classList.toggle(
-            "hidden"
-          );
-
-          toggle.setAttribute(
-            "aria-expanded",
-            String(!estaAbierto)
-          );
-
-        }
-      );
-
-
-      menu
-        .querySelectorAll("a")
-        .forEach(
-          function (link) {
-
-            link.addEventListener(
-              "click",
-              function () {
-
-                menu.classList.add(
-                  "hidden"
-                );
-
-                toggle.setAttribute(
-                  "aria-expanded",
-                  "false"
-                );
-
-              }
-            );
-
-          }
-        );
-
-    }
-
-
-    // ==================================================
-    // TRACKING GENERAL DE CLICS
-    // ==================================================
-
-    document
-      .querySelectorAll(
-        "a, button"
-      )
-      .forEach(
-        function (el) {
-
-          el.addEventListener(
-            "click",
-            function () {
-
-              const textoElemento =
-                el.innerText ||
-                el.getAttribute(
-                  "aria-label"
-                ) ||
-                el.value ||
-                "sin-texto";
-
-
-              const label =
-                formatearTexto(
-                  textoElemento
-                );
-
-
-              const section =
-                detectarSeccion(el);
-
-
-              window.dataLayer.push({
-                event: "interaction",
-                event_category: "home",
-                event_action: "click",
-                event_label: label,
-                section: section,
-                description: "-"
-              });
-
-            }
-          );
-
-        }
-      );
-
-
-    // ==================================================
-    // CLICS EXTERNOS
-    // ==================================================
-
-    document
-      .querySelectorAll(
-        "a[href]"
-      )
-      .forEach(
-        function (link) {
-
-          link.addEventListener(
-            "click",
-            function () {
-
-              try {
-
-                const url =
-                  new URL(
-                    link.href,
-                    window.location.origin
-                  );
-
-
-                if (
-                  url.hostname &&
-                  url.hostname !==
-                  window.location.hostname
-                ) {
-
-                  window.dataLayer.push({
-                    event: "external_click",
-                    event_category: "home",
-                    event_action: "click",
-                    event_label:
-                      url.hostname,
-                    section:
-                      detectarSeccion(
-                        link
-                      ),
-                    description:
-                      url.href
-                  });
-
-                }
-
-              } catch (error) {
-
-                console.warn(
-                  "No se pudo analizar la URL:",
-                  link.href
-                );
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-
-    // ==================================================
-    // SERVICIOS POR CATEGORÍAS
-    // ==================================================
-
-    const serviceTabs =
-      document.querySelectorAll(
-        "[data-service-tab]"
-      );
-
-    const servicePanels =
-      document.querySelectorAll(
-        "[data-service-panel]"
-      );
-
-
-    if (
-      serviceTabs.length &&
-      servicePanels.length
-    ) {
-
-      serviceTabs.forEach(
-        function (tab) {
-
-          tab.addEventListener(
-            "click",
-            function () {
-
-              const target =
-                tab.getAttribute(
-                  "data-service-tab"
-                );
-
-
-              // ------------------------------
-              // Desactivar categorías
-              // ------------------------------
-
-              serviceTabs.forEach(
-                function (item) {
-
-                  item.classList.remove(
-                    "service-tab-active"
-                  );
-
-                  item.setAttribute(
-                    "aria-selected",
-                    "false"
-                  );
-
-                }
-              );
-
-
-              // ------------------------------
-              // Activar categoría
-              // ------------------------------
-
-              tab.classList.add(
-                "service-tab-active"
-              );
-
-              tab.setAttribute(
-                "aria-selected",
-                "true"
-              );
-
-
-              // ------------------------------
-              // Ocultar paneles
-              // ------------------------------
-
-              servicePanels.forEach(
-                function (panel) {
-
-                  panel.classList.add(
-                    "hidden"
-                  );
-
-                }
-              );
-
-
-              // ------------------------------
-              // Mostrar panel
-              // ------------------------------
-
-              const activePanel =
-                document.querySelector(
-                  `[data-service-panel="${target}"]`
-                );
-
-
-              if (activePanel) {
-
-                activePanel.classList.remove(
-                  "hidden"
-                );
-
-              }
-
-
-              // ------------------------------
-              // Tracking
-              // ------------------------------
-
-              window.dataLayer.push({
-                event:
-                  "service_category_view",
-                event_category:
-                  "home",
-                event_action:
-                  "click",
-                event_label:
-                  target,
-                section:
-                  "servicios",
-                description:
-                  "Cambio de categoría de servicios"
-              });
-
-            }
-          );
-
-        }
-      );
-
-    }
-
-
-    // ==================================================
-    // MODELO ESCALA / RUTA COMERCIAL
-    // ==================================================
-
-    const soluciones = {
-
-
-      // ------------------------------------------------
-      // 01 - DIRECCIÓN COMERCIAL
-      // ------------------------------------------------
-
-      estrategia: {
-
-        number:
-          "01 / 06",
-
-        title:
-          "Dirección comercial",
-
-        description:
-          "Definimos objetivos, prioridades, procesos e indicadores para que toda la operación comercial avance con una misma dirección.",
-
-        tools: [
-          "Objetivos comerciales",
-          "KPIs",
-          "Procesos"
-        ],
-
-        icon:
-          "fa-compass"
-
-      },
-
-
-      // ------------------------------------------------
-      // 02 - GENERACIÓN DE DEMANDA
-      // ------------------------------------------------
-
-      marketing: {
-
-        number:
-          "02 / 06",
-
-        title:
-          "Generación de demanda",
-
-        description:
-          "Conectamos estrategia, campañas y canales de adquisición para generar oportunidades alineadas con los objetivos comerciales.",
-
-        tools: [
-          "Meta Ads",
-          "Google Ads",
-          "Leads"
-        ],
-
-        icon:
-          "fa-bullhorn"
-
-      },
-
-
-      // ------------------------------------------------
-      // 03 - GESTIÓN COMERCIAL
-      // ------------------------------------------------
-
-      procesos: {
-
-        number:
-          "03 / 06",
-
-        title:
-          "Gestión comercial",
-
-        description:
-          "Ordenamos etapas, responsables, tiempos de atención y flujos de trabajo para mantener cada oportunidad avanzando dentro del proceso comercial.",
-
-        tools: [
-          "CRM",
-          "Pipeline",
-          "SLA"
-        ],
-
-        icon:
-          "fa-diagram-project"
-
-      },
-
-
-      // ------------------------------------------------
-      // 04 - VENTAS Y CIERRE
-      // ------------------------------------------------
-
-      ventas: {
-
-        number:
-          "04 / 06",
-
-        title:
-          "Ventas y cierre",
-
-        description:
-          "Gestionamos seguimiento, negociación y cierre para convertir oportunidades en resultados comerciales y mejorar la conversión.",
-
-        tools: [
-          "Seguimiento",
-          "Outsourcing",
-          "Cierre"
-        ],
-
-        icon:
-          "fa-handshake"
-
-      },
-
-
-      // ------------------------------------------------
-      // 05 - INTELIGENCIA COMERCIAL
-      // ------------------------------------------------
-
-      analitica: {
-
-        number:
-          "05 / 06",
-
-        title:
-          "Inteligencia comercial",
-
-        description:
-          "Convertimos los datos de marketing y ventas en indicadores claros para entender el rendimiento de la operación y detectar oportunidades.",
-
-        tools: [
-          "Dashboards",
-          "GA4",
-          "Looker Studio"
-        ],
-
-        icon:
-          "fa-chart-column"
-
-      },
-
-
-      // ------------------------------------------------
-      // 06 - OPTIMIZACIÓN CONTINUA
-      // ------------------------------------------------
-
-      optimizacion: {
-
-        number:
-          "06 / 06",
-
-        title:
-          "Optimización continua",
-
-        description:
-          "Analizamos resultados, identificamos fugas y priorizamos mejoras para aumentar eficiencia, productividad y conversión de manera continua.",
-
-        tools: [
-          "Optimización",
-          "Automatización",
-          "Mejora continua"
-        ],
-
-        icon:
-          "fa-arrows-rotate"
-
-      }
-
-    };
-
-
-    // ==================================================
-    // ELEMENTOS MODELO - DESKTOP
-    // ==================================================
-
-    const numberDesktop =
-      document.getElementById(
-        "solution-number"
-      );
-
-    const titleDesktop =
-      document.getElementById(
-        "solution-title"
-      );
-
-    const descriptionDesktop =
-      document.getElementById(
-        "solution-description"
-      );
-
-    const toolsDesktop =
-      document.getElementById(
-        "solution-tools"
-      );
-
-
-    // ==================================================
-    // ELEMENTOS MODELO - MOBILE
-    // ==================================================
-
-    const numberMobile =
-      document.getElementById(
-        "solution-number-mobile"
-      );
-
-    const titleMobile =
-      document.getElementById(
-        "solution-title-mobile"
-      );
-
-    const descriptionMobile =
-      document.getElementById(
-        "solution-description-mobile"
-      );
-
-    const toolsMobile =
-      document.getElementById(
-        "solution-tools-mobile"
-      );
-
-
-    // ==================================================
-    // SELECTORES MODELO
-    // ==================================================
-
-    const journeySteps =
-      document.querySelectorAll(
-        ".journey-step[data-solution]"
-      );
-
-    const journeyMobileTabs =
-      document.querySelectorAll(
-        ".journey-mobile-tab[data-solution]"
-      );
-
-
-    // ==================================================
-    // CREAR TAGS
-    // ==================================================
-
-    function crearHerramientas(lista) {
-
-      return lista
-        .map(
-          function (tool) {
-
-            return `
-              <span class="journey-tool">
-                ${tool}
-              </span>
-            `;
-
-          }
-        )
-        .join("");
-
-    }
-
-
-    // ==================================================
-    // ANIMAR CAMBIO DE PANEL
-    // ==================================================
-
-    function animarCambioModelo() {
-
-      const elementos =
-        [
-          numberDesktop,
-          titleDesktop,
-          descriptionDesktop,
-          toolsDesktop,
-          numberMobile,
-          titleMobile,
-          descriptionMobile,
-          toolsMobile
-        ].filter(Boolean);
-
-
-      elementos.forEach(
-        function (elemento) {
-
-          elemento.classList.add(
-            "journey-changing"
-          );
-
-        }
-      );
-
-
-      window.setTimeout(
-        function () {
-
-          elementos.forEach(
-            function (elemento) {
-
-              elemento.classList.remove(
-                "journey-changing"
-              );
-
-            }
-          );
-
-        },
-        180
-      );
-
-    }
-
-
-    // ==================================================
-    // ACTUALIZAR MODELO
-    // ==================================================
-
-    function actualizarSolucion(
-      tipo,
-      registrarEvento = true
-    ) {
-
-      const solucion =
-        soluciones[tipo];
-
-
-      if (!solucion) {
-        return;
-      }
-
-
-      animarCambioModelo();
-
-
-      // ------------------------------------------------
-      // Desktop
-      // ------------------------------------------------
-
-      if (numberDesktop) {
-        numberDesktop.textContent =
-          solucion.number;
-      }
-
-
-      if (titleDesktop) {
-        titleDesktop.textContent =
-          solucion.title;
-      }
-
-
-      if (descriptionDesktop) {
-        descriptionDesktop.textContent =
-          solucion.description;
-      }
-
-
-      if (toolsDesktop) {
-        toolsDesktop.innerHTML =
-          crearHerramientas(
-            solucion.tools
-          );
-      }
-
-
-      // ------------------------------------------------
-      // Mobile
-      // ------------------------------------------------
-
-      if (numberMobile) {
-        numberMobile.textContent =
-          solucion.number;
-      }
-
-
-      if (titleMobile) {
-        titleMobile.textContent =
-          solucion.title;
-      }
-
-
-      if (descriptionMobile) {
-        descriptionMobile.textContent =
-          solucion.description;
-      }
-
-
-      if (toolsMobile) {
-        toolsMobile.innerHTML =
-          crearHerramientas(
-            solucion.tools
-          );
-      }
-
-
-      // ------------------------------------------------
-      // Estado activo desktop
-      // ------------------------------------------------
-
-      journeySteps.forEach(
-        function (trigger) {
-
-          const activo =
-            trigger.dataset.solution ===
-            tipo;
-
-
-          trigger.classList.toggle(
-            "journey-step-active",
-            activo
-          );
-
-
-          trigger.setAttribute(
-            "aria-pressed",
-            String(activo)
-          );
-
-        }
-      );
-
-
-      // ------------------------------------------------
-      // Estado activo mobile
-      // ------------------------------------------------
-
-      journeyMobileTabs.forEach(
-        function (trigger) {
-
-          const activo =
-            trigger.dataset.solution ===
-            tipo;
-
-
-          trigger.classList.toggle(
-            "journey-mobile-tab-active",
-            activo
-          );
-
-
-          trigger.setAttribute(
-            "aria-selected",
-            String(activo)
-          );
-
-        }
-      );
-
-
-      // ------------------------------------------------
-      // Tracking
-      // ------------------------------------------------
-
-      if (registrarEvento) {
-
-        window.dataLayer.push({
-          event:
-            "solution_view",
-          event_category:
-            "home",
-          event_action:
-            "click",
-          event_label:
-            tipo,
-          section:
-            "modelo",
-          description:
-            solucion.title
-        });
-
-      }
-
-    }
-
-
-    // ==================================================
-    // LISTENERS MODELO DESKTOP
-    // ==================================================
-
-    journeySteps.forEach(
-      function (trigger) {
-
-        trigger.addEventListener(
-          "click",
-          function () {
-
-            const tipo =
-              trigger.dataset.solution;
-
-
-            actualizarSolucion(
-              tipo
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    // ==================================================
-    // LISTENERS MODELO MOBILE
-    // ==================================================
-
-    journeyMobileTabs.forEach(
-      function (trigger) {
-
-        trigger.addEventListener(
-          "click",
-          function () {
-
-            const tipo =
-              trigger.dataset.solution;
-
-
-            actualizarSolucion(
-              tipo
-            );
-
-
-            // Mantener tab seleccionado visible
-            trigger.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest",
-              inline: "center"
-            });
-
-          }
-        );
-
-      }
-    );
-
-
-    // ==================================================
-    // ESTADO INICIAL MODELO
-    // ==================================================
-
-    actualizarSolucion(
-      "estrategia",
-      false
-    );
-
-
-    // ==================================================
-    // FORMULARIO
-    // ==================================================
-
-    const formulario =
-      document.getElementById(
-        "formulario-contacto"
-      );
-
-    const toastExito =
-      document.getElementById(
-        "toast-exito"
-      );
-
-
-    if (formulario) {
-
-      formulario.addEventListener(
-        "submit",
-        async function (e) {
-
-          e.preventDefault();
-
-
-          const boton =
-            formulario.querySelector(
-              'button[type="submit"]'
-            );
-
-
-          const textoOriginal =
-            boton
-              ? boton.innerHTML
-              : "";
-
-
-          const datos =
-            new FormData(
-              formulario
-            );
-
-
-          const empresa =
-            datos.get(
-              "empresa"
-            ) || "-";
-
-
-          const preferenciaContacto =
-            datos.get(
-              "preferencia_contacto"
-            ) || "-";
-
-
-          const asunto =
-            datos.get(
-              "asunto"
-            ) || "-";
-
-
-          try {
-
-            // ----------------------------------------
-            // Estado enviando
-            // ----------------------------------------
-
-            if (boton) {
-
-              boton.disabled =
-                true;
-
-
-              boton.innerHTML = `
-                <i
-                  class="fa-solid fa-circle-notch fa-spin">
-                </i>
-
-                Enviando...
-              `;
-
-            }
-
-
-            // ----------------------------------------
-            // Envío Formspree
-            // ----------------------------------------
-
-            const respuesta =
-              await fetch(
-                formulario.action,
-                {
-                  method:
-                    "POST",
-
-                  body:
-                    datos,
-
-                  headers: {
-                    Accept:
-                      "application/json"
-                  }
-                }
-              );
-
-
-            if (!respuesta.ok) {
-
-              throw new Error(
-                "Formspree devolvió un error"
-              );
-
-            }
-
-
-            // ----------------------------------------
-            // Conversión GTM
-            // ----------------------------------------
-
-            window.dataLayer.push({
-              event:
-                "form_submitted",
-              event_category:
-                "home",
-              event_action:
-                "submit",
-              event_label:
-                "formulario-contacto",
-              section:
-                "contacto",
-              description:
-                `Empresa: ${empresa} | Contacto preferido: ${preferenciaContacto} | Asunto: ${asunto}`
-            });
-
-
-            // ----------------------------------------
-            // Limpiar formulario
-            // ----------------------------------------
-
-            formulario.reset();
-
-
-            // ----------------------------------------
-            // Toast éxito
-            // ----------------------------------------
-
-            mostrarToast(
-              "¡Gracias! Tu mensaje fue enviado correctamente.",
-              "success"
-            );
-
-          } catch (error) {
-
-            console.error(
-              "Error al enviar el formulario:",
-              error
-            );
-
-
-            mostrarToast(
-              "No pudimos enviar el mensaje. Intenta nuevamente.",
-              "error"
-            );
-
-          } finally {
-
-            if (boton) {
-
-              boton.disabled =
-                false;
-
-
-              boton.innerHTML =
-                textoOriginal;
-
-            }
-
-          }
-
-        }
-      );
-
-    }
-
-
-    // ==================================================
-    // TOAST
-    // ==================================================
-
-    function mostrarToast(
-      mensaje,
-      tipo
-    ) {
-
-      if (!toastExito) {
-        return;
-      }
-
-
-      toastExito.textContent =
-        mensaje;
-
-
-      toastExito.classList.remove(
-        "hidden",
-
-        "bg-green-100",
-        "border-green-300",
-        "text-green-800",
-
-        "bg-red-100",
-        "border-red-300",
-        "text-red-800"
-      );
-
-
-      if (
-        tipo === "error"
-      ) {
-
-        toastExito.classList.add(
-          "bg-red-100",
-          "border-red-300",
-          "text-red-800"
-        );
-
-      } else {
-
-        toastExito.classList.add(
-          "bg-green-100",
-          "border-green-300",
-          "text-green-800"
-        );
-
-      }
-
-
-      window.setTimeout(
-        function () {
-
-          toastExito.classList.add(
-            "hidden"
-          );
-
-        },
-        4000
-      );
-
-    }
-
-  }
-);
+let teamCarruselIntervalo =
+  null;
 
 
 // ======================================================
@@ -1240,184 +61,2063 @@ const scrollMarcado = {
 };
 
 
-window.addEventListener(
-  "scroll",
-  function () {
+// ======================================================
+// HELPERS GENERALES
+// ======================================================
 
-    const altoDocumento =
-      document.documentElement
-        .scrollHeight -
-      window.innerHeight;
+function formatearTexto(
+  texto
+) {
 
-
-    if (
-      altoDocumento <= 0
-    ) {
-      return;
-    }
-
-
-    const porcentaje =
-      Math.floor(
-        (
-          window.scrollY /
-          altoDocumento
-        ) * 100
+  const resultado =
+    String(
+      texto || ""
+    )
+      .toLowerCase()
+      .normalize(
+        "NFD"
+      )
+      .replace(
+        /[\u0300-\u036f]/g,
+        ""
+      )
+      .replace(
+        /\s+/g,
+        "-"
+      )
+      .replace(
+        /[^a-z0-9-]/g,
+        ""
+      )
+      .replace(
+        /-+/g,
+        "-"
+      )
+      .replace(
+        /^-|-$/g,
+        ""
       );
 
 
-    [
-      25,
-      50,
-      75,
-      100
-    ].forEach(
-      function (nivel) {
+  return (
+    resultado ||
+    "sin-texto"
+  );
 
-        if (
-          porcentaje >= nivel &&
-          !scrollMarcado[nivel]
-        ) {
-
-          scrollMarcado[nivel] =
-            true;
+}
 
 
-          let descripcion =
-            "-";
+// ======================================================
+// DETECTAR SECCIÓN
+// ======================================================
+
+function detectarSeccion(
+  elemento
+) {
+
+  let actual =
+    elemento;
 
 
-          if (
-            nivel === 25
-          ) {
+  while (
+    actual &&
+    actual !==
+      document.body
+  ) {
 
-            descripcion =
-              "inicio de desplazamiento";
+    if (
+      actual.hasAttribute &&
+      actual.hasAttribute(
+        "data-section"
+      )
+    ) {
 
-          } else if (
-            nivel === 50
-          ) {
+      return (
+        actual.getAttribute(
+          "data-section"
+        ) ||
+        "otros"
+      );
 
-            descripcion =
-              "mitad de página";
+    }
 
-          } else if (
-            nivel === 75
-          ) {
 
-            descripcion =
-              "casi al final";
+    actual =
+      actual.parentElement;
 
-          } else if (
-            nivel === 100
-          ) {
+  }
 
-            descripcion =
-              "llegó al footer";
+
+  return "otros";
+
+}
+
+
+// ======================================================
+// AOS
+// ======================================================
+
+function iniciarAOS() {
+
+  if (
+    typeof AOS ===
+    "undefined"
+  ) {
+    return;
+  }
+
+
+  AOS.init({
+    duration:
+      700,
+
+    once:
+      true,
+
+    offset:
+      70
+  });
+
+}
+
+
+// ======================================================
+// AÑO FOOTER
+// ======================================================
+
+function iniciarAnioFooter() {
+
+  const year =
+    document.getElementById(
+      "year"
+    );
+
+
+  if (!year) {
+    return;
+  }
+
+
+  year.textContent =
+    new Date()
+      .getFullYear();
+
+}
+
+
+// ======================================================
+// HEADER
+// ======================================================
+
+function iniciarHeader() {
+
+  const siteHeader =
+    document.getElementById(
+      "site-header"
+    );
+
+
+  if (!siteHeader) {
+    return;
+  }
+
+
+  function actualizarHeader() {
+
+    siteHeader.classList.toggle(
+      "shadow-sm",
+      window.scrollY > 20
+    );
+
+  }
+
+
+  actualizarHeader();
+
+
+  window.addEventListener(
+    "scroll",
+    actualizarHeader,
+    {
+      passive:
+        true
+    }
+  );
+
+}
+
+
+// ======================================================
+// MENÚ MÓVIL
+// ======================================================
+
+function iniciarMenuMovil() {
+
+  const toggle =
+    document.getElementById(
+      "menu-toggle"
+    );
+
+
+  const menu =
+    document.getElementById(
+      "mobile-menu"
+    );
+
+
+  if (
+    !toggle ||
+    !menu
+  ) {
+    return;
+  }
+
+
+  toggle.addEventListener(
+    "click",
+    function () {
+
+      const estabaAbierto =
+        !menu.classList.contains(
+          "hidden"
+        );
+
+
+      menu.classList.toggle(
+        "hidden"
+      );
+
+
+      toggle.setAttribute(
+        "aria-expanded",
+        String(
+          !estabaAbierto
+        )
+      );
+
+    }
+  );
+
+
+  menu
+    .querySelectorAll(
+      "a"
+    )
+    .forEach(
+      function (link) {
+
+        link.addEventListener(
+          "click",
+          function () {
+
+            menu.classList.add(
+              "hidden"
+            );
+
+
+            toggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
 
           }
-
-
-          window.dataLayer.push({
-            event:
-              "scroll_depth",
-            event_category:
-              "home",
-            event_action:
-              "scroll",
-            event_label:
-              `${nivel}%`,
-            section:
-              nivel === 100
-                ? "footer"
-                : "-",
-            description:
-              descripcion
-          });
-
-        }
+        );
 
       }
     );
 
-  },
-  {
-    passive: true
+}
+
+
+// ======================================================
+// TRACKING GENERAL DE CLICS
+// ======================================================
+
+function iniciarTrackingClicks() {
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      const elemento =
+        event.target.closest(
+          "a, button"
+        );
+
+
+      if (!elemento) {
+        return;
+      }
+
+
+      const textoElemento =
+        elemento.innerText ||
+        elemento.getAttribute(
+          "aria-label"
+        ) ||
+        elemento.value ||
+        "sin-texto";
+
+
+      const label =
+        formatearTexto(
+          textoElemento
+        );
+
+
+      const section =
+        detectarSeccion(
+          elemento
+        );
+
+
+      window.dataLayer.push({
+        event:
+          "interaction",
+
+        event_category:
+          "home",
+
+        event_action:
+          "click",
+
+        event_label:
+          label,
+
+        section:
+          section,
+
+        description:
+          "-"
+      });
+
+
+      // ==================================================
+      // CLIC EXTERNO
+      // ==================================================
+
+      if (
+        elemento.tagName ===
+          "A"
+        &&
+        elemento.href
+      ) {
+
+        try {
+
+          const url =
+            new URL(
+              elemento.href,
+              window.location.origin
+            );
+
+
+          if (
+            url.hostname &&
+            url.hostname !==
+              window.location.hostname
+          ) {
+
+            window.dataLayer.push({
+              event:
+                "external_click",
+
+              event_category:
+                "home",
+
+              event_action:
+                "click",
+
+              event_label:
+                url.hostname,
+
+              section:
+                section,
+
+              description:
+                url.href
+            });
+
+          }
+
+        } catch (error) {
+
+          console.warn(
+            "No se pudo analizar la URL:",
+            elemento.href
+          );
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+// ======================================================
+// SERVICIOS
+// ======================================================
+
+function iniciarServicios() {
+
+  const serviceTabs =
+    document.querySelectorAll(
+      "[data-service-tab]"
+    );
+
+
+  const servicePanels =
+    document.querySelectorAll(
+      "[data-service-panel]"
+    );
+
+
+  if (
+    !serviceTabs.length ||
+    !servicePanels.length
+  ) {
+    return;
   }
-);
+
+
+  serviceTabs.forEach(
+    function (tab) {
+
+      tab.addEventListener(
+        "click",
+        function () {
+
+          const target =
+            tab.getAttribute(
+              "data-service-tab"
+            );
+
+
+          if (!target) {
+            return;
+          }
+
+
+          // ==============================================
+          // DESACTIVAR TABS
+          // ==============================================
+
+          serviceTabs.forEach(
+            function (item) {
+
+              item.classList.remove(
+                "service-tab-active"
+              );
+
+
+              item.setAttribute(
+                "aria-selected",
+                "false"
+              );
+
+            }
+          );
+
+
+          // ==============================================
+          // ACTIVAR TAB
+          // ==============================================
+
+          tab.classList.add(
+            "service-tab-active"
+          );
+
+
+          tab.setAttribute(
+            "aria-selected",
+            "true"
+          );
+
+
+          // ==============================================
+          // OCULTAR PANELES
+          // ==============================================
+
+          servicePanels.forEach(
+            function (panel) {
+
+              panel.classList.add(
+                "hidden"
+              );
+
+            }
+          );
+
+
+          // ==============================================
+          // MOSTRAR PANEL
+          // ==============================================
+
+          const activePanel =
+            document.querySelector(
+              `[data-service-panel="${target}"]`
+            );
+
+
+          if (activePanel) {
+
+            activePanel.classList.remove(
+              "hidden"
+            );
+
+          }
+
+
+          // ==============================================
+          // TRACKING
+          // ==============================================
+
+          window.dataLayer.push({
+            event:
+              "service_category_view",
+
+            event_category:
+              "home",
+
+            event_action:
+              "click",
+
+            event_label:
+              target,
+
+            section:
+              "servicios",
+
+            description:
+              "Cambio de categoría de servicios"
+          });
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+// ======================================================
+// MODELO ESCALA
+// ======================================================
+
+function iniciarModeloEscala() {
+
+  const soluciones = {
+
+    estrategia: {
+
+      number:
+        "01 / 06",
+
+      title:
+        "Dirección comercial",
+
+      description:
+        "Definimos objetivos, prioridades, procesos e indicadores para que toda la operación comercial avance con una misma dirección.",
+
+      tools: [
+        "Objetivos comerciales",
+        "KPIs",
+        "Procesos"
+      ]
+
+    },
+
+
+    marketing: {
+
+      number:
+        "02 / 06",
+
+      title:
+        "Generación de demanda",
+
+      description:
+        "Conectamos estrategia, campañas y canales de adquisición para generar oportunidades alineadas con los objetivos comerciales.",
+
+      tools: [
+        "Meta Ads",
+        "Google Ads",
+        "Leads"
+      ]
+
+    },
+
+
+    procesos: {
+
+      number:
+        "03 / 06",
+
+      title:
+        "Gestión comercial",
+
+      description:
+        "Ordenamos etapas, responsables, tiempos de atención y flujos de trabajo para mantener cada oportunidad avanzando dentro del proceso comercial.",
+
+      tools: [
+        "CRM",
+        "Pipeline",
+        "SLA"
+      ]
+
+    },
+
+
+    ventas: {
+
+      number:
+        "04 / 06",
+
+      title:
+        "Ventas y cierre",
+
+      description:
+        "Gestionamos seguimiento, negociación y cierre para convertir oportunidades en resultados comerciales y mejorar la conversión.",
+
+      tools: [
+        "Seguimiento",
+        "Multiproducto",
+        "Cierre"
+      ]
+
+    },
+
+
+    analitica: {
+
+      number:
+        "05 / 06",
+
+      title:
+        "Inteligencia comercial",
+
+      description:
+        "Convertimos los datos de marketing y ventas en indicadores claros para entender el rendimiento de la operación y detectar oportunidades.",
+
+      tools: [
+        "Dashboards",
+        "GA4",
+        "Looker Studio"
+      ]
+
+    },
+
+
+    optimizacion: {
+
+      number:
+        "06 / 06",
+
+      title:
+        "Optimización continua",
+
+      description:
+        "Analizamos resultados, identificamos fugas y priorizamos mejoras para aumentar eficiencia, productividad y conversión de manera continua.",
+
+      tools: [
+        "Optimización",
+        "Automatización",
+        "Mejora continua"
+      ]
+
+    }
+
+  };
+
+
+  // ====================================================
+  // DESKTOP
+  // ====================================================
+
+  const numberDesktop =
+    document.getElementById(
+      "solution-number"
+    );
+
+
+  const titleDesktop =
+    document.getElementById(
+      "solution-title"
+    );
+
+
+  const descriptionDesktop =
+    document.getElementById(
+      "solution-description"
+    );
+
+
+  const toolsDesktop =
+    document.getElementById(
+      "solution-tools"
+    );
+
+
+  // ====================================================
+  // MOBILE
+  // ====================================================
+
+  const numberMobile =
+    document.getElementById(
+      "solution-number-mobile"
+    );
+
+
+  const titleMobile =
+    document.getElementById(
+      "solution-title-mobile"
+    );
+
+
+  const descriptionMobile =
+    document.getElementById(
+      "solution-description-mobile"
+    );
+
+
+  const toolsMobile =
+    document.getElementById(
+      "solution-tools-mobile"
+    );
+
+
+  // ====================================================
+  // SELECTORES
+  // ====================================================
+
+  const journeySteps =
+    document.querySelectorAll(
+      ".journey-step[data-solution]"
+    );
+
+
+  const journeyMobileTabs =
+    document.querySelectorAll(
+      ".journey-mobile-tab[data-solution]"
+    );
+
+
+  if (
+    !journeySteps.length &&
+    !journeyMobileTabs.length
+  ) {
+    return;
+  }
+
+
+  // ====================================================
+  // CREAR HERRAMIENTAS
+  // ====================================================
+
+  function crearHerramientas(
+    lista
+  ) {
+
+    return lista
+      .map(
+        function (tool) {
+
+          return `
+            <span class="journey-tool">
+              ${tool}
+            </span>
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  // ====================================================
+  // ANIMACIÓN
+  // ====================================================
+
+  function animarCambioModelo() {
+
+    const elementos =
+      [
+        numberDesktop,
+        titleDesktop,
+        descriptionDesktop,
+        toolsDesktop,
+
+        numberMobile,
+        titleMobile,
+        descriptionMobile,
+        toolsMobile
+      ]
+        .filter(Boolean);
+
+
+    elementos.forEach(
+      function (elemento) {
+
+        elemento.classList.add(
+          "journey-changing"
+        );
+
+      }
+    );
+
+
+    window.setTimeout(
+      function () {
+
+        elementos.forEach(
+          function (elemento) {
+
+            elemento.classList.remove(
+              "journey-changing"
+            );
+
+          }
+        );
+
+      },
+      180
+    );
+
+  }
+
+
+  // ====================================================
+  // ACTUALIZAR SOLUCIÓN
+  // ====================================================
+
+  function actualizarSolucion(
+    tipo,
+    registrarEvento = true
+  ) {
+
+    const solucion =
+      soluciones[tipo];
+
+
+    if (!solucion) {
+      return;
+    }
+
+
+    animarCambioModelo();
+
+
+    if (numberDesktop) {
+
+      numberDesktop.textContent =
+        solucion.number;
+
+    }
+
+
+    if (titleDesktop) {
+
+      titleDesktop.textContent =
+        solucion.title;
+
+    }
+
+
+    if (descriptionDesktop) {
+
+      descriptionDesktop.textContent =
+        solucion.description;
+
+    }
+
+
+    if (toolsDesktop) {
+
+      toolsDesktop.innerHTML =
+        crearHerramientas(
+          solucion.tools
+        );
+
+    }
+
+
+    if (numberMobile) {
+
+      numberMobile.textContent =
+        solucion.number;
+
+    }
+
+
+    if (titleMobile) {
+
+      titleMobile.textContent =
+        solucion.title;
+
+    }
+
+
+    if (descriptionMobile) {
+
+      descriptionMobile.textContent =
+        solucion.description;
+
+    }
+
+
+    if (toolsMobile) {
+
+      toolsMobile.innerHTML =
+        crearHerramientas(
+          solucion.tools
+        );
+
+    }
+
+
+    // ==================================================
+    // ACTIVO DESKTOP
+    // ==================================================
+
+    journeySteps.forEach(
+      function (trigger) {
+
+        const activo =
+          trigger.dataset.solution ===
+          tipo;
+
+
+        trigger.classList.toggle(
+          "journey-step-active",
+          activo
+        );
+
+
+        trigger.setAttribute(
+          "aria-pressed",
+          String(activo)
+        );
+
+      }
+    );
+
+
+    // ==================================================
+    // ACTIVO MOBILE
+    // ==================================================
+
+    journeyMobileTabs.forEach(
+      function (trigger) {
+
+        const activo =
+          trigger.dataset.solution ===
+          tipo;
+
+
+        trigger.classList.toggle(
+          "journey-mobile-tab-active",
+          activo
+        );
+
+
+        trigger.setAttribute(
+          "aria-selected",
+          String(activo)
+        );
+
+      }
+    );
+
+
+    // ==================================================
+    // TRACKING
+    // ==================================================
+
+    if (registrarEvento) {
+
+      window.dataLayer.push({
+        event:
+          "solution_view",
+
+        event_category:
+          "home",
+
+        event_action:
+          "click",
+
+        event_label:
+          tipo,
+
+        section:
+          "modelo",
+
+        description:
+          solucion.title
+      });
+
+    }
+
+  }
+
+
+  // ====================================================
+  // LISTENERS DESKTOP
+  // ====================================================
+
+  journeySteps.forEach(
+    function (trigger) {
+
+      trigger.addEventListener(
+        "click",
+        function () {
+
+          actualizarSolucion(
+            trigger.dataset.solution
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  // ====================================================
+  // LISTENERS MOBILE
+  // ====================================================
+
+  journeyMobileTabs.forEach(
+    function (trigger) {
+
+      trigger.addEventListener(
+        "click",
+        function () {
+
+          actualizarSolucion(
+            trigger.dataset.solution
+          );
+
+
+          trigger.scrollIntoView({
+            behavior:
+              "smooth",
+
+            block:
+              "nearest",
+
+            inline:
+              "center"
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+  // ====================================================
+  // ESTADO INICIAL
+  // ====================================================
+
+  actualizarSolucion(
+    "estrategia",
+    false
+  );
+
+}
+
+
+// ======================================================
+// FORMULARIO DE CONTACTO
+// ======================================================
+
+function iniciarFormularioContacto() {
+
+  const formulario =
+    document.getElementById(
+      "formulario-contacto"
+    );
+
+
+  const toastExito =
+    document.getElementById(
+      "toast-exito"
+    );
+
+
+  if (!formulario) {
+    return;
+  }
+
+
+  // ====================================================
+  // TOAST
+  // ====================================================
+
+  function mostrarToast(
+    mensaje,
+    tipo
+  ) {
+
+    if (!toastExito) {
+      return;
+    }
+
+
+    toastExito.textContent =
+      mensaje;
+
+
+    toastExito.classList.remove(
+      "hidden",
+
+      "bg-green-100",
+      "border-green-300",
+      "text-green-800",
+
+      "bg-red-100",
+      "border-red-300",
+      "text-red-800"
+    );
+
+
+    if (
+      tipo ===
+      "error"
+    ) {
+
+      toastExito.classList.add(
+        "bg-red-100",
+        "border-red-300",
+        "text-red-800"
+      );
+
+    } else {
+
+      toastExito.classList.add(
+        "bg-green-100",
+        "border-green-300",
+        "text-green-800"
+      );
+
+    }
+
+
+    window.setTimeout(
+      function () {
+
+        toastExito.classList.add(
+          "hidden"
+        );
+
+      },
+      4000
+    );
+
+  }
+
+
+  // ====================================================
+  // SUBMIT
+  // ====================================================
+
+  formulario.addEventListener(
+    "submit",
+    async function (event) {
+
+      event.preventDefault();
+
+
+      const boton =
+        formulario.querySelector(
+          'button[type="submit"]'
+        );
+
+
+      const textoOriginal =
+        boton
+          ? boton.innerHTML
+          : "";
+
+
+      const datos =
+        new FormData(
+          formulario
+        );
+
+
+      const empresa =
+        datos.get(
+          "empresa"
+        ) ||
+        "-";
+
+
+      const preferenciaContacto =
+        datos.get(
+          "preferencia_contacto"
+        ) ||
+        "-";
+
+
+      const asunto =
+        datos.get(
+          "asunto"
+        ) ||
+        "-";
+
+
+      try {
+
+        if (boton) {
+
+          boton.disabled =
+            true;
+
+
+          boton.innerHTML = `
+            <i
+              class="fa-solid fa-circle-notch fa-spin"
+              aria-hidden="true">
+            </i>
+
+            Enviando...
+          `;
+
+        }
+
+
+        const respuesta =
+          await fetch(
+            formulario.action,
+            {
+              method:
+                "POST",
+
+              body:
+                datos,
+
+              headers: {
+                Accept:
+                  "application/json"
+              }
+            }
+          );
+
+
+        if (!respuesta.ok) {
+
+          throw new Error(
+            `Formspree respondió HTTP ${respuesta.status}`
+          );
+
+        }
+
+
+        window.dataLayer.push({
+          event:
+            "form_submitted",
+
+          event_category:
+            "home",
+
+          event_action:
+            "submit",
+
+          event_label:
+            "formulario-contacto",
+
+          section:
+            "contacto",
+
+          description:
+            `Empresa: ${empresa} | Contacto preferido: ${preferenciaContacto} | Asunto: ${asunto}`
+        });
+
+
+        formulario.reset();
+
+
+        mostrarToast(
+          "¡Gracias! Tu mensaje fue enviado correctamente.",
+          "success"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Error al enviar el formulario:",
+          error
+        );
+
+
+        mostrarToast(
+          "No pudimos enviar el mensaje. Intenta nuevamente.",
+          "error"
+        );
+
+      } finally {
+
+        if (boton) {
+
+          boton.disabled =
+            false;
+
+
+          boton.innerHTML =
+            textoOriginal;
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+// ======================================================
+// SCROLL DEPTH
+// ======================================================
+
+function iniciarScrollDepth() {
+
+  window.addEventListener(
+    "scroll",
+    function () {
+
+      const altoDocumento =
+        document.documentElement
+          .scrollHeight -
+        window.innerHeight;
+
+
+      if (
+        altoDocumento <= 0
+      ) {
+        return;
+      }
+
+
+      const porcentaje =
+        Math.floor(
+          (
+            window.scrollY /
+            altoDocumento
+          ) * 100
+        );
+
+
+      [
+        25,
+        50,
+        75,
+        100
+      ]
+        .forEach(
+          function (nivel) {
+
+            if (
+              porcentaje < nivel ||
+              scrollMarcado[nivel]
+            ) {
+              return;
+            }
+
+
+            scrollMarcado[nivel] =
+              true;
+
+
+            let descripcion =
+              "-";
+
+
+            if (
+              nivel === 25
+            ) {
+
+              descripcion =
+                "inicio de desplazamiento";
+
+            }
+
+
+            if (
+              nivel === 50
+            ) {
+
+              descripcion =
+                "mitad de página";
+
+            }
+
+
+            if (
+              nivel === 75
+            ) {
+
+              descripcion =
+                "casi al final";
+
+            }
+
+
+            if (
+              nivel === 100
+            ) {
+
+              descripcion =
+                "llegó al footer";
+
+            }
+
+
+            window.dataLayer.push({
+              event:
+                "scroll_depth",
+
+              event_category:
+                "home",
+
+              event_action:
+                "scroll",
+
+              event_label:
+                `${nivel}%`,
+
+              section:
+                nivel === 100
+                  ? "footer"
+                  : "-",
+
+              description:
+                descripcion
+            });
+
+          }
+        );
+
+    },
+    {
+      passive:
+        true
+    }
+  );
+
+}
 
 
 // ======================================================
 // TIEMPO EN SITIO
 // ======================================================
 
-const tiempos = [
-  30,
-  60,
-  120
-];
+function iniciarTiempoEnSitio() {
+
+  const tiempos =
+    [
+      30,
+      60,
+      120
+    ];
 
 
-tiempos.forEach(
-  function (segundos) {
+  tiempos.forEach(
+    function (segundos) {
 
-    window.setTimeout(
-      function () {
+      window.setTimeout(
+        function () {
 
-        window.dataLayer.push({
-          event:
-            "time_on_site",
-          event_category:
-            "home",
-          event_action:
-            "tiempo",
-          event_label:
-            `${segundos}s`,
-          section:
-            "-",
-          description:
-            "-"
-        });
+          window.dataLayer.push({
+            event:
+              "time_on_site",
 
-      },
-      segundos * 1000
-    );
+            event_category:
+              "home",
 
-  }
-);
+            event_action:
+              "tiempo",
 
-// ======================================================
-// RADAR INMOBILIARIO
-// ======================================================
+            event_label:
+              `${segundos}s`,
 
-let radarCarruselIntervalo = null;
+            section:
+              "-",
 
-const RADAR_AUTOPLAY_MS = 4500;
+            description:
+              "-"
+          });
 
-let radarProyectos = [];
+        },
+        segundos * 1000
+      );
 
-let radarResultados = [];
-
-let radarFiltroActual = "todos";
-
-
-// ======================================================
-// INICIALIZAR RADAR
-// ======================================================
-
-async function initRadarInmobiliario() {
-
-  prepararRadar();
-
-  prepararCarruselRadar();
-
-  await cargarProyectosRadar();
+    }
+  );
 
 }
 
 
 // ======================================================
-// CARGAR BASE DE PROYECTOS
+// EQUIPO ESCALA
+// ======================================================
+
+
+// ======================================================
+// DETENER AUTOPLAY EQUIPO
+// ======================================================
+
+function detenerAutoplayEquipo() {
+
+  if (
+    teamCarruselIntervalo
+  ) {
+
+    window.clearInterval(
+      teamCarruselIntervalo
+    );
+
+
+    teamCarruselIntervalo =
+      null;
+
+  }
+
+}
+
+
+// ======================================================
+// MOVER CARRUSEL EQUIPO
+// ======================================================
+
+function moverCarruselEquipo(
+  direccion
+) {
+
+  const carrusel =
+    document.getElementById(
+      "team-roles-track"
+    );
+
+
+  if (!carrusel) {
+    return;
+  }
+
+
+  const card =
+    carrusel.querySelector(
+      ".team-role-card"
+    );
+
+
+  if (!card) {
+    return;
+  }
+
+
+  const estilos =
+    window.getComputedStyle(
+      carrusel
+    );
+
+
+  const gap =
+    parseFloat(
+      estilos.columnGap ||
+      estilos.gap ||
+      "14"
+    ) || 14;
+
+
+  const paso =
+    card
+      .getBoundingClientRect()
+      .width +
+    gap;
+
+
+  const maxScroll =
+    Math.max(
+      0,
+      carrusel.scrollWidth -
+      carrusel.clientWidth
+    );
+
+
+  if (
+    maxScroll <= 5
+  ) {
+    return;
+  }
+
+
+  // ====================================================
+  // AL FINAL → VOLVER AL PRINCIPIO
+  // ====================================================
+
+  if (
+    direccion > 0 &&
+    carrusel.scrollLeft >=
+      maxScroll - 10
+  ) {
+
+    carrusel.scrollTo({
+      left:
+        0,
+
+      behavior:
+        "smooth"
+    });
+
+
+    return;
+
+  }
+
+
+  // ====================================================
+  // AL PRINCIPIO → IR AL FINAL
+  // ====================================================
+
+  if (
+    direccion < 0 &&
+    carrusel.scrollLeft <= 10
+  ) {
+
+    carrusel.scrollTo({
+      left:
+        maxScroll,
+
+      behavior:
+        "smooth"
+    });
+
+
+    return;
+
+  }
+
+
+  // ====================================================
+  // MOVIMIENTO NORMAL
+  // ====================================================
+
+  carrusel.scrollBy({
+    left:
+      direccion * paso,
+
+    behavior:
+      "smooth"
+  });
+
+}
+
+
+// ======================================================
+// INICIAR AUTOPLAY EQUIPO
+// ======================================================
+
+function iniciarAutoplayEquipo() {
+
+  detenerAutoplayEquipo();
+
+
+  const carrusel =
+    document.getElementById(
+      "team-roles-track"
+    );
+
+
+  if (!carrusel) {
+    return;
+  }
+
+
+  const cards =
+    carrusel.querySelectorAll(
+      ".team-role-card"
+    );
+
+
+  if (
+    cards.length <= 1
+  ) {
+    return;
+  }
+
+
+  teamCarruselIntervalo =
+    window.setInterval(
+      function () {
+
+        if (
+          document.hidden
+        ) {
+          return;
+        }
+
+
+        moverCarruselEquipo(
+          1
+        );
+
+      },
+      TEAM_AUTOPLAY_MS
+    );
+
+}
+
+
+// ======================================================
+// INICIALIZAR CARRUSEL EQUIPO
+// ======================================================
+
+function iniciarCarruselEquipo() {
+
+  const carrusel =
+    document.getElementById(
+      "team-roles-track"
+    );
+
+
+  const anterior =
+    document.getElementById(
+      "team-roles-prev"
+    );
+
+
+  const siguiente =
+    document.getElementById(
+      "team-roles-next"
+    );
+
+
+  const shell =
+    document.getElementById(
+      "team-roles-shell"
+    );
+
+
+  if (!carrusel) {
+    return;
+  }
+
+
+  // ====================================================
+  // FLECHA IZQUIERDA
+  // ====================================================
+
+  if (anterior) {
+
+    anterior.addEventListener(
+      "click",
+      function () {
+
+        moverCarruselEquipo(
+          -1
+        );
+
+
+        iniciarAutoplayEquipo();
+
+      }
+    );
+
+  }
+
+
+  // ====================================================
+  // FLECHA DERECHA
+  // ====================================================
+
+  if (siguiente) {
+
+    siguiente.addEventListener(
+      "click",
+      function () {
+
+        moverCarruselEquipo(
+          1
+        );
+
+
+        iniciarAutoplayEquipo();
+
+      }
+    );
+
+  }
+
+
+  // ====================================================
+  // TOUCH
+  // ====================================================
+
+  if (shell) {
+
+    shell.addEventListener(
+      "touchstart",
+      detenerAutoplayEquipo,
+      {
+        passive:
+          true
+      }
+    );
+
+
+    shell.addEventListener(
+      "touchend",
+      function () {
+
+        window.setTimeout(
+          iniciarAutoplayEquipo,
+          1000
+        );
+
+      },
+      {
+        passive:
+          true
+      }
+    );
+
+  }
+
+
+  // ====================================================
+  // INICIAR
+  // ====================================================
+
+  window.setTimeout(
+    iniciarAutoplayEquipo,
+    700
+  );
+
+}
+
+
+// ======================================================
+// RADAR INMOBILIARIO
+// ======================================================
+
+
+// ======================================================
+// NORMALIZAR TEXTO RADAR
+// ======================================================
+
+function normalizarRadar(
+  texto
+) {
+
+  return String(
+    texto || ""
+  )
+    .normalize(
+      "NFD"
+    )
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .toLowerCase()
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
+
+}
+
+
+// ======================================================
+// ESCAPAR HTML RADAR
+// ======================================================
+
+function escaparHTMLRadar(
+  texto
+) {
+
+  return String(
+    texto || ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+// ======================================================
+// FORMATEAR PEN
+// ======================================================
+
+function formatearPENRadar(
+  valor
+) {
+
+  const numero =
+    Number(
+      valor
+    );
+
+
+  if (
+    !Number.isFinite(
+      numero
+    ) ||
+    numero <= 0
+  ) {
+
+    return "";
+
+  }
+
+
+  return new Intl.NumberFormat(
+    "es-PE",
+    {
+      style:
+        "currency",
+
+      currency:
+        "PEN",
+
+      maximumFractionDigits:
+        0
+    }
+  ).format(
+    numero
+  );
+
+}
+
+
+// ======================================================
+// FORMATEAR USD
+// ======================================================
+
+function formatearUSDRadar(
+  valor
+) {
+
+  const numero =
+    Number(
+      valor
+    );
+
+
+  if (
+    !Number.isFinite(
+      numero
+    ) ||
+    numero <= 0
+  ) {
+
+    return "";
+
+  }
+
+
+  return (
+    "US$ " +
+    numero.toLocaleString(
+      "es-PE",
+      {
+        maximumFractionDigits:
+          0
+      }
+    )
+  );
+
+}
+
+
+// ======================================================
+// PRECIO RADAR
+// ======================================================
+
+function formatearPrecioRadar(
+  proyecto
+) {
+
+  const precioPEN =
+    Number(
+      proyecto.precioDesdePEN
+    );
+
+
+  if (
+    Number.isFinite(
+      precioPEN
+    ) &&
+    precioPEN > 0
+  ) {
+
+    return (
+      "Desde " +
+      formatearPENRadar(
+        precioPEN
+      )
+    );
+
+  }
+
+
+  const precioUSD =
+    Number(
+      proyecto.precioDesdeUSD
+    );
+
+
+  if (
+    Number.isFinite(
+      precioUSD
+    ) &&
+    precioUSD > 0
+  ) {
+
+    return (
+      "Desde " +
+      formatearUSDRadar(
+        precioUSD
+      )
+    );
+
+  }
+
+
+  return "";
+
+}
+
+
+// ======================================================
+// CARGAR PROYECTOS
 // ======================================================
 
 async function cargarProyectosRadar() {
@@ -1426,7 +2126,11 @@ async function cargarProyectosRadar() {
 
     const response =
       await fetch(
-        "/data/proyectos.json"
+        "/data/proyectos.json",
+        {
+          cache:
+            "no-cache"
+        }
       );
 
 
@@ -1443,10 +2147,14 @@ async function cargarProyectosRadar() {
       await response.json();
 
 
-    if (!Array.isArray(data)) {
+    if (
+      !Array.isArray(
+        data
+      )
+    ) {
 
       throw new Error(
-        "El archivo proyectos.json no contiene un array."
+        "proyectos.json no contiene un array."
       );
 
     }
@@ -1469,7 +2177,6 @@ async function cargarProyectosRadar() {
       `✅ Radar cargado: ${radarProyectos.length} proyectos`
     );
 
-
   } catch (error) {
 
     console.error(
@@ -1488,7 +2195,7 @@ async function cargarProyectosRadar() {
 
 
 // ======================================================
-// PREPARAR INTERACCIÓN
+// PREPARAR RADAR
 // ======================================================
 
 function prepararRadar() {
@@ -1511,7 +2218,9 @@ function prepararRadar() {
     );
 
 
-  // Formulario
+  // ====================================================
+  // FORMULARIO
+  // ====================================================
 
   if (formulario) {
 
@@ -1521,6 +2230,7 @@ function prepararRadar() {
 
         event.preventDefault();
 
+
         buscarZonaRadar();
 
       }
@@ -1529,7 +2239,9 @@ function prepararRadar() {
   }
 
 
-  // Filtros
+  // ====================================================
+  // FILTROS
+  // ====================================================
 
   filtros.forEach(
     function (boton) {
@@ -1539,7 +2251,8 @@ function prepararRadar() {
         function () {
 
           radarFiltroActual =
-            boton.dataset.radarFilter;
+            boton.dataset.radarFilter ||
+            "todos";
 
 
           filtros.forEach(
@@ -1570,7 +2283,13 @@ function prepararRadar() {
           );
 
 
-          mostrarResultadosRadar();
+          if (
+            radarConsultaActual
+          ) {
+
+            mostrarResultadosRadar();
+
+          }
 
         }
       );
@@ -1579,7 +2298,9 @@ function prepararRadar() {
   );
 
 
-  // Sugerencias
+  // ====================================================
+  // SUGERENCIAS
+  // ====================================================
 
   sugerencias.forEach(
     function (boton) {
@@ -1590,6 +2311,11 @@ function prepararRadar() {
 
           const consulta =
             boton.dataset.radarQuery;
+
+
+          if (!consulta) {
+            return;
+          }
 
 
           const input =
@@ -1618,279 +2344,7 @@ function prepararRadar() {
 
 
 // ======================================================
-// PREPARAR CARRUSEL
-// ======================================================
-
-function prepararCarruselRadar() {
-
-  const carrusel =
-    document.getElementById(
-      "radar-results"
-    );
-
-
-  const anterior =
-    document.getElementById(
-      "radar-prev"
-    );
-
-
-  const siguiente =
-    document.getElementById(
-      "radar-next"
-    );
-
-
-  const shell =
-    document.getElementById(
-      "radar-carousel-shell"
-    );
-
-
-  if (
-    !carrusel ||
-    !anterior ||
-    !siguiente
-  ) {
-    return;
-  }
-
-
-  function obtenerPaso() {
-
-    const card =
-      carrusel.querySelector(
-        ".radar-result-card"
-      );
-
-
-    return card
-      ? card.getBoundingClientRect().width + 16
-      : 320;
-
-  }
-
-
-  function moverCarrusel(
-    direccion
-  ) {
-
-    const paso =
-      obtenerPaso();
-
-
-    const maxScroll =
-      carrusel.scrollWidth -
-      carrusel.clientWidth;
-
-
-    if (
-      direccion > 0
-      &&
-      carrusel.scrollLeft >=
-        maxScroll - 10
-    ) {
-
-      carrusel.scrollTo({
-        left: 0,
-        behavior: "smooth"
-      });
-
-      return;
-
-    }
-
-
-    if (
-      direccion < 0
-      &&
-      carrusel.scrollLeft <= 10
-    ) {
-
-      carrusel.scrollTo({
-        left: maxScroll,
-        behavior: "smooth"
-      });
-
-      return;
-
-    }
-
-
-    carrusel.scrollBy({
-      left:
-        direccion * paso,
-
-      behavior:
-        "smooth"
-    });
-
-  }
-
-
-  function detenerAutoplay() {
-
-    if (
-      radarCarruselIntervalo
-    ) {
-
-      clearInterval(
-        radarCarruselIntervalo
-      );
-
-
-      radarCarruselIntervalo =
-        null;
-
-    }
-
-  }
-
-
-  function iniciarAutoplay() {
-
-    detenerAutoplay();
-
-
-    radarCarruselIntervalo =
-      setInterval(
-        function () {
-
-          if (
-            !document.hidden
-          ) {
-
-            moverCarrusel(
-              1
-            );
-
-          }
-
-        },
-        RADAR_AUTOPLAY_MS
-      );
-
-  }
-
-
-  anterior.addEventListener(
-    "click",
-    function () {
-
-      moverCarrusel(
-        -1
-      );
-
-
-      iniciarAutoplay();
-
-    }
-  );
-
-
-  siguiente.addEventListener(
-    "click",
-    function () {
-
-      moverCarrusel(
-        1
-      );
-
-
-      iniciarAutoplay();
-
-    }
-  );
-
-
-  if (shell) {
-
-    shell.addEventListener(
-      "mouseenter",
-      detenerAutoplay
-    );
-
-
-    shell.addEventListener(
-      "mouseleave",
-      iniciarAutoplay
-    );
-
-
-    shell.addEventListener(
-      "touchstart",
-      detenerAutoplay,
-      {
-        passive: true
-      }
-    );
-
-
-    shell.addEventListener(
-      "touchend",
-      iniciarAutoplay,
-      {
-        passive: true
-      }
-    );
-
-  }
-
-
-  document.addEventListener(
-    "visibilitychange",
-    function () {
-
-      if (
-        document.hidden
-      ) {
-
-        detenerAutoplay();
-
-      } else {
-
-        iniciarAutoplay();
-
-      }
-
-    }
-  );
-
-
-  iniciarAutoplay();
-
-}
-
-// ======================================================
-// NORMALIZAR TEXTO
-// ======================================================
-
-function normalizarRadar(
-  texto
-) {
-
-  return String(
-    texto || ""
-  )
-    .normalize(
-      "NFD"
-    )
-    .replace(
-      /[\u0300-\u036f]/g,
-      ""
-    )
-    .toLowerCase()
-    .replace(
-      /\s+/g,
-      " "
-    )
-    .trim();
-
-}
-
-
-// ======================================================
-// BUSCAR
+// BUSCAR RADAR
 // ======================================================
 
 function buscarZonaRadar() {
@@ -1911,7 +2365,28 @@ function buscarZonaRadar() {
 
 
   if (!consulta) {
+
+    input.focus();
+
     return;
+
+  }
+
+
+  // ====================================================
+  // SI TODAVÍA NO CARGÓ EL JSON
+  // ====================================================
+
+  if (
+    !radarProyectos.length
+  ) {
+
+    mostrarErrorRadar(
+      "La base de proyectos todavía se está cargando. Intenta nuevamente en unos segundos."
+    );
+
+    return;
+
   }
 
 
@@ -1920,62 +2395,43 @@ function buscarZonaRadar() {
   );
 
 
+  detenerAutoplayRadar();
+
+
   const consultaNormalizada =
     normalizarRadar(
       consulta
     );
 
 
+  radarConsultaActual =
+    consulta;
+
+
   radarResultados =
     radarProyectos.filter(
       function (proyecto) {
 
-        const proyectoTexto =
-          normalizarRadar(
-            proyecto.proyecto
-          );
-
-        const inmobiliariaTexto =
-          normalizarRadar(
-            proyecto.inmobiliaria
-          );
-
-        const distritoTexto =
-          normalizarRadar(
-            proyecto.distrito
-          );
-
-        const zonaTexto =
-          normalizarRadar(
-            proyecto.zona
-          );
-
-        const direccionTexto =
-          normalizarRadar(
+        const campos =
+          [
+            proyecto.proyecto,
+            proyecto.inmobiliaria,
+            proyecto.distrito,
+            proyecto.zona,
             proyecto.direccion
-          );
+          ];
 
 
-        return (
-          proyectoTexto.includes(
-            consultaNormalizada
-          )
-          ||
-          inmobiliariaTexto.includes(
-            consultaNormalizada
-          )
-          ||
-          distritoTexto.includes(
-            consultaNormalizada
-          )
-          ||
-          zonaTexto.includes(
-            consultaNormalizada
-          )
-          ||
-          direccionTexto.includes(
-            consultaNormalizada
-          )
+        return campos.some(
+          function (campo) {
+
+            return normalizarRadar(
+              campo
+            ).includes(
+              consultaNormalizada
+            );
+
+          }
         );
 
       }
@@ -1985,6 +2441,29 @@ function buscarZonaRadar() {
   finalizarBusquedaRadar(
     consulta
   );
+
+
+  window.dataLayer.push({
+    event:
+      "radar_search",
+
+    event_category:
+      "home",
+
+    event_action:
+      "search",
+
+    event_label:
+      formatearTexto(
+        consulta
+      ),
+
+    section:
+      "radar-inmobiliario",
+
+    description:
+      `${radarResultados.length} resultados`
+  });
 
 }
 
@@ -2022,14 +2501,17 @@ function finalizarBusquedaRadar(
 
 
 // ======================================================
-// FILTRAR RESULTADOS
+// FILTRAR RESULTADOS RADAR
 // ======================================================
 
 function obtenerResultadosFiltrados() {
 
   if (
     radarFiltroActual ===
-    "todos"
+      "todos"
+    ||
+    radarFiltroActual ===
+      "proyectos"
   ) {
 
     return radarResultados;
@@ -2038,8 +2520,8 @@ function obtenerResultadosFiltrados() {
 
 
   if (
-    radarFiltroActual ===
-    "proyectos"
+    radarFiltroActual !==
+      "inmobiliarias"
   ) {
 
     return radarResultados;
@@ -2047,64 +2529,54 @@ function obtenerResultadosFiltrados() {
   }
 
 
-  if (
-    radarFiltroActual ===
-    "inmobiliarias"
-  ) {
-
-    const inmobiliarias =
-      new Map();
+  const inmobiliarias =
+    new Map();
 
 
-    radarResultados.forEach(
-      function (proyecto) {
+  radarResultados.forEach(
+    function (proyecto) {
 
-        const nombre =
-          proyecto.inmobiliaria;
-
-
-        if (!nombre) {
-          return;
-        }
+      const nombre =
+        proyecto.inmobiliaria;
 
 
-        const clave =
-          normalizarRadar(
-            nombre
-          );
+      if (!nombre) {
+        return;
+      }
 
 
-        if (
-          !inmobiliarias.has(
-            clave
-          )
-        ) {
+      const clave =
+        normalizarRadar(
+          nombre
+        );
 
-          inmobiliarias.set(
-            clave,
-            proyecto
-          );
 
-        }
+      if (
+        !inmobiliarias.has(
+          clave
+        )
+      ) {
+
+        inmobiliarias.set(
+          clave,
+          proyecto
+        );
 
       }
-    );
+
+    }
+  );
 
 
-    return Array.from(
-      inmobiliarias.values()
-    );
-
-  }
-
-
-  return radarResultados;
+  return Array.from(
+    inmobiliarias.values()
+  );
 
 }
 
 
 // ======================================================
-// MOSTRAR RESULTADOS
+// MOSTRAR RESULTADOS RADAR
 // ======================================================
 
 function mostrarResultadosRadar() {
@@ -2138,11 +2610,16 @@ function mostrarResultadosRadar() {
   }
 
 
+  detenerAutoplayRadar();
+
+
   const resultados =
     obtenerResultadosFiltrados();
 
 
-  // Contador
+  // ====================================================
+  // CONTADOR
+  // ====================================================
 
   if (contador) {
 
@@ -2172,9 +2649,13 @@ function mostrarResultadosRadar() {
   }
 
 
-  // Sin resultados
+  // ====================================================
+  // SIN RESULTADOS
+  // ====================================================
 
-  if (!resultados.length) {
+  if (
+    !resultados.length
+  ) {
 
     container.innerHTML =
       "";
@@ -2203,6 +2684,10 @@ function mostrarResultadosRadar() {
   }
 
 
+  // ====================================================
+  // MOSTRAR
+  // ====================================================
+
   if (carouselShell) {
 
     carouselShell.classList.remove(
@@ -2221,7 +2706,9 @@ function mostrarResultadosRadar() {
   }
 
 
-  // Crear tarjetas
+  // ====================================================
+  // CREAR TARJETAS
+  // ====================================================
 
   container.innerHTML =
     resultados
@@ -2254,18 +2741,36 @@ function mostrarResultadosRadar() {
       .join("");
 
 
-  // Volver al inicio del carrusel
+  // ====================================================
+  // POSICIÓN INICIAL
+  // ====================================================
 
-  container.scrollTo({
-    left: 0,
-    behavior: "smooth"
-  });
+  container.scrollLeft =
+    0;
+
+
+  /*
+    Dejamos un pequeño tiempo para que el navegador
+    calcule correctamente el ancho de todas las cards.
+
+    Esto evita que scrollWidth se mida antes
+    de que el carrusel esté renderizado.
+  */
+
+  window.setTimeout(
+    function () {
+
+      iniciarAutoplayRadar();
+
+    },
+    350
+  );
 
 }
 
 
 // ======================================================
-// CARD DE PROYECTO
+// CARD PROYECTO RADAR
 // ======================================================
 
 function crearCardProyectoRadar(
@@ -2283,6 +2788,9 @@ function crearCardProyectoRadar(
     <article
       class="radar-result-card"
       data-radar-index="${index}"
+      data-radar-project-id="${escaparHTMLRadar(
+        proyecto.id || ""
+      )}"
     >
 
       <span
@@ -2378,7 +2886,7 @@ function crearCardProyectoRadar(
 
 
 // ======================================================
-// CARD DE INMOBILIARIA
+// CARD INMOBILIARIA RADAR
 // ======================================================
 
 function crearCardInmobiliariaRadar(
@@ -2391,6 +2899,12 @@ function crearCardInmobiliariaRadar(
     "Inmobiliaria";
 
 
+  const nombreNormalizado =
+    normalizarRadar(
+      nombre
+    );
+
+
   const proyectosEmpresa =
     radarResultados.filter(
       function (item) {
@@ -2400,9 +2914,7 @@ function crearCardInmobiliariaRadar(
             item.inmobiliaria
           )
           ===
-          normalizarRadar(
-            nombre
-          )
+          nombreNormalizado
         );
 
       }
@@ -2483,8 +2995,7 @@ function crearCardInmobiliariaRadar(
         ubicacion
           ? `
             <p
-              class="radar-result-address"
-              style="margin-top: 0.55rem;"
+              class="radar-result-address radar-result-address-secondary"
             >
 
               <i
@@ -2510,182 +3021,7 @@ function crearCardInmobiliariaRadar(
 
 
 // ======================================================
-// FORMATEAR PEN
-// ======================================================
-
-function formatearPENRadar(
-  valor
-) {
-
-  const numero =
-    Number(
-      valor
-    );
-
-
-  if (
-    !Number.isFinite(
-      numero
-    )
-  ) {
-
-    return "";
-
-  }
-
-
-  return new Intl.NumberFormat(
-    "es-PE",
-    {
-      style:
-        "currency",
-
-      currency:
-        "PEN",
-
-      maximumFractionDigits:
-        0
-    }
-  ).format(
-    numero
-  );
-
-}
-
-
-// ======================================================
-// FORMATEAR USD
-// ======================================================
-
-function formatearUSDRadar(
-  valor
-) {
-
-  const numero =
-    Number(
-      valor
-    );
-
-
-  if (
-    !Number.isFinite(
-      numero
-    )
-  ) {
-
-    return "";
-
-  }
-
-
-  return (
-    "US$ " +
-    numero.toLocaleString(
-      "es-PE",
-      {
-        maximumFractionDigits:
-          0
-      }
-    )
-  );
-
-}
-
-
-// ======================================================
-// PRECIO DEL PROYECTO
-// ======================================================
-
-function formatearPrecioRadar(
-  proyecto
-) {
-
-  const precioPEN =
-    Number(
-      proyecto.precioDesdePEN
-    );
-
-
-  if (
-    Number.isFinite(precioPEN)
-    &&
-    precioPEN > 0
-  ) {
-
-    return (
-      "Desde " +
-      formatearPENRadar(
-        precioPEN
-      )
-    );
-
-  }
-
-
-  const precioUSD =
-    Number(
-      proyecto.precioDesdeUSD
-    );
-
-
-  if (
-    Number.isFinite(precioUSD)
-    &&
-    precioUSD > 0
-  ) {
-
-    return (
-      "Desde " +
-      formatearUSDRadar(
-        precioUSD
-      )
-    );
-
-  }
-
-
-  return "";
-
-}
-
-
-// ======================================================
-// ESCAPAR HTML
-// ======================================================
-
-function escaparHTMLRadar(
-  texto
-) {
-
-  return String(
-    texto || ""
-  )
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-// ======================================================
-// ESTADO CARGANDO
+// ESTADO RADAR
 // ======================================================
 
 function mostrarEstadoRadar(
@@ -2759,7 +3095,7 @@ function mostrarEstadoRadar(
 
 
 // ======================================================
-// ERROR
+// ERROR RADAR
 // ======================================================
 
 function mostrarErrorRadar(
@@ -2782,6 +3118,9 @@ function mostrarErrorRadar(
     document.getElementById(
       "radar-carousel-shell"
     );
+
+
+  detenerAutoplayRadar();
 
 
   mostrarEstadoRadar(
@@ -2832,14 +3171,521 @@ function mostrarErrorRadar(
 
 
 // ======================================================
-// ARRANCAR
+// DETENER AUTOPLAY RADAR
+// ======================================================
+
+function detenerAutoplayRadar() {
+
+  if (
+    radarCarruselIntervalo
+  ) {
+
+    window.clearInterval(
+      radarCarruselIntervalo
+    );
+
+
+    radarCarruselIntervalo =
+      null;
+
+  }
+
+}
+
+
+// ======================================================
+// MOVER CARRUSEL RADAR
+// ======================================================
+
+function moverCarruselRadar(
+  direccion
+) {
+
+  const carrusel =
+    document.getElementById(
+      "radar-results"
+    );
+
+
+  if (!carrusel) {
+    return;
+  }
+
+
+  const card =
+    carrusel.querySelector(
+      ".radar-result-card"
+    );
+
+
+  if (!card) {
+    return;
+  }
+
+
+  const estilos =
+    window.getComputedStyle(
+      carrusel
+    );
+
+
+  const gap =
+    parseFloat(
+      estilos.columnGap ||
+      estilos.gap ||
+      "16"
+    ) || 16;
+
+
+  const paso =
+    card
+      .getBoundingClientRect()
+      .width +
+    gap;
+
+
+  const maxScroll =
+    Math.max(
+      0,
+      carrusel.scrollWidth -
+      carrusel.clientWidth
+    );
+
+
+  // ====================================================
+  // SI NO HAY SCROLL
+  // ====================================================
+
+  if (
+    maxScroll <= 5
+  ) {
+    return;
+  }
+
+
+  // ====================================================
+  // LLEGÓ AL FINAL
+  // ====================================================
+
+  if (
+    direccion > 0 &&
+    carrusel.scrollLeft >=
+      maxScroll - 12
+  ) {
+
+    carrusel.scrollTo({
+      left:
+        0,
+
+      behavior:
+        "smooth"
+    });
+
+
+    return;
+
+  }
+
+
+  // ====================================================
+  // ESTÁ AL PRINCIPIO
+  // ====================================================
+
+  if (
+    direccion < 0 &&
+    carrusel.scrollLeft <= 12
+  ) {
+
+    carrusel.scrollTo({
+      left:
+        maxScroll,
+
+      behavior:
+        "smooth"
+    });
+
+
+    return;
+
+  }
+
+
+  // ====================================================
+  // MOVIMIENTO NORMAL
+  // ====================================================
+
+  carrusel.scrollBy({
+    left:
+      direccion * paso,
+
+    behavior:
+      "smooth"
+  });
+
+}
+
+
+// ======================================================
+// INICIAR AUTOPLAY RADAR
+// ======================================================
+
+function iniciarAutoplayRadar() {
+
+  detenerAutoplayRadar();
+
+
+  const carrusel =
+    document.getElementById(
+      "radar-results"
+    );
+
+
+  if (!carrusel) {
+    return;
+  }
+
+
+  const cards =
+    carrusel.querySelectorAll(
+      ".radar-result-card"
+    );
+
+
+  if (
+    cards.length <= 1
+  ) {
+    return;
+  }
+
+
+  const maxScroll =
+    carrusel.scrollWidth -
+    carrusel.clientWidth;
+
+
+  if (
+    maxScroll <= 5
+  ) {
+    return;
+  }
+
+
+  radarCarruselIntervalo =
+    window.setInterval(
+      function () {
+
+        if (
+          document.hidden
+        ) {
+          return;
+        }
+
+
+        moverCarruselRadar(
+          1
+        );
+
+      },
+      RADAR_AUTOPLAY_MS
+    );
+
+}
+
+
+// ======================================================
+// PREPARAR CARRUSEL RADAR
+// ======================================================
+
+function prepararCarruselRadar() {
+
+  const carrusel =
+    document.getElementById(
+      "radar-results"
+    );
+
+
+  const anterior =
+    document.getElementById(
+      "radar-prev"
+    );
+
+
+  const siguiente =
+    document.getElementById(
+      "radar-next"
+    );
+
+
+  if (!carrusel) {
+    return;
+  }
+
+
+  // ====================================================
+  // FLECHA IZQUIERDA
+  // ====================================================
+
+  if (anterior) {
+
+    anterior.addEventListener(
+      "click",
+      function () {
+
+        moverCarruselRadar(
+          -1
+        );
+
+
+        iniciarAutoplayRadar();
+
+      }
+    );
+
+  }
+
+
+  // ====================================================
+  // FLECHA DERECHA
+  // ====================================================
+
+  if (siguiente) {
+
+    siguiente.addEventListener(
+      "click",
+      function () {
+
+        moverCarruselRadar(
+          1
+        );
+
+
+        iniciarAutoplayRadar();
+
+      }
+    );
+
+  }
+
+
+  // ====================================================
+  // TOUCH
+  // ====================================================
+
+  carrusel.addEventListener(
+    "touchstart",
+    detenerAutoplayRadar,
+    {
+      passive:
+        true
+    }
+  );
+
+
+  carrusel.addEventListener(
+    "touchend",
+    function () {
+
+      window.setTimeout(
+        iniciarAutoplayRadar,
+        1000
+      );
+
+    },
+    {
+      passive:
+        true
+    }
+  );
+
+}
+
+
+// ======================================================
+// INICIALIZAR RADAR
+// ======================================================
+
+async function initRadarInmobiliario() {
+
+  const radar =
+    document.getElementById(
+      "radar-inmobiliario"
+    );
+
+
+  if (!radar) {
+    return;
+  }
+
+
+  prepararRadar();
+
+  prepararCarruselRadar();
+
+
+  await cargarProyectosRadar();
+
+}
+
+
+// ======================================================
+// VISIBILIDAD DE PESTAÑA
+// ======================================================
+
+function iniciarControlVisibilidad() {
+
+  document.addEventListener(
+    "visibilitychange",
+    function () {
+
+      if (
+        document.hidden
+      ) {
+
+        detenerAutoplayRadar();
+
+        detenerAutoplayEquipo();
+
+        return;
+
+      }
+
+
+      // ================================================
+      // REANUDAR EQUIPO
+      // ================================================
+
+      iniciarAutoplayEquipo();
+
+
+      // ================================================
+      // REANUDAR RADAR SOLO SI EXISTEN RESULTADOS
+      // ================================================
+
+      if (
+        radarResultados.length
+      ) {
+
+        iniciarAutoplayRadar();
+
+      }
+
+    }
+  );
+
+}
+
+
+// ======================================================
+// RESIZE
+// ======================================================
+
+function iniciarControlResize() {
+
+  let resizeTimer =
+    null;
+
+
+  window.addEventListener(
+    "resize",
+    function () {
+
+      window.clearTimeout(
+        resizeTimer
+      );
+
+
+      resizeTimer =
+        window.setTimeout(
+          function () {
+
+            // Equipo
+
+            iniciarAutoplayEquipo();
+
+
+            // Radar
+
+            if (
+              radarResultados.length
+            ) {
+
+              iniciarAutoplayRadar();
+
+            }
+
+          },
+          250
+        );
+
+    },
+    {
+      passive:
+        true
+    }
+  );
+
+}
+
+
+// ======================================================
+// INICIALIZAR TODO
 // ======================================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function () {
 
+    // ==================================================
+    // GENERAL
+    // ==================================================
+
+    iniciarAOS();
+
+    iniciarAnioFooter();
+
+    iniciarHeader();
+
+    iniciarMenuMovil();
+
+    iniciarTrackingClicks();
+
+
+    // ==================================================
+    // SECCIONES
+    // ==================================================
+
+    iniciarServicios();
+
+    iniciarModeloEscala();
+
+    iniciarCarruselEquipo();
+
+    iniciarFormularioContacto();
+
+
+    // ==================================================
+    // TRACKING
+    // ==================================================
+
+    iniciarScrollDepth();
+
+    iniciarTiempoEnSitio();
+
+
+    // ==================================================
+    // RADAR
+    // ==================================================
+
     initRadarInmobiliario();
+
+
+    // ==================================================
+    // COMPORTAMIENTO GLOBAL
+    // ==================================================
+
+    iniciarControlVisibilidad();
+
+    iniciarControlResize();
 
   }
 );
