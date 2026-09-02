@@ -9,6 +9,7 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0">
 
+
   <!-- ==========================================
        SEO
   =========================================== -->
@@ -19,11 +20,11 @@
 
   <meta
     name="description"
-    content="Escala Comercial integra estrategia, marketing, generación de leads, fuerza de ventas, tecnología e inteligencia comercial para impulsar proyectos inmobiliarios y equipos comerciales.">
+    content="Escala Comercial integra estrategia, marketing, generación de leads, venta multiproducto, fuerza de ventas, tecnología e inteligencia comercial para impulsar proyectos inmobiliarios y equipos comerciales.">
 
   <meta
     name="keywords"
-    content="gerencia comercial inmobiliaria, outsourcing comercial, fuerza de ventas, generación de leads, marketing inmobiliario, inteligencia comercial, analítica comercial, Meta Ads, Google Ads, CRM, ventas inmobiliarias, Lima Perú">
+    content="gerencia comercial inmobiliaria, outsourcing comercial, venta multiproducto, fuerza de ventas, generación de leads, marketing inmobiliario, inteligencia comercial, analítica comercial, Meta Ads, Google Ads, CRM, ventas inmobiliarias, Lima Perú">
 
   <meta
     name="author"
@@ -106,7 +107,7 @@
 
   <meta
     property="og:description"
-    content="Integramos estrategia, marketing, tecnología y fuerza de ventas para construir operaciones comerciales que escalan.">
+    content="Integramos estrategia, marketing, tecnología, venta multiproducto y fuerza de ventas para construir operaciones comerciales que escalan.">
 
   <meta
     property="og:image"
@@ -135,7 +136,7 @@
 
   <meta
     name="twitter:description"
-    content="Gerencia comercial, marketing, tecnología, leads y fuerza de ventas integrados.">
+    content="Gerencia comercial, marketing, tecnología, venta multiproducto y fuerza de ventas integrados.">
 
   <meta
     name="twitter:image"
@@ -178,7 +179,9 @@
        TAILWIND
   =========================================== -->
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    src="https://cdn.tailwindcss.com">
+  </script>
 
 
   <!-- ==========================================
@@ -190,40 +193,22 @@
     rel="stylesheet">
 
 
-<!-- ==========================================
-     FONT AWESOME
-=========================================== -->
+  <!-- ==========================================
+       FONT AWESOME
+  =========================================== -->
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
-<!-- ==========================================
-     LEAFLET MAPS
-=========================================== -->
-
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIINfQ3OQ2IWTKJ+MZ9D83MR2Rtr2rdM8Po="
-  crossorigin=""
->
-
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-  crossorigin="">
-</script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
-<!-- ==========================================
-     CSS PROPIO
-=========================================== -->
+  <!-- ==========================================
+       CSS PROPIO
+  =========================================== -->
 
-<link
-  rel="stylesheet"
-  href="/styles/styles.css">
+  <link
+    rel="stylesheet"
+    href="/styles/styles.css">
 
 
   <!-- ==========================================
@@ -237,7 +222,7 @@
       "name": "Escala Comercial",
       "url": "https://escalacomercial.pe",
       "logo": "https://escalacomercial.pe/img/logo/logo.png",
-      "description": "Empresa especializada en estrategia comercial, marketing, ventas, outsourcing e inteligencia comercial.",
+      "description": "Empresa especializada en estrategia comercial, marketing, ventas, outsourcing, venta multiproducto e inteligencia comercial.",
       "areaServed": "PE"
     }
   </script>
@@ -271,12 +256,14 @@
   <header
     id="site-header"
     data-section="header"
-    class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-shadow duration-300">
+    class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-shadow duration-300"
+  >
 
     <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
       <div
-        class="h-20 lg:h-24 flex items-center justify-between">
+        class="h-20 lg:h-24 flex items-center justify-between"
+      >
 
 
         <!-- Logo -->
@@ -284,12 +271,14 @@
         <a
           href="#inicio"
           class="flex items-center shrink-0"
-          aria-label="Ir al inicio">
+          aria-label="Ir al inicio"
+        >
 
           <img
             src="/img/logo/logo.png"
             alt="Escala Comercial"
-            class="h-12 lg:h-14 w-auto">
+            class="h-12 lg:h-14 w-auto"
+          >
 
         </a>
 
@@ -297,30 +286,42 @@
         <!-- Navegación desktop -->
 
         <nav
-          class="hidden lg:flex items-center gap-8 xl:gap-10 text-sm font-medium">
+          class="hidden lg:flex items-center gap-7 xl:gap-9 text-sm font-medium"
+        >
+
+          <a
+            href="#venta-multiproducto"
+            class="nav-link text-slate-700 hover:text-blue-700 transition-colors"
+          >
+            Multiproducto
+          </a>
 
           <a
             href="#servicios"
-            class="nav-link text-slate-700 hover:text-blue-700 transition-colors">
-
+            class="nav-link text-slate-700 hover:text-blue-700 transition-colors"
+          >
             Servicios
-
           </a>
 
           <a
             href="#modelo"
-            class="nav-link text-slate-700 hover:text-blue-700 transition-colors">
-
+            class="nav-link text-slate-700 hover:text-blue-700 transition-colors"
+          >
             Cómo trabajamos
+          </a>
 
+          <a
+            href="#equipo"
+            class="nav-link text-slate-700 hover:text-blue-700 transition-colors"
+          >
+            Equipo
           </a>
 
           <a
             href="#contacto"
-            class="nav-link text-slate-700 hover:text-blue-700 transition-colors">
-
+            class="nav-link text-slate-700 hover:text-blue-700 transition-colors"
+          >
             Contacto
-
           </a>
 
         </nav>
@@ -329,36 +330,34 @@
         <!-- Acciones desktop -->
 
         <div
-          class="hidden lg:flex items-center gap-3">
-
-
-          <!-- WhatsApp -->
+          class="hidden lg:flex items-center gap-3"
+        >
 
           <a
             href="https://wa.me/51906524316"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contactar por WhatsApp"
-            class="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center text-green-600 hover:bg-green-50 hover:border-green-200 transition">
+            class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-green-600 hover:bg-green-50 hover:border-green-200 transition"
+          >
 
             <i
-              class="fa-brands fa-whatsapp text-2xl">
-            </i>
+              class="fa-brands fa-whatsapp text-xl"
+            ></i>
 
           </a>
 
 
-          <!-- CTA -->
-
           <a
             href="#contacto"
-            class="inline-flex items-center justify-center bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-blue-800 transition shadow-sm">
+            class="inline-flex items-center justify-center bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl hover:bg-blue-800 transition shadow-sm"
+          >
 
             Hablemos
 
             <i
-              class="fa-solid fa-arrow-right ml-2 text-xs">
-            </i>
+              class="fa-solid fa-arrow-right ml-2 text-xs"
+            ></i>
 
           </a>
 
@@ -373,11 +372,12 @@
           class="lg:hidden w-11 h-11 flex items-center justify-center rounded-lg text-slate-800 hover:bg-slate-100 transition"
           aria-label="Abrir menú"
           aria-expanded="false"
-          aria-controls="mobile-menu">
+          aria-controls="mobile-menu"
+        >
 
           <i
-            class="fa-solid fa-bars text-xl">
-          </i>
+            class="fa-solid fa-bars text-xl"
+          ></i>
 
         </button>
 
@@ -392,62 +392,76 @@
 
     <div
       id="mobile-menu"
-      class="hidden lg:hidden bg-white border-t border-slate-100 shadow-lg">
+      class="hidden lg:hidden bg-white border-t border-slate-100 shadow-lg"
+    >
 
       <div class="px-5 py-6">
 
         <nav class="flex flex-col">
 
           <a
+            href="#venta-multiproducto"
+            class="mobile-nav-link py-3 border-b border-slate-100 text-slate-800 font-medium"
+          >
+            Venta multiproducto
+          </a>
+
+          <a
             href="#servicios"
-            class="mobile-nav-link py-3 border-b border-slate-100 text-slate-800 font-medium">
-
+            class="mobile-nav-link py-3 border-b border-slate-100 text-slate-800 font-medium"
+          >
             Servicios
-
           </a>
 
           <a
             href="#modelo"
-            class="mobile-nav-link py-3 border-b border-slate-100 text-slate-800 font-medium">
-
+            class="mobile-nav-link py-3 border-b border-slate-100 text-slate-800 font-medium"
+          >
             Cómo trabajamos
+          </a>
 
+          <a
+            href="#equipo"
+            class="mobile-nav-link py-3 border-b border-slate-100 text-slate-800 font-medium"
+          >
+            Equipo
           </a>
 
           <a
             href="#contacto"
-            class="mobile-nav-link py-3 text-slate-800 font-medium">
-
+            class="mobile-nav-link py-3 text-slate-800 font-medium"
+          >
             Contacto
-
           </a>
 
         </nav>
 
 
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+          class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6"
+        >
 
           <a
             href="https://wa.me/51906524316"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 border border-green-200 text-green-700 font-semibold px-5 py-3.5 rounded-xl hover:bg-green-50 transition">
+            class="inline-flex items-center justify-center gap-2 border border-green-200 text-green-700 font-semibold px-5 py-3.5 rounded-xl hover:bg-green-50 transition"
+          >
 
             <i
-              class="fa-brands fa-whatsapp text-lg">
-            </i>
+              class="fa-brands fa-whatsapp text-lg"
+            ></i>
 
             WhatsApp
 
           </a>
 
+
           <a
             href="#contacto"
-            class="inline-flex items-center justify-center bg-blue-700 text-white font-semibold px-5 py-3.5 rounded-xl hover:bg-blue-800 transition">
-
+            class="inline-flex items-center justify-center bg-blue-700 text-white font-semibold px-5 py-3.5 rounded-xl hover:bg-blue-800 transition"
+          >
             Hablemos
-
           </a>
 
         </div>
@@ -473,89 +487,72 @@
     <section
       id="inicio"
       data-section="hero"
-      class="hero-escala relative overflow-hidden bg-slate-950">
-
-
-      <!-- Imagen fondo -->
+      class="hero-escala relative overflow-hidden bg-slate-950"
+    >
 
       <div
         class="absolute inset-0 bg-cover bg-center lg:bg-right"
-        style="background-image: url('/img/landing/edificio.png');">
-      </div>
-
-
-      <!-- Overlay -->
+        style="background-image: url('/img/landing/edificio.png');"
+      ></div>
 
       <div
-        class="absolute inset-0 bg-gradient-to-r from-[#020817] via-[#06132d]/92 to-[#06132d]/25">
-      </div>
-
-
-      <!-- Oscurecimiento inferior -->
+        class="absolute inset-0 bg-gradient-to-r from-[#020817] via-[#06132d]/92 to-[#06132d]/25"
+      ></div>
 
       <div
-        class="absolute inset-0 bg-gradient-to-t from-[#020817]/55 via-transparent to-transparent">
-      </div>
-
-
-      <!-- Brillo -->
+        class="absolute inset-0 bg-gradient-to-t from-[#020817]/55 via-transparent to-transparent"
+      ></div>
 
       <div
-        class="absolute -top-32 right-10 w-[480px] h-[480px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none">
-      </div>
+        class="absolute -top-32 right-10 w-[480px] h-[480px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
+      ></div>
 
-
-      <!-- Contenido -->
 
       <div
-        class="relative max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14">
+        class="relative max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-14"
+      >
 
         <div
-          class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 xl:gap-12 items-center">
+          class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 xl:gap-12 items-center"
+        >
 
-
-          <!-- Texto -->
 
           <div
             class="max-w-2xl"
-            data-aos="fade-up">
-
-
-            <!-- Eyebrow -->
+            data-aos="fade-up"
+          >
 
             <div
-              class="inline-flex items-center gap-2 border border-blue-400/35 bg-blue-500/10 backdrop-blur-sm text-blue-100 rounded-full px-4 py-2 text-xs sm:text-sm mb-6">
+              class="inline-flex items-center gap-2 border border-blue-400/35 bg-blue-500/10 backdrop-blur-sm text-blue-100 rounded-full px-4 py-2 text-xs sm:text-sm mb-6"
+            >
 
               <span
-                class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(242,181,29,0.7)]">
-              </span>
+                class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(242,181,29,0.7)]"
+              ></span>
 
               Gerencia comercial · Marketing · Ventas
 
             </div>
 
 
-            <!-- Título -->
-
             <h1
-              class="font-display text-white font-bold text-[2.6rem] sm:text-5xl lg:text-[3.35rem] xl:text-[3.65rem] leading-[1.04] tracking-tight mb-6">
+              class="font-display text-white font-bold text-[2.6rem] sm:text-5xl lg:text-[3.35rem] xl:text-[3.65rem] leading-[1.04] tracking-tight mb-6"
+            >
 
               Convertimos tu estrategia comercial
 
               <span
-                class="block text-blue-400 mt-1">
-
+                class="block text-blue-400 mt-1"
+              >
                 en ventas.
-
               </span>
 
             </h1>
 
 
-            <!-- Descripción -->
-
             <p
-              class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl mb-7">
+              class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl mb-7"
+            >
 
               Ayudamos a inmobiliarias y empresas a organizar,
               ejecutar y optimizar su operación comercial,
@@ -565,38 +562,37 @@
             </p>
 
 
-            <!-- CTAs -->
-
             <div
-              class="flex flex-col sm:flex-row gap-4">
+              class="flex flex-col sm:flex-row gap-4"
+            >
 
               <a
                 href="#contacto"
-                class="inline-flex items-center justify-center gap-3 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-black/20">
+                class="inline-flex items-center justify-center gap-3 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-black/20"
+              >
 
                 Hablemos de tu proyecto
 
                 <i
-                  class="fa-solid fa-arrow-right text-sm">
-                </i>
+                  class="fa-solid fa-arrow-right text-sm"
+                ></i>
 
               </a>
 
+
               <a
                 href="#modelo"
-                class="inline-flex items-center justify-center border border-white/25 text-white font-medium px-7 py-3.5 rounded-xl hover:bg-white/10 hover:border-white/40 transition">
-
+                class="inline-flex items-center justify-center border border-white/25 text-white font-medium px-7 py-3.5 rounded-xl hover:bg-white/10 hover:border-white/40 transition"
+              >
                 Conoce cómo trabajamos
-
               </a>
 
             </div>
 
 
-            <!-- Capacidades -->
-
             <div
-              class="mt-8 text-sm text-slate-400 flex flex-wrap gap-x-3 gap-y-2">
+              class="mt-8 text-sm text-slate-400 flex flex-wrap gap-x-3 gap-y-2"
+            >
 
               <span>Estrategia</span>
               <span>·</span>
@@ -604,7 +600,7 @@
               <span>Leads</span>
               <span>·</span>
 
-              <span>Seguimiento</span>
+              <span>Multiproducto</span>
               <span>·</span>
 
               <span>Ventas</span>
@@ -617,12 +613,10 @@
           </div>
 
 
-          <!-- Espacio imagen -->
-
           <div
             class="hidden lg:block min-h-[300px]"
-            aria-hidden="true">
-          </div>
+            aria-hidden="true"
+          ></div>
 
         </div>
 
@@ -632,51 +626,263 @@
 
 
     <!-- ==========================================
-         PROPUESTA
+         PROPUESTA + VENTA MULTIPRODUCTO
     =========================================== -->
 
     <section
-      data-section="propuesta"
-      class="py-20 lg:py-24 bg-white">
+      id="venta-multiproducto"
+      data-section="venta-multiproducto"
+      class="py-16 lg:py-20 bg-white"
+    >
 
-      <div
-        class="max-w-5xl mx-auto px-5 text-center">
-
-
-        <p
-          class="text-amber-500 font-semibold uppercase tracking-widest text-sm mb-4">
-
-          Una visión integral
-
-        </p>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
 
-        <h2
-          class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-7">
+        <div
+          class="max-w-4xl mx-auto text-center mb-10 lg:mb-12"
+        >
 
-          Generar leads no es suficiente.
-
-          <span
-            class="text-[#0d2d5f]">
-
-            Hay que convertirlos en ventas.
-
-          </span>
-
-        </h2>
+          <p
+            class="text-amber-500 font-semibold uppercase tracking-[0.18em] text-sm mb-4"
+          >
+            Una visión integral
+          </p>
 
 
-        <p
-          class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          <h2
+            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-950"
+          >
 
-          Muchas empresas tienen campañas, leads, vendedores,
-          CRMs y reportes funcionando por separado.
+            Generar leads no es suficiente.
 
-          En Escala conectamos cada punto del proceso comercial
-          para identificar oportunidades, mejorar la conversión
-          y tomar mejores decisiones.
+            <span class="text-blue-700">
+              Hay que convertirlos en ventas.
+            </span>
 
-        </p>
+          </h2>
+
+        </div>
+
+
+        <div
+          class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-center"
+        >
+
+
+          <div>
+
+            <p
+              class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+            >
+              Venta multiproducto
+            </p>
+
+
+            <h3
+              class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-950 leading-tight mb-5"
+            >
+
+              Si un proyecto no encaja,
+
+              <span class="text-blue-700">
+                la oportunidad no debería perderse.
+              </span>
+
+            </h3>
+
+
+            <p
+              class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-6"
+            >
+
+              Formamos y gestionamos asesores capaces de vender el
+              proyecto principal y, cuando el cliente no calza por precio,
+              ubicación o características, mover la oportunidad hacia
+              otros proyectos de la misma inmobiliaria.
+
+            </p>
+
+
+            <div
+              class="flex items-start gap-3 p-4 rounded-xl bg-blue-50 border border-blue-100 mb-7"
+            >
+
+              <div
+                class="w-10 h-10 shrink-0 rounded-lg bg-blue-700 text-white flex items-center justify-center"
+              >
+
+                <i
+                  class="fa-solid fa-arrow-right-arrow-left"
+                  aria-hidden="true"
+                ></i>
+
+              </div>
+
+
+              <div>
+
+                <p
+                  class="font-semibold text-slate-900 mb-1"
+                >
+                  Más alternativas para cada lead.
+                </p>
+
+                <p
+                  class="text-sm text-slate-600 leading-relaxed"
+                >
+                  Aprovechamos mejor cada oportunidad comercial y ampliamos
+                  las posibilidades de cierre dentro del portafolio de la inmobiliaria.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="flex flex-col sm:flex-row gap-3"
+            >
+
+              <a
+                href="#contacto"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-950 text-white font-semibold hover:bg-slate-800 transition"
+              >
+
+                Quiero implementar multiproducto
+
+                <i
+                  class="fa-solid fa-arrow-right"
+                  aria-hidden="true"
+                ></i>
+
+              </a>
+
+
+              <a
+                href="https://wa.me/51906524316?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20el%20servicio%20de%20venta%20multiproducto%20de%20Escala%20Comercial."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-300 bg-white text-slate-800 font-semibold hover:border-amber-400 hover:text-slate-950 transition"
+              >
+
+                <i
+                  class="fa-brands fa-whatsapp"
+                  aria-hidden="true"
+                ></i>
+
+                Consultar por WhatsApp
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 lg:p-7"
+          >
+
+            <p
+              class="text-xs uppercase tracking-[0.16em] font-semibold text-slate-400 mb-5"
+            >
+              Cómo funciona
+            </p>
+
+
+            <div
+              class="flex gap-4 pb-5 mb-5 border-b border-slate-200"
+            >
+
+              <div
+                class="w-10 h-10 shrink-0 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm"
+              >
+                01
+              </div>
+
+
+              <div>
+
+                <h4
+                  class="font-display text-lg font-bold text-slate-950 mb-1"
+                >
+                  Dominio del portafolio
+                </h4>
+
+                <p
+                  class="text-sm text-slate-600 leading-relaxed"
+                >
+                  El asesor conoce precios, ubicaciones, argumentos
+                  y perfiles de los proyectos que puede ofrecer.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="flex gap-4 pb-5 mb-5 border-b border-slate-200"
+            >
+
+              <div
+                class="w-10 h-10 shrink-0 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm"
+              >
+                02
+              </div>
+
+
+              <div>
+
+                <h4
+                  class="font-display text-lg font-bold text-slate-950 mb-1"
+                >
+                  Reasignación inteligente
+                </h4>
+
+                <p
+                  class="text-sm text-slate-600 leading-relaxed"
+                >
+                  Si el proyecto inicial no encaja, el lead se mueve
+                  hacia otra alternativa del portafolio.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div
+                class="w-10 h-10 shrink-0 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm"
+              >
+                03
+              </div>
+
+
+              <div>
+
+                <h4
+                  class="font-display text-lg font-bold text-slate-950 mb-1"
+                >
+                  Seguimiento hasta el cierre
+                </h4>
+
+                <p
+                  class="text-sm text-slate-600 leading-relaxed"
+                >
+                  La oportunidad se trabaja como lead de la inmobiliaria,
+                  no como contacto de un solo proyecto.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -690,61 +896,56 @@
     <section
       id="servicios"
       data-section="servicios"
-      class="py-20 lg:py-24 text-white">
+      class="py-20 lg:py-24 text-white"
+    >
 
       <div
-        class="max-w-7xl mx-auto px-5 lg:px-8">
+        class="max-w-7xl mx-auto px-5 lg:px-8"
+      >
 
-
-        <!-- Encabezado -->
 
         <div
-          class="max-w-4xl mx-auto text-center mb-12">
+          class="max-w-4xl mx-auto text-center mb-12"
+        >
 
           <p
-            class="text-blue-300 font-semibold uppercase tracking-[0.18em] text-sm mb-3">
-
+            class="text-blue-300 font-semibold uppercase tracking-[0.18em] text-sm mb-3"
+          >
             Servicios
-
           </p>
 
 
           <h2
-            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-
+            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5"
+          >
             Servicios por líneas de trabajo
-
           </h2>
 
 
           <p
-            class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-
+            class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto"
+          >
             Agrupamos nuestros servicios para ayudarte a identificar
             rápidamente qué parte de tu operación comercial
             necesita fortalecerse.
-
           </p>
 
         </div>
 
 
-        <!-- ========================================
-             CATEGORÍAS
-        ========================================= -->
-
         <div
           class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-10"
           role="tablist"
-          aria-label="Categorías de servicios">
-
+          aria-label="Categorías de servicios"
+        >
 
           <button
             type="button"
             class="service-tab"
             data-service-tab="lidera"
             role="tab"
-            aria-selected="false">
+            aria-selected="false"
+          >
 
             <i class="fa-solid fa-crown"></i>
 
@@ -760,7 +961,8 @@
             class="service-tab"
             data-service-tab="atrae"
             role="tab"
-            aria-selected="false">
+            aria-selected="false"
+          >
 
             <i class="fa-solid fa-magnet"></i>
 
@@ -776,7 +978,8 @@
             class="service-tab service-tab-active"
             data-service-tab="vende"
             role="tab"
-            aria-selected="true">
+            aria-selected="true"
+          >
 
             <i class="fa-solid fa-bolt"></i>
 
@@ -792,7 +995,8 @@
             class="service-tab"
             data-service-tab="mide"
             role="tab"
-            aria-selected="false">
+            aria-selected="false"
+          >
 
             <i class="fa-solid fa-chart-column"></i>
 
@@ -812,32 +1016,24 @@
         <div
           class="service-panel hidden"
           data-service-panel="lidera"
-          role="tabpanel">
+          role="tabpanel"
+        >
 
           <div
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-            <!-- Gerencia -->
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
 
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/gerencia-comercial.png');">
+              style="background-image: url('/img/landing/gerencia-comercial.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-chess-king">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-chess-king"></i>
                 </div>
 
                 <h3>
@@ -855,26 +1051,17 @@
             </article>
 
 
-            <!-- Capacitación -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/capacitacion-comercial.png');">
+              style="background-image: url('/img/landing/capacitacion-comercial.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-graduation-cap">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-graduation-cap"></i>
                 </div>
 
                 <h3>
@@ -892,26 +1079,17 @@
             </article>
 
 
-            <!-- Procesos -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/procesos-comerciales.png');">
+              style="background-image: url('/img/landing/procesos-comerciales.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-diagram-project">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-diagram-project"></i>
                 </div>
 
                 <h3>
@@ -931,19 +1109,13 @@
           </div>
 
 
-          <!-- Resumen -->
-
           <div class="service-summary">
 
-            <div
-              class="service-summary-icon">
-
+            <div class="service-summary-icon">
               <i class="fa-solid fa-crown"></i>
-
             </div>
 
             <p>
-
               <strong>
                 Dirección Comercial
               </strong>
@@ -951,7 +1123,6 @@
               estructura la estrategia,
               los procesos y las capacidades del equipo
               para construir una operación comercial sólida.
-
             </p>
 
           </div>
@@ -966,32 +1137,24 @@
         <div
           class="service-panel hidden"
           data-service-panel="atrae"
-          role="tabpanel">
+          role="tabpanel"
+        >
 
           <div
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-            <!-- Marketing -->
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
 
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/marketing.png');">
+              style="background-image: url('/img/landing/marketing.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-bullhorn">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-bullhorn"></i>
                 </div>
 
                 <h3>
@@ -1009,26 +1172,17 @@
             </article>
 
 
-            <!-- Ads -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/meta-google-ads.png');">
+              style="background-image: url('/img/landing/meta-google-ads.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-rectangle-ad">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-rectangle-ad"></i>
                 </div>
 
                 <h3>
@@ -1046,26 +1200,17 @@
             </article>
 
 
-            <!-- Leads -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/generacion-leads.png');">
+              style="background-image: url('/img/landing/generacion-leads.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-bullseye">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-bullseye"></i>
                 </div>
 
                 <h3>
@@ -1087,17 +1232,11 @@
 
           <div class="service-summary">
 
-            <div
-              class="service-summary-icon">
-
-              <i
-                class="fa-solid fa-magnet">
-              </i>
-
+            <div class="service-summary-icon">
+              <i class="fa-solid fa-magnet"></i>
             </div>
 
             <p>
-
               <strong>
                 Generación de Demanda
               </strong>
@@ -1105,7 +1244,6 @@
               conecta estrategia, campañas
               y adquisición para llevar oportunidades
               reales al equipo comercial.
-
             </p>
 
           </div>
@@ -1120,43 +1258,34 @@
         <div
           class="service-panel"
           data-service-panel="vende"
-          role="tabpanel">
+          role="tabpanel"
+        >
 
           <div
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-            <!-- Fuerza de ventas -->
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
 
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/fuerza-ventas.png');">
+              style="background-image: url('/img/landing/fuerza-ventas.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-users">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-users"></i>
                 </div>
 
                 <h3>
-                  Fuerza de Ventas & Outsourcing
+                  Venta Multiproducto & Outsourcing
                 </h3>
 
                 <p>
-                  Implementamos y gestionamos
-                  equipos comerciales enfocados
-                  en representar tu marca
-                  y generar resultados.
+                  Implementamos asesores especializados en tu portafolio
+                  para aprovechar cada oportunidad y vender entre múltiples
+                  proyectos de la inmobiliaria.
                 </p>
 
               </div>
@@ -1164,26 +1293,17 @@
             </article>
 
 
-            <!-- Seguimiento -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/seguimiento-comercial.png');">
+              style="background-image: url('/img/landing/seguimiento-comercial.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-comments">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-comments"></i>
                 </div>
 
                 <h3>
@@ -1202,26 +1322,17 @@
             </article>
 
 
-            <!-- Cierre -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/conversion-cierre.png');">
+              style="background-image: url('/img/landing/conversion-cierre.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-handshake">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-handshake"></i>
                 </div>
 
                 <h3>
@@ -1243,17 +1354,11 @@
 
           <div class="service-summary">
 
-            <div
-              class="service-summary-icon">
-
-              <i
-                class="fa-solid fa-bolt">
-              </i>
-
+            <div class="service-summary-icon">
+              <i class="fa-solid fa-bolt"></i>
             </div>
 
             <p>
-
               <strong>
                 Operación de Ventas
               </strong>
@@ -1262,7 +1367,6 @@
               seguimiento de oportunidades
               y acompañamiento al cierre
               para convertir y vender mejor.
-
             </p>
 
           </div>
@@ -1277,32 +1381,24 @@
         <div
           class="service-panel hidden"
           data-service-panel="mide"
-          role="tabpanel">
+          role="tabpanel"
+        >
 
           <div
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-            <!-- Analytics -->
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
 
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/analytics-comercial.png');">
+              style="background-image: url('/img/landing/analytics-comercial.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-chart-line">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-chart-line"></i>
                 </div>
 
                 <h3>
@@ -1321,26 +1417,17 @@
             </article>
 
 
-            <!-- Tracking -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/tracking-digital.png');">
+              style="background-image: url('/img/landing/tracking-digital.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-location-crosshairs">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-location-crosshairs"></i>
                 </div>
 
                 <h3>
@@ -1359,26 +1446,17 @@
             </article>
 
 
-            <!-- CRM -->
-
             <article
               class="service-card-image"
-              style="background-image: url('/img/landing/crm-automatizacion.png');">
+              style="background-image: url('/img/landing/crm-automatizacion.png');"
+            >
 
-              <div
-                class="service-card-overlay">
-              </div>
+              <div class="service-card-overlay"></div>
 
-              <div
-                class="service-card-content">
+              <div class="service-card-content">
 
-                <div
-                  class="service-card-icon">
-
-                  <i
-                    class="fa-solid fa-gears">
-                  </i>
-
+                <div class="service-card-icon">
+                  <i class="fa-solid fa-gears"></i>
                 </div>
 
                 <h3>
@@ -1401,17 +1479,11 @@
 
           <div class="service-summary">
 
-            <div
-              class="service-summary-icon">
-
-              <i
-                class="fa-solid fa-chart-column">
-              </i>
-
+            <div class="service-summary-icon">
+              <i class="fa-solid fa-chart-column"></i>
             </div>
 
             <p>
-
               <strong>
                 Inteligencia Comercial
               </strong>
@@ -1420,7 +1492,6 @@
               tecnología y seguimiento
               para tomar decisiones comerciales
               con mayor claridad.
-
             </p>
 
           </div>
@@ -1432,289 +1503,373 @@
     </section>
 
 
-<!-- ==========================================
-     MODELO ESCALA
-=========================================== -->
+    <!-- ==========================================
+         MODELO ESCALA
+    =========================================== -->
 
-<section
-  id="modelo"
-  data-section="modelo"
-  class="py-16 lg:py-20 bg-white overflow-hidden">
+    <section
+      id="modelo"
+      data-section="modelo"
+      class="py-16 lg:py-20 bg-white overflow-hidden"
+    >
 
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-
-    <!-- ========================================
-         ENCABEZADO
-    ========================================= -->
-
-    <div class="max-w-4xl mx-auto text-center mb-10 lg:mb-12">
-
-      <p
-        class="text-blue-700 uppercase tracking-[0.18em] font-semibold text-sm mb-3">
-
-        Modelo Escala
-
-      </p>
-
-
-      <h2
-        class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight mb-5">
-
-        De la estrategia al cierre,
-
-        <span class="text-blue-700">
-          todo conectado.
-        </span>
-
-      </h2>
-
-
-      <p
-        class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-
-        Organizamos la operación comercial como un sistema:
-        definimos la dirección, generamos oportunidades,
-        gestionamos el seguimiento, vendemos, medimos y mejoramos.
-
-      </p>
-
-    </div>
-
-
-    <!-- ========================================
-         DESKTOP
-    ========================================= -->
-
-    <div class="hidden lg:block">
-
-      <div class="relative max-w-6xl mx-auto">
-
-
-        <!-- Línea -->
 
         <div
-          class="absolute top-[69px] left-[8%] right-[8%] h-[2px] bg-slate-200">
-        </div>
+          class="max-w-4xl mx-auto text-center mb-10 lg:mb-12"
+        >
+
+          <p
+            class="text-blue-700 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+          >
+            Modelo Escala
+          </p>
 
 
-        <!-- Progreso -->
+          <h2
+            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight mb-5"
+          >
 
-        <div
-          class="absolute top-[69px] left-[8%] w-[17%] h-[2px]
-                 bg-gradient-to-r from-amber-400 to-blue-600">
-        </div>
+            De la estrategia al cierre,
 
-
-        <!-- ======================================
-             ETAPAS
-        ======================================= -->
-
-        <div class="relative grid grid-cols-6 gap-3">
-
-
-          <!-- 01 -->
-          <button
-            type="button"
-            class="journey-step journey-step-active"
-            data-solution="estrategia"
-            aria-pressed="true">
-
-            <span class="journey-number">
-              01
+            <span class="text-blue-700">
+              todo conectado.
             </span>
 
-            <span class="journey-node">
-              <i class="fa-solid fa-compass"></i>
-            </span>
-
-            <span class="journey-label">
-              Dirección
-              <br>
-              comercial
-            </span>
-
-          </button>
+          </h2>
 
 
-          <!-- 02 -->
-          <button
-            type="button"
-            class="journey-step"
-            data-solution="marketing"
-            aria-pressed="false">
-
-            <span class="journey-number">
-              02
-            </span>
-
-            <span class="journey-node">
-              <i class="fa-solid fa-bullhorn"></i>
-            </span>
-
-            <span class="journey-label">
-              Generación
-              <br>
-              de demanda
-            </span>
-
-          </button>
-
-
-          <!-- 03 -->
-          <button
-            type="button"
-            class="journey-step"
-            data-solution="procesos"
-            aria-pressed="false">
-
-            <span class="journey-number">
-              03
-            </span>
-
-            <span class="journey-node">
-              <i class="fa-solid fa-diagram-project"></i>
-            </span>
-
-            <span class="journey-label">
-              Gestión
-              <br>
-              comercial
-            </span>
-
-          </button>
-
-
-          <!-- 04 -->
-          <button
-            type="button"
-            class="journey-step"
-            data-solution="ventas"
-            aria-pressed="false">
-
-            <span class="journey-number">
-              04
-            </span>
-
-            <span class="journey-node">
-              <i class="fa-solid fa-handshake"></i>
-            </span>
-
-            <span class="journey-label">
-              Ventas
-              <br>
-              y cierre
-            </span>
-
-          </button>
-
-
-          <!-- 05 -->
-          <button
-            type="button"
-            class="journey-step"
-            data-solution="analitica"
-            aria-pressed="false">
-
-            <span class="journey-number">
-              05
-            </span>
-
-            <span class="journey-node">
-              <i class="fa-solid fa-chart-column"></i>
-            </span>
-
-            <span class="journey-label">
-              Inteligencia
-              <br>
-              comercial
-            </span>
-
-          </button>
-
-
-          <!-- 06 -->
-          <button
-            type="button"
-            class="journey-step"
-            data-solution="optimizacion"
-            aria-pressed="false">
-
-            <span class="journey-number">
-              06
-            </span>
-
-            <span class="journey-node">
-              <i class="fa-solid fa-arrows-rotate"></i>
-            </span>
-
-            <span class="journey-label">
-              Optimización
-              <br>
-              continua
-            </span>
-
-          </button>
+          <p
+            class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto"
+          >
+            Organizamos la operación comercial como un sistema:
+            definimos la dirección, generamos oportunidades,
+            gestionamos el seguimiento, vendemos, medimos y mejoramos.
+          </p>
 
         </div>
 
 
-        <!-- ======================================
-             DETALLE COMPACTO
-        ======================================= -->
+        <!-- DESKTOP -->
 
-        <div
-          class="mt-10 border-t border-slate-200 pt-7">
+        <div class="hidden lg:block">
 
-          <div
-            class="grid grid-cols-[140px_1fr_auto] gap-8 items-start">
-
-
-            <!-- Número / título -->
-
-            <div>
-
-              <p
-                id="solution-number"
-                class="text-amber-500 text-xs font-bold tracking-[0.16em] mb-2">
-
-                01 / 06
-
-              </p>
-
-              <h3
-                id="solution-title"
-                class="text-lg font-bold text-slate-950 leading-tight">
-
-                Dirección comercial
-
-              </h3>
-
-            </div>
-
-
-            <!-- Descripción -->
-
-            <div>
-
-              <p
-                id="solution-description"
-                class="text-slate-600 leading-relaxed max-w-2xl">
-
-                Definimos objetivos, prioridades, procesos e indicadores
-                para que toda la operación comercial avance
-                con una misma dirección.
-
-              </p>
-
-            </div>
-
-
-            <!-- Capacidades -->
+          <div class="relative max-w-6xl mx-auto">
 
             <div
-              id="solution-tools"
-              class="flex flex-wrap justify-end gap-2 max-w-[280px]">
+              class="absolute top-[69px] left-[8%] right-[8%] h-[2px] bg-slate-200"
+            ></div>
+
+            <div
+              class="absolute top-[69px] left-[8%] w-[17%] h-[2px] bg-gradient-to-r from-amber-400 to-blue-600"
+            ></div>
+
+
+            <div
+              class="relative grid grid-cols-6 gap-3"
+            >
+
+              <button
+                type="button"
+                class="journey-step journey-step-active"
+                data-solution="estrategia"
+                aria-pressed="true"
+              >
+
+                <span class="journey-number">01</span>
+
+                <span class="journey-node">
+                  <i class="fa-solid fa-compass"></i>
+                </span>
+
+                <span class="journey-label">
+                  Dirección
+                  <br>
+                  comercial
+                </span>
+
+              </button>
+
+
+              <button
+                type="button"
+                class="journey-step"
+                data-solution="marketing"
+                aria-pressed="false"
+              >
+
+                <span class="journey-number">02</span>
+
+                <span class="journey-node">
+                  <i class="fa-solid fa-bullhorn"></i>
+                </span>
+
+                <span class="journey-label">
+                  Generación
+                  <br>
+                  de demanda
+                </span>
+
+              </button>
+
+
+              <button
+                type="button"
+                class="journey-step"
+                data-solution="procesos"
+                aria-pressed="false"
+              >
+
+                <span class="journey-number">03</span>
+
+                <span class="journey-node">
+                  <i class="fa-solid fa-diagram-project"></i>
+                </span>
+
+                <span class="journey-label">
+                  Gestión
+                  <br>
+                  comercial
+                </span>
+
+              </button>
+
+
+              <button
+                type="button"
+                class="journey-step"
+                data-solution="ventas"
+                aria-pressed="false"
+              >
+
+                <span class="journey-number">04</span>
+
+                <span class="journey-node">
+                  <i class="fa-solid fa-handshake"></i>
+                </span>
+
+                <span class="journey-label">
+                  Ventas
+                  <br>
+                  y cierre
+                </span>
+
+              </button>
+
+
+              <button
+                type="button"
+                class="journey-step"
+                data-solution="analitica"
+                aria-pressed="false"
+              >
+
+                <span class="journey-number">05</span>
+
+                <span class="journey-node">
+                  <i class="fa-solid fa-chart-column"></i>
+                </span>
+
+                <span class="journey-label">
+                  Inteligencia
+                  <br>
+                  comercial
+                </span>
+
+              </button>
+
+
+              <button
+                type="button"
+                class="journey-step"
+                data-solution="optimizacion"
+                aria-pressed="false"
+              >
+
+                <span class="journey-number">06</span>
+
+                <span class="journey-node">
+                  <i class="fa-solid fa-arrows-rotate"></i>
+                </span>
+
+                <span class="journey-label">
+                  Optimización
+                  <br>
+                  continua
+                </span>
+
+              </button>
+
+            </div>
+
+
+            <div
+              class="mt-10 border-t border-slate-200 pt-7"
+            >
+
+              <div
+                class="grid grid-cols-[140px_1fr_auto] gap-8 items-start"
+              >
+
+                <div>
+
+                  <p
+                    id="solution-number"
+                    class="text-amber-500 text-xs font-bold tracking-[0.16em] mb-2"
+                  >
+                    01 / 06
+                  </p>
+
+                  <h3
+                    id="solution-title"
+                    class="text-lg font-bold text-slate-950 leading-tight"
+                  >
+                    Dirección comercial
+                  </h3>
+
+                </div>
+
+
+                <div>
+
+                  <p
+                    id="solution-description"
+                    class="text-slate-600 leading-relaxed max-w-2xl"
+                  >
+                    Definimos objetivos, prioridades, procesos e indicadores
+                    para que toda la operación comercial avance
+                    con una misma dirección.
+                  </p>
+
+                </div>
+
+
+                <div
+                  id="solution-tools"
+                  class="flex flex-wrap justify-end gap-2 max-w-[280px]"
+                >
+
+                  <span class="journey-tool">
+                    Objetivos comerciales
+                  </span>
+
+                  <span class="journey-tool">
+                    KPIs
+                  </span>
+
+                  <span class="journey-tool">
+                    Procesos
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- MOBILE / TABLET -->
+
+        <div class="lg:hidden">
+
+          <div
+            class="flex gap-3 overflow-x-auto pb-3 mb-5 snap-x"
+          >
+
+            <button
+              type="button"
+              class="journey-mobile-tab journey-mobile-tab-active"
+              data-solution="estrategia"
+              aria-selected="true"
+            >
+              01 Dirección
+            </button>
+
+            <button
+              type="button"
+              class="journey-mobile-tab"
+              data-solution="marketing"
+              aria-selected="false"
+            >
+              02 Demanda
+            </button>
+
+            <button
+              type="button"
+              class="journey-mobile-tab"
+              data-solution="procesos"
+              aria-selected="false"
+            >
+              03 Gestión
+            </button>
+
+            <button
+              type="button"
+              class="journey-mobile-tab"
+              data-solution="ventas"
+              aria-selected="false"
+            >
+              04 Ventas
+            </button>
+
+            <button
+              type="button"
+              class="journey-mobile-tab"
+              data-solution="analitica"
+              aria-selected="false"
+            >
+              05 Analítica
+            </button>
+
+            <button
+              type="button"
+              class="journey-mobile-tab"
+              data-solution="optimizacion"
+              aria-selected="false"
+            >
+              06 Mejora
+            </button>
+
+          </div>
+
+
+          <div
+            class="border-t border-slate-200 pt-5"
+          >
+
+            <p
+              id="solution-number-mobile"
+              class="text-amber-500 text-xs font-bold tracking-[0.16em] mb-2"
+            >
+              01 / 06
+            </p>
+
+            <h3
+              id="solution-title-mobile"
+              class="text-xl font-bold text-slate-950 mb-3"
+            >
+              Dirección comercial
+            </h3>
+
+            <p
+              id="solution-description-mobile"
+              class="text-slate-600 leading-relaxed"
+            >
+              Definimos objetivos, prioridades, procesos e indicadores
+              para que toda la operación comercial avance
+              con una misma dirección.
+            </p>
+
+
+            <div
+              id="solution-tools-mobile"
+              class="mt-4 flex flex-wrap gap-2"
+            >
 
               <span class="journey-tool">
                 Objetivos comerciales
@@ -1736,535 +1891,798 @@
 
       </div>
 
-    </div>
+    </section>
 
 
-    <!-- ========================================
-         MOBILE / TABLET
-    ========================================= -->
+    <!-- ==========================================
+         EQUIPO ESCALA
+    =========================================== -->
 
-    <div class="lg:hidden">
+    <section
+      id="equipo"
+      data-section="equipo"
+      class="py-14 lg:py-16 bg-slate-50"
+    >
 
-
-      <!-- Selector -->
-
-      <div
-        class="flex gap-3 overflow-x-auto pb-3 mb-5 snap-x">
-
-        <button
-          type="button"
-          class="journey-mobile-tab journey-mobile-tab-active"
-          data-solution="estrategia"
-          aria-selected="true">
-
-          01 Dirección
-
-        </button>
-
-        <button
-          type="button"
-          class="journey-mobile-tab"
-          data-solution="marketing"
-          aria-selected="false">
-
-          02 Demanda
-
-        </button>
-
-        <button
-          type="button"
-          class="journey-mobile-tab"
-          data-solution="procesos"
-          aria-selected="false">
-
-          03 Gestión
-
-        </button>
-
-        <button
-          type="button"
-          class="journey-mobile-tab"
-          data-solution="ventas"
-          aria-selected="false">
-
-          04 Ventas
-
-        </button>
-
-        <button
-          type="button"
-          class="journey-mobile-tab"
-          data-solution="analitica"
-          aria-selected="false">
-
-          05 Analítica
-
-        </button>
-
-        <button
-          type="button"
-          class="journey-mobile-tab"
-          data-solution="optimizacion"
-          aria-selected="false">
-
-          06 Mejora
-
-        </button>
-
-      </div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
 
-      <!-- Detalle mobile -->
-
-      <div
-        class="border-t border-slate-200 pt-5">
-
-        <p
-          id="solution-number-mobile"
-          class="text-amber-500 text-xs font-bold tracking-[0.16em] mb-2">
-
-          01 / 06
-
-        </p>
-
-        <h3
-          id="solution-title-mobile"
-          class="text-xl font-bold text-slate-950 mb-3">
-
-          Dirección comercial
-
-        </h3>
-
-        <p
-          id="solution-description-mobile"
-          class="text-slate-600 leading-relaxed">
-
-          Definimos objetivos, prioridades, procesos e indicadores
-          para que toda la operación comercial avance
-          con una misma dirección.
-
-        </p>
-
+        <!-- ========================================
+             ENCABEZADO COMPACTO
+        ========================================= -->
 
         <div
-          id="solution-tools-mobile"
-          class="mt-4 flex flex-wrap gap-2">
-
-          <span class="journey-tool">
-            Objetivos comerciales
-          </span>
-
-          <span class="journey-tool">
-            KPIs
-          </span>
-
-          <span class="journey-tool">
-            Procesos
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ==========================================
-     RADAR INMOBILIARIO
-=========================================== -->
-
-<section
-  id="radar-inmobiliario"
-  data-section="radar-inmobiliario"
-  class="radar-section py-12 lg:py-14"
->
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-
-    <!-- ========================================
-         ENCABEZADO
-    ========================================= -->
-
-    <div class="max-w-3xl mb-6">
-
-      <p
-        class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
-      >
-        Radar inmobiliario
-      </p>
-
-      <h2
-        class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight"
-      >
-        Explora la oferta inmobiliaria
-
-        <span class="text-blue-700">
-          por zona.
-        </span>
-      </h2>
-
-    </div>
-
-
-    <!-- ========================================
-         BUSCADOR
-    ========================================= -->
-
-    <div class="radar-search-card">
-
-      <form
-        id="radar-form"
-        class="radar-search-form"
-      >
-
-        <div class="radar-search-field">
-
-          <i
-            class="fa-solid fa-location-dot radar-search-icon"
-            aria-hidden="true"
-          ></i>
-
-          <input
-            id="radar-query"
-            type="search"
-            placeholder="Ej. Barranco, Miraflores, Edifica..."
-            autocomplete="off"
-            aria-label="Buscar distrito, proyecto o inmobiliaria"
-          >
-
-        </div>
-
-
-        <button
-          id="radar-submit"
-          type="submit"
-          class="radar-search-button"
+          class="grid lg:grid-cols-[0.85fr_1.15fr] gap-5 lg:gap-12 items-end mb-8"
         >
 
-          <i
-            class="fa-solid fa-magnifying-glass"
-            aria-hidden="true"
-          ></i>
+          <div>
 
-          Buscar
+            <p
+              class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+            >
+              Equipo Escala
+            </p>
 
-        </button>
+            <h2
+              class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-slate-950 leading-tight"
+            >
+              Liderazgo comercial
 
-      </form>
+              <span class="text-blue-700">
+                y operativo.
+              </span>
+            </h2>
 
+          </div>
 
-      <!-- ========================================
-           FILTROS
-      ========================================= -->
-
-      <div
-        class="radar-filters"
-        aria-label="Filtrar resultados"
-      >
-
-        <button
-          type="button"
-          class="radar-filter radar-filter-active"
-          data-radar-filter="todos"
-          aria-pressed="true"
-        >
-          Todos
-        </button>
-
-        <button
-          type="button"
-          class="radar-filter"
-          data-radar-filter="proyectos"
-          aria-pressed="false"
-        >
-          Proyectos
-        </button>
-
-        <button
-          type="button"
-          class="radar-filter"
-          data-radar-filter="inmobiliarias"
-          aria-pressed="false"
-        >
-          Inmobiliarias
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- ========================================
-         BÚSQUEDAS SUGERIDAS
-    ========================================= -->
-
-    <div
-      class="radar-suggestions mt-4"
-      aria-label="Búsquedas sugeridas"
-    >
-
-      <span class="radar-suggestions-label">
-        Explorar:
-      </span>
-
-      <button
-        type="button"
-        class="radar-suggestion"
-        data-radar-query="Barranco"
-      >
-        Barranco
-      </button>
-
-      <button
-        type="button"
-        class="radar-suggestion"
-        data-radar-query="Miraflores"
-      >
-        Miraflores
-      </button>
-
-      <button
-        type="button"
-        class="radar-suggestion"
-        data-radar-query="San Isidro"
-      >
-        San Isidro
-      </button>
-
-      <button
-        type="button"
-        class="radar-suggestion"
-        data-radar-query="Santiago de Surco"
-      >
-        Santiago de Surco
-      </button>
-
-      <button
-        type="button"
-        class="radar-suggestion"
-        data-radar-query="Jesús María"
-      >
-        Jesús María
-      </button>
-
-    </div>
-
-
-    <!-- ========================================
-         ESTADO INICIAL
-    ========================================= -->
-
-    <div
-      id="radar-empty"
-      class="radar-empty"
-    >
-
-      <div class="radar-empty-icon">
-
-        <i
-          class="fa-solid fa-building-circle-check"
-          aria-hidden="true"
-        ></i>
-
-      </div>
-
-      <h3>
-        Descubre qué se está desarrollando en cada zona
-      </h3>
-
-      <p>
-        Busca un distrito para identificar proyectos,
-        inmobiliarias y precios referenciales.
-      </p>
-
-    </div>
-
-
-    <!-- ========================================
-         RESULTADOS
-    ========================================= -->
-
-    <div
-      id="radar-content"
-      class="hidden"
-    >
-
-
-      <!-- ========================================
-           CABECERA DE RESULTADOS
-      ========================================= -->
-
-      <div
-        class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4"
-      >
-
-        <div>
 
           <p
-            class="text-sm text-slate-500 mb-1"
+            class="text-base text-slate-600 leading-relaxed max-w-2xl lg:justify-self-end"
           >
-            Radar de mercado
+            La estrategia y la ejecución se trabajan juntas.
+            Las gerencias lideran la operación y se apoyan en un
+            equipo multidisciplinario para sostener ventas, procesos,
+            marketing y seguimiento.
           </p>
-
-          <h3
-            id="radar-result-title"
-            class="text-xl sm:text-2xl font-bold text-slate-950"
-          >
-            Explorando la zona
-          </h3>
 
         </div>
 
 
-        <div class="flex items-center gap-2">
+        <!-- ========================================
+             GERENCIAS
+        ========================================= -->
 
-          <span
-            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold"
+        <div
+          class="grid lg:grid-cols-2 gap-5 mb-7"
+        >
+
+
+          <!-- ======================================
+               GERENCIA DE VENTAS
+          ======================================= -->
+
+          <article
+            class="team-leader-card"
           >
 
+            <div
+              class="team-leader-photo"
+            >
+
+              <img
+                src="/img/equipo/gerente-ventas.png"
+                alt="Gerente de Ventas de Escala Comercial"
+              >
+
+              <span
+                class="team-leader-badge team-leader-badge-gold"
+              >
+                Ventas
+              </span>
+
+            </div>
+
+
+            <div
+              class="team-leader-content"
+            >
+
+              <p
+                class="text-xs uppercase tracking-[0.14em] font-semibold text-amber-600 mb-1.5"
+              >
+                Gerencia de Ventas
+              </p>
+
+
+              <h3
+                class="font-display text-xl sm:text-2xl font-bold text-slate-950 mb-1"
+              >
+                JOSEPH ANGELES
+              </h3>
+
+
+              <p
+                class="text-xs font-semibold text-blue-700 mb-3"
+              >
+                Gerente de Ventas · Escala Comercial
+              </p>
+
+
+              <p
+                class="text-sm text-slate-600 leading-relaxed mb-4"
+              >
+                Lidera la estrategia comercial, la formación de
+                asesores y el seguimiento de oportunidades.
+                Su foco está en desarrollar equipos que entiendan
+                al cliente, dominen el portafolio y eleven la
+                conversión hasta el cierre.
+              </p>
+
+
+              <div
+                class="flex flex-wrap gap-1.5"
+              >
+
+                <span class="team-skill">
+                  Dirección
+                </span>
+
+                <span class="team-skill">
+                  Multiproducto
+                </span>
+
+                <span class="team-skill">
+                  Gestión de asesores
+                </span>
+
+                <span class="team-skill">
+                  Cierre
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- ======================================
+               GERENCIA DE OPERACIONES
+          ======================================= -->
+
+          <article
+            class="team-leader-card"
+          >
+
+            <div
+              class="team-leader-photo"
+            >
+
+              <img
+                src="/img/equipo/gerente-operaciones.png"
+                alt="Gerente de Operaciones de Escala Comercial"
+              >
+
+              <span
+                class="team-leader-badge team-leader-badge-blue"
+              >
+                Operaciones
+              </span>
+
+            </div>
+
+
+            <div
+              class="team-leader-content"
+            >
+
+              <p
+                class="text-xs uppercase tracking-[0.14em] font-semibold text-blue-700 mb-1.5"
+              >
+                Gerencia de Operaciones
+              </p>
+
+
+              <h3
+                class="font-display text-xl sm:text-2xl font-bold text-slate-950 mb-1"
+              >
+                INDIRA FERREYRA
+              </h3>
+
+
+              <p
+                class="text-xs font-semibold text-blue-700 mb-3"
+              >
+                Gerente de Operaciones · Escala Comercial
+              </p>
+
+
+              <p
+                class="text-sm text-slate-600 leading-relaxed mb-4"
+              >
+                Lidera la estructura operativa que conecta personas,
+                procesos, CRM, seguimiento e información comercial.
+                Su foco está en transformar la estrategia en una
+                operación ordenada, medible y capaz de mejorar
+                continuamente.
+              </p>
+
+
+              <div
+                class="flex flex-wrap gap-1.5"
+              >
+
+                <span class="team-skill">
+                  Operaciones
+                </span>
+
+                <span class="team-skill">
+                  CRM y procesos
+                </span>
+
+                <span class="team-skill">
+                  Analítica
+                </span>
+
+                <span class="team-skill">
+                  Optimización
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- ========================================
+             EQUIPO DE SOPORTE
+        ========================================= -->
+
+        <div
+          id="team-roles-shell"
+          class="team-support-shell"
+        >
+
+          <div
+            class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5"
+          >
+
+            <div>
+
+              <p
+                class="text-amber-400 uppercase tracking-[0.16em] font-semibold text-xs mb-1.5"
+              >
+                Equipo multidisciplinario
+              </p>
+
+              <h3
+                class="font-display text-xl sm:text-2xl font-bold text-white"
+              >
+                Una operación respaldada por más especialidades.
+              </h3>
+
+            </div>
+
+
+            <div
+              class="hidden sm:flex items-center gap-2"
+            >
+
+              <button
+                id="team-roles-prev"
+                type="button"
+                class="team-carousel-arrow"
+                aria-label="Ver áreas anteriores"
+              >
+
+                <i
+                  class="fa-solid fa-chevron-left"
+                  aria-hidden="true"
+                ></i>
+
+              </button>
+
+
+              <button
+                id="team-roles-next"
+                type="button"
+                class="team-carousel-arrow"
+                aria-label="Ver más áreas"
+              >
+
+                <i
+                  class="fa-solid fa-chevron-right"
+                  aria-hidden="true"
+                ></i>
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- ======================================
+               CARRUSEL DE ÁREAS
+          ======================================= -->
+
+          <div
+            id="team-roles-track"
+            class="team-roles-carousel"
+            aria-label="Áreas que integran el equipo Escala"
+          >
+
+
+            <article class="team-role-card">
+
+              <div class="team-role-icon">
+                <i
+                  class="fa-solid fa-users"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h4>
+                Recursos Humanos
+              </h4>
+
+              <p>
+                Selección, incorporación y acompañamiento
+                de perfiles comerciales.
+              </p>
+
+            </article>
+
+
+            <article class="team-role-card">
+
+              <div class="team-role-icon">
+                <i
+                  class="fa-solid fa-headset"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h4>
+                Asistencia Comercial
+              </h4>
+
+              <p>
+                Soporte al seguimiento, coordinación
+                y gestión diaria de oportunidades.
+              </p>
+
+            </article>
+
+
+            <article class="team-role-card">
+
+              <div class="team-role-icon">
+                <i
+                  class="fa-solid fa-folder-open"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h4>
+                Administración
+              </h4>
+
+              <p>
+                Coordinación, documentación y soporte
+                administrativo de la operación.
+              </p>
+
+            </article>
+
+
+            <article class="team-role-card">
+
+              <div class="team-role-icon">
+                <i
+                  class="fa-solid fa-bullhorn"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h4>
+                Marketing
+              </h4>
+
+              <p>
+                Campañas, contenidos y generación
+                de oportunidades comerciales.
+              </p>
+
+            </article>
+
+
+            <article class="team-role-card">
+
+              <div class="team-role-icon">
+                <i
+                  class="fa-solid fa-chart-line"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h4>
+                Analítica Comercial
+              </h4>
+
+              <p>
+                Seguimiento del embudo, indicadores
+                y oportunidades de mejora.
+              </p>
+
+            </article>
+
+
+            <article class="team-role-card">
+
+              <div class="team-role-icon">
+                <i
+                  class="fa-solid fa-user-tie"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <h4>
+                Asesores Comerciales
+              </h4>
+
+              <p>
+                Atención, perfilamiento, seguimiento
+                y cierre de oportunidades.
+              </p>
+
+            </article>
+
+          </div>
+
+
+          <div
+            class="mt-5 pt-4 border-t border-slate-800 flex items-start gap-3"
+          >
+
+            <div
+              class="w-8 h-8 shrink-0 rounded-lg bg-amber-400/10 text-amber-400 flex items-center justify-center"
+            >
+
+              <i
+                class="fa-solid fa-layer-group text-sm"
+                aria-hidden="true"
+              ></i>
+
+            </div>
+
+
+            <p
+              class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl"
+            >
+              Más que asignar personas a proyectos, construimos equipos
+              preparados para aprovechar el potencial comercial del portafolio.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         RADAR INMOBILIARIO
+    =========================================== -->
+
+    <section
+      id="radar-inmobiliario"
+      data-section="radar-inmobiliario"
+      class="radar-section py-12 lg:py-14"
+    >
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+        <div class="max-w-3xl mb-6">
+
+          <p
+            class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+          >
+            Radar inmobiliario
+          </p>
+
+
+          <h2
+            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight"
+          >
+
+            Explora proyectos inmobiliarios
+
+            <span class="text-blue-700">
+              por zona.
+            </span>
+
+          </h2>
+
+        </div>
+
+
+        <!-- BUSCADOR -->
+
+        <div class="radar-search-card">
+
+          <form
+            id="radar-form"
+            class="radar-search-form"
+          >
+
+            <div class="radar-search-field">
+
+              <i
+                class="fa-solid fa-location-dot radar-search-icon"
+                aria-hidden="true"
+              ></i>
+
+              <input
+                id="radar-query"
+                type="search"
+                placeholder="Ej. Barranco, Miraflores, Edifica..."
+                autocomplete="off"
+                aria-label="Buscar distrito, proyecto o inmobiliaria"
+              >
+
+            </div>
+
+
+            <button
+              id="radar-submit"
+              type="submit"
+              class="radar-search-button"
+            >
+
+              <i
+                class="fa-solid fa-magnifying-glass"
+                aria-hidden="true"
+              ></i>
+
+              Buscar
+
+            </button>
+
+          </form>
+
+
+          <div
+            class="radar-filters"
+            aria-label="Filtrar resultados"
+          >
+
+            <button
+              type="button"
+              class="radar-filter radar-filter-active"
+              data-radar-filter="todos"
+              aria-pressed="true"
+            >
+              Todos
+            </button>
+
+            <button
+              type="button"
+              class="radar-filter"
+              data-radar-filter="proyectos"
+              aria-pressed="false"
+            >
+              Proyectos
+            </button>
+
+            <button
+              type="button"
+              class="radar-filter"
+              data-radar-filter="inmobiliarias"
+              aria-pressed="false"
+            >
+              Inmobiliarias
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ESTADO INICIAL -->
+
+        <div
+          id="radar-empty"
+          class="radar-empty"
+        >
+
+          <div class="radar-empty-icon">
+
             <i
-              class="fa-solid fa-building"
+              class="fa-solid fa-building-circle-check"
               aria-hidden="true"
             ></i>
 
-            <span id="radar-result-count">
-              0 proyectos
-            </span>
+          </div>
 
-          </span>
+          <h3>
+            Descubre proyectos e inmobiliarias en distintas zonas
+          </h3>
+
+          <p>
+            Consulta una selección referencial de proyectos,
+            inmobiliarias y precios disponibles públicamente.
+          </p>
 
         </div>
 
-      </div>
 
+        <!-- RESULTADOS -->
 
-      <!-- ========================================
-           LOADING
-      ========================================= -->
-
-      <div
-        id="radar-loading"
-        class="hidden radar-loading"
-      >
-
-        <i
-          class="fa-solid fa-circle-notch fa-spin"
-          aria-hidden="true"
-        ></i>
-
-        Consultando proyectos...
-
-      </div>
-
-
-      <!-- ========================================
-           CARRUSEL DE RESULTADOS
-      ========================================= -->
-
-      <div
-        id="radar-carousel-shell"
-        class="radar-carousel-shell"
-      >
-
-        <button
-          id="radar-prev"
-          type="button"
-          class="radar-carousel-arrow radar-carousel-arrow-left"
-          aria-label="Ver proyectos anteriores"
+        <div
+          id="radar-content"
+          class="hidden"
         >
 
-          <i
-            class="fa-solid fa-chevron-left"
-            aria-hidden="true"
-          ></i>
+          <div
+            class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4"
+          >
 
-        </button>
+            <div>
+
+              <p
+                class="text-sm text-slate-500 mb-1"
+              >
+                Radar de mercado
+              </p>
+
+              <h3
+                id="radar-result-title"
+                class="text-xl sm:text-2xl font-bold text-slate-950"
+              >
+                Explorando la zona
+              </h3>
+
+            </div>
+
+
+            <span
+              class="inline-flex self-start sm:self-auto items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold"
+            >
+
+              <i
+                class="fa-solid fa-building"
+                aria-hidden="true"
+              ></i>
+
+              <span id="radar-result-count">
+                0 proyectos
+              </span>
+
+            </span>
+
+          </div>
+
+
+          <!-- LOADING -->
+
+          <div
+            id="radar-loading"
+            class="hidden radar-loading"
+          >
+
+            <i
+              class="fa-solid fa-circle-notch fa-spin"
+              aria-hidden="true"
+            ></i>
+
+            Consultando proyectos...
+
+          </div>
+
+
+          <!-- CARRUSEL -->
+
+          <div
+            id="radar-carousel-shell"
+            class="radar-carousel-shell"
+          >
+
+            <button
+              id="radar-prev"
+              type="button"
+              class="radar-carousel-arrow radar-carousel-arrow-left"
+              aria-label="Ver proyectos anteriores"
+            >
+
+              <i
+                class="fa-solid fa-chevron-left"
+                aria-hidden="true"
+              ></i>
+
+            </button>
+
+
+            <div
+              id="radar-results"
+              class="radar-carousel"
+              aria-live="polite"
+            ></div>
+
+
+            <button
+              id="radar-next"
+              type="button"
+              class="radar-carousel-arrow radar-carousel-arrow-right"
+              aria-label="Ver proyectos siguientes"
+            >
+
+              <i
+                class="fa-solid fa-chevron-right"
+                aria-hidden="true"
+              ></i>
+
+            </button>
+
+          </div>
+
+
+          <!-- SIN RESULTADOS -->
+
+          <div
+            id="radar-no-results"
+            class="hidden radar-no-results"
+          >
+
+            <div class="radar-no-results-icon">
+
+              <i
+                class="fa-solid fa-magnifying-glass"
+                aria-hidden="true"
+              ></i>
+
+            </div>
+
+            <h4>
+              No encontramos resultados
+            </h4>
+
+            <p>
+              Prueba con otro distrito,
+              proyecto o inmobiliaria.
+            </p>
+
+          </div>
+
+        </div>
 
 
         <div
-          id="radar-results"
-          class="radar-carousel"
-          aria-live="polite"
-        ></div>
-
-
-        <button
-          id="radar-next"
-          type="button"
-          class="radar-carousel-arrow radar-carousel-arrow-right"
-          aria-label="Ver proyectos siguientes"
+          class="flex items-start gap-2 mt-5 text-xs text-slate-400 leading-relaxed"
         >
 
           <i
-            class="fa-solid fa-chevron-right"
+            class="fa-solid fa-circle-info mt-0.5"
             aria-hidden="true"
           ></i>
 
-        </button>
-
-      </div>
-
-
-      <!-- ========================================
-           SIN RESULTADOS
-      ========================================= -->
-
-      <div
-        id="radar-no-results"
-        class="hidden radar-no-results"
-      >
-
-        <div class="radar-no-results-icon">
-
-          <i
-            class="fa-solid fa-magnifying-glass"
-            aria-hidden="true"
-          ></i>
+          <p>
+            Información referencial construida a partir de fuentes públicas.
+            No representa la totalidad de proyectos disponibles en el mercado
+            y puede cambiar con el tiempo.
+          </p>
 
         </div>
 
-        <h4>
-          No encontramos resultados
-        </h4>
-
-        <p>
-          Prueba con otro distrito,
-          proyecto o inmobiliaria.
-        </p>
-
       </div>
 
-    </div>
-
-
-    <!-- ========================================
-         NOTA DE DATOS
-    ========================================= -->
-
-    <div
-      class="flex items-start gap-2 mt-5 text-xs text-slate-400 leading-relaxed"
-    >
-
-      <i
-        class="fa-solid fa-circle-info mt-0.5"
-        aria-hidden="true"
-      ></i>
-
-      <p>
-        Información referencial elaborada a partir de datos
-        inmobiliarios de acceso público y actualizada periódicamente.
-        La disponibilidad y los precios pueden cambiar.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
 
     <!-- ==========================================
@@ -2274,90 +2692,81 @@
     <section
       id="contacto"
       data-section="contacto"
-      class="py-14 lg:py-16">
+      class="py-14 lg:py-16"
+    >
 
-      <div
-        class="max-w-6xl mx-auto px-5 lg:px-8">
+      <div class="max-w-6xl mx-auto px-5 lg:px-8">
 
         <div
-          class="grid lg:grid-cols-[1fr_0.95fr] gap-10 lg:gap-14 items-center">
+          class="grid lg:grid-cols-[1fr_0.95fr] gap-10 lg:gap-14 items-center"
+        >
 
 
-          <!-- ========================================
-               TEXTO
-          ========================================= -->
+          <!-- TEXTO -->
 
           <div
-            class="text-white max-w-xl">
+            class="text-white max-w-xl"
+          >
 
             <p
-              class="text-blue-200 uppercase tracking-[0.18em] font-semibold text-xs mb-3">
-
+              class="text-blue-200 uppercase tracking-[0.18em] font-semibold text-xs mb-3"
+            >
               Conversemos
-
             </p>
 
 
             <h2
-              class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.05] mb-5">
+              class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-[1.05] mb-5"
+            >
 
               Cuéntanos qué quieres mejorar
               en tu
 
               <span
-                class="block text-blue-200">
-
+                class="block text-blue-200"
+              >
                 operación comercial.
-
               </span>
 
             </h2>
 
 
             <p
-              class="text-blue-100 text-sm sm:text-base leading-relaxed max-w-lg mb-7">
-
+              class="text-blue-100 text-sm sm:text-base leading-relaxed max-w-lg mb-7"
+            >
               Podemos ayudarte a revisar
               tu estrategia comercial,
               generación de oportunidades,
               seguimiento, equipo de ventas,
               procesos o analítica.
-
             </p>
 
 
-            <!-- Beneficios -->
-
             <div class="space-y-3.5">
 
-
-              <div
-                class="flex items-center gap-3">
+              <div class="flex items-center gap-3">
 
                 <div
-                  class="w-9 h-9 shrink-0 rounded-full bg-white/10 border border-white/15 flex items-center justify-center">
-
+                  class="w-9 h-9 shrink-0 rounded-full bg-white/10 border border-white/15 flex items-center justify-center"
+                >
                   <i
-                    class="fa-solid fa-comments text-blue-100 text-sm">
-                  </i>
-
+                    class="fa-solid fa-comments text-blue-100 text-sm"
+                  ></i>
                 </div>
 
                 <div>
 
                   <p
-                    class="text-sm font-semibold text-white leading-tight">
-
+                    class="text-sm font-semibold text-white leading-tight"
+                  >
                     Conversación inicial
-
                   </p>
 
                   <p
-                    class="text-xs text-blue-100/75 mt-1">
-
+                    class="text-xs text-blue-100/75 mt-1"
+                  >
                     Entendemos tu necesidad
                     antes de proponerte una solución.
-
                   </p>
 
                 </div>
@@ -2365,33 +2774,29 @@
               </div>
 
 
-              <div
-                class="flex items-center gap-3">
+              <div class="flex items-center gap-3">
 
                 <div
-                  class="w-9 h-9 shrink-0 rounded-full bg-white/10 border border-white/15 flex items-center justify-center">
-
+                  class="w-9 h-9 shrink-0 rounded-full bg-white/10 border border-white/15 flex items-center justify-center"
+                >
                   <i
-                    class="fa-solid fa-chart-line text-blue-100 text-sm">
-                  </i>
-
+                    class="fa-solid fa-chart-line text-blue-100 text-sm"
+                  ></i>
                 </div>
 
                 <div>
 
                   <p
-                    class="text-sm font-semibold text-white leading-tight">
-
+                    class="text-sm font-semibold text-white leading-tight"
+                  >
                     Enfoque comercial
-
                   </p>
 
                   <p
-                    class="text-xs text-blue-100/75 mt-1">
-
+                    class="text-xs text-blue-100/75 mt-1"
+                  >
                     Nos enfocamos en procesos,
                     conversión y resultados medibles.
-
                   </p>
 
                 </div>
@@ -2399,33 +2804,29 @@
               </div>
 
 
-              <div
-                class="flex items-center gap-3">
+              <div class="flex items-center gap-3">
 
                 <div
-                  class="w-9 h-9 shrink-0 rounded-full bg-white/10 border border-white/15 flex items-center justify-center">
-
+                  class="w-9 h-9 shrink-0 rounded-full bg-white/10 border border-white/15 flex items-center justify-center"
+                >
                   <i
-                    class="fa-solid fa-handshake text-blue-100 text-sm">
-                  </i>
-
+                    class="fa-solid fa-handshake text-blue-100 text-sm"
+                  ></i>
                 </div>
 
                 <div>
 
                   <p
-                    class="text-sm font-semibold text-white leading-tight">
-
+                    class="text-sm font-semibold text-white leading-tight"
+                  >
                     Acompañamiento
-
                   </p>
 
                   <p
-                    class="text-xs text-blue-100/75 mt-1">
-
+                    class="text-xs text-blue-100/75 mt-1"
+                  >
                     Buscamos una solución
                     que se adapte a tu operación.
-
                   </p>
 
                 </div>
@@ -2437,62 +2838,56 @@
           </div>
 
 
-          <!-- ========================================
-               FORMULARIO
-          ========================================= -->
+          <!-- FORMULARIO -->
 
           <div
-            class="w-full max-w-[540px] lg:ml-auto">
+            class="w-full max-w-[540px] lg:ml-auto"
+          >
 
             <form
               id="formulario-contacto"
               action="https://formspree.io/f/xqpkaywj"
               method="POST"
-              class="bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-[0_20px_60px_rgba(2,8,23,0.18)]">
-
+              class="bg-white rounded-2xl p-5 sm:p-6 lg:p-7 shadow-[0_20px_60px_rgba(2,8,23,0.18)]"
+            >
 
               <input
                 type="hidden"
                 name="_subject"
-                value="Nuevo lead desde Escala Comercial">
+                value="Nuevo lead desde Escala Comercial"
+              >
 
-
-              <!-- Intro -->
 
               <div class="mb-5">
 
                 <h3
-                  class="text-xl font-bold text-slate-950 mb-1.5">
-
+                  class="text-xl font-bold text-slate-950 mb-1.5"
+                >
                   Hablemos de tu proyecto
-
                 </h3>
 
                 <p
-                  class="text-slate-500 text-sm leading-relaxed">
-
+                  class="text-slate-500 text-sm leading-relaxed"
+                >
                   Déjanos tus datos
                   y cuéntanos brevemente
                   qué necesitas.
-
                 </p>
 
               </div>
 
 
-              <!-- Fila 1 -->
-
               <div
-                class="grid sm:grid-cols-2 gap-3 mb-3">
+                class="grid sm:grid-cols-2 gap-3 mb-3"
+              >
 
                 <div>
 
                   <label
                     for="nombre"
-                    class="sr-only">
-
+                    class="sr-only"
+                  >
                     Nombre y apellido
-
                   </label>
 
                   <input
@@ -2502,7 +2897,8 @@
                     autocomplete="name"
                     placeholder="Nombre y apellido *"
                     required
-                    class="contact-field">
+                    class="contact-field"
+                  >
 
                 </div>
 
@@ -2511,10 +2907,9 @@
 
                   <label
                     for="telefono"
-                    class="sr-only">
-
+                    class="sr-only"
+                  >
                     Celular o teléfono
-
                   </label>
 
                   <input
@@ -2524,26 +2919,25 @@
                     autocomplete="tel"
                     placeholder="Celular / Teléfono *"
                     required
-                    class="contact-field">
+                    class="contact-field"
+                  >
 
                 </div>
 
               </div>
 
 
-              <!-- Fila 2 -->
-
               <div
-                class="grid sm:grid-cols-2 gap-3 mb-4">
+                class="grid sm:grid-cols-2 gap-3 mb-4"
+              >
 
                 <div>
 
                   <label
                     for="email"
-                    class="sr-only">
-
+                    class="sr-only"
+                  >
                     Correo electrónico
-
                   </label>
 
                   <input
@@ -2553,7 +2947,8 @@
                     autocomplete="email"
                     placeholder="Correo electrónico *"
                     required
-                    class="contact-field">
+                    class="contact-field"
+                  >
 
                 </div>
 
@@ -2562,10 +2957,9 @@
 
                   <label
                     for="empresa"
-                    class="sr-only">
-
+                    class="sr-only"
+                  >
                     Empresa
-
                   </label>
 
                   <input
@@ -2574,35 +2968,34 @@
                     name="empresa"
                     autocomplete="organization"
                     placeholder="Empresa (opcional)"
-                    class="contact-field">
+                    class="contact-field"
+                  >
 
                 </div>
 
               </div>
 
 
-              <!-- Preferencia contacto -->
-
               <fieldset class="mb-4">
 
                 <legend
-                  class="text-sm font-medium text-slate-700 mb-2.5">
-
+                  class="text-sm font-medium text-slate-700 mb-2.5"
+                >
                   ¿Cómo prefieres que te contactemos?
-
                 </legend>
 
                 <div
-                  class="flex flex-wrap gap-x-5 gap-y-2">
+                  class="flex flex-wrap gap-x-5 gap-y-2"
+                >
 
-                  <label
-                    class="contact-radio">
+                  <label class="contact-radio">
 
                     <input
                       type="radio"
                       name="preferencia_contacto"
                       value="Llamada"
-                      checked>
+                      checked
+                    >
 
                     <span>
                       Llamada
@@ -2611,13 +3004,13 @@
                   </label>
 
 
-                  <label
-                    class="contact-radio">
+                  <label class="contact-radio">
 
                     <input
                       type="radio"
                       name="preferencia_contacto"
-                      value="WhatsApp">
+                      value="WhatsApp"
+                    >
 
                     <span>
                       WhatsApp
@@ -2626,13 +3019,13 @@
                   </label>
 
 
-                  <label
-                    class="contact-radio">
+                  <label class="contact-radio">
 
                     <input
                       type="radio"
                       name="preferencia_contacto"
-                      value="Correo electrónico">
+                      value="Correo electrónico"
+                    >
 
                     <span>
                       Correo electrónico
@@ -2645,16 +3038,13 @@
               </fieldset>
 
 
-              <!-- Asunto -->
-
               <div class="mb-3">
 
                 <label
                   for="asunto"
-                  class="sr-only">
-
+                  class="sr-only"
+                >
                   Asunto o motivo del contacto
-
                 </label>
 
                 <input
@@ -2663,21 +3053,19 @@
                   name="asunto"
                   placeholder="Asunto o motivo del contacto *"
                   required
-                  class="contact-field">
+                  class="contact-field"
+                >
 
               </div>
 
-
-              <!-- Mensaje -->
 
               <div class="mb-4">
 
                 <label
                   for="mensaje"
-                  class="sr-only">
-
+                  class="sr-only"
+                >
                   Cuéntanos sobre tu consulta
-
                 </label>
 
                 <textarea
@@ -2686,52 +3074,46 @@
                   rows="4"
                   placeholder="Háblanos sobre el motivo de tu consulta *"
                   required
-                  class="contact-field contact-textarea"></textarea>
+                  class="contact-field contact-textarea"
+                ></textarea>
 
               </div>
 
 
-              <!-- Submit -->
-
               <button
                 type="submit"
-                class="w-full inline-flex items-center justify-center gap-3 bg-[#0a2147] hover:bg-[#0d2d5f] text-white text-sm font-semibold py-3.5 px-6 rounded-xl transition">
+                class="w-full inline-flex items-center justify-center gap-3 bg-[#0a2147] hover:bg-[#0d2d5f] text-white text-sm font-semibold py-3.5 px-6 rounded-xl transition"
+              >
 
                 Quiero conversar con Escala
 
                 <i
-                  class="fa-solid fa-arrow-right text-xs">
-                </i>
+                  class="fa-solid fa-arrow-right text-xs"
+                ></i>
 
               </button>
 
 
-              <!-- Privacidad -->
-
               <p
-                class="text-[0.68rem] text-slate-400 text-center leading-relaxed mt-3">
-
+                class="text-[0.68rem] text-slate-400 text-center leading-relaxed mt-3"
+              >
                 Al enviar este formulario
                 aceptas que utilicemos tus datos
                 únicamente para contactarte
                 respecto a tu consulta.
-
               </p>
 
             </form>
 
 
-            <!-- Toast -->
-
             <div
               id="toast-exito"
               role="status"
               aria-live="polite"
-              class="hidden fixed bottom-6 right-6 max-w-sm bg-green-100 border border-green-300 text-green-800 px-5 py-4 rounded-xl shadow-xl text-sm font-medium z-50">
-
+              class="hidden fixed bottom-6 right-6 max-w-sm bg-green-100 border border-green-300 text-green-800 px-5 py-4 rounded-xl shadow-xl text-sm font-medium z-50"
+            >
               ¡Gracias!
               Tu mensaje fue enviado correctamente.
-
             </div>
 
           </div>
@@ -2751,35 +3133,40 @@
 
   <footer
     data-section="footer"
-    class="text-slate-400 pt-14">
+    class="text-slate-400 pt-14"
+  >
 
     <div
-      class="max-w-7xl mx-auto px-5 lg:px-8">
+      class="max-w-7xl mx-auto px-5 lg:px-8"
+    >
 
       <div
-        class="grid md:grid-cols-3 gap-10 lg:gap-16 pb-10">
+        class="grid md:grid-cols-3 gap-10 lg:gap-16 pb-10"
+      >
 
 
-        <!-- Marca -->
+        <!-- MARCA -->
 
         <div>
 
           <h3
-            class="text-white font-bold text-xl mb-4">
-
+            class="text-white font-bold text-xl mb-4"
+          >
             Escala Comercial
-
           </h3>
 
+
           <div
-            class="space-y-3 text-sm">
+            class="space-y-3 text-sm"
+          >
 
             <p
-              class="flex items-center gap-2">
+              class="flex items-center gap-2"
+            >
 
               <i
-                class="fa-solid fa-location-dot text-blue-400">
-              </i>
+                class="fa-solid fa-location-dot text-blue-400"
+              ></i>
 
               <span>
                 Lima, Perú
@@ -2787,12 +3174,14 @@
 
             </p>
 
+
             <p
-              class="flex items-center gap-2">
+              class="flex items-center gap-2"
+            >
 
               <i
-                class="fa-regular fa-clock text-blue-400">
-              </i>
+                class="fa-regular fa-clock text-blue-400"
+              ></i>
 
               <span>
                 Atención: Lunes a viernes
@@ -2806,27 +3195,28 @@
         </div>
 
 
-        <!-- Contacto -->
+        <!-- CONTACTO -->
 
         <div>
 
           <h4
-            class="text-white font-semibold text-lg mb-4">
-
+            class="text-white font-semibold text-lg mb-4"
+          >
             Contáctanos
-
           </h4>
 
-          <div
-            class="space-y-3 text-sm">
 
+          <div
+            class="space-y-3 text-sm"
+          >
 
             <p
-              class="flex items-center gap-2">
+              class="flex items-center gap-2"
+            >
 
               <i
-                class="fa-brands fa-whatsapp text-green-400">
-              </i>
+                class="fa-brands fa-whatsapp text-green-400"
+              ></i>
 
               <span>
                 WhatsApp:
@@ -2836,21 +3226,45 @@
                 href="https://wa.me/51906524316"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-white font-medium hover:text-blue-300 transition">
-
+                class="text-white font-medium hover:text-blue-300 transition"
+              >
                 +51 906 524 316
-
               </a>
 
             </p>
 
 
             <p
-              class="flex items-center gap-2">
+              class="flex items-center gap-2"
+            >
 
               <i
-                class="fa-solid fa-envelope text-blue-400">
-              </i>
+                class="fa-brands fa-whatsapp text-green-400"
+              ></i>
+
+              <span>
+                WhatsApp:
+              </span>
+
+              <a
+                href="https://wa.me/51956592289"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-white font-medium hover:text-blue-300 transition"
+              >
+                +51 956 592 289
+              </a>
+
+            </p>
+
+
+            <p
+              class="flex items-center gap-2"
+            >
+
+              <i
+                class="fa-solid fa-envelope text-blue-400"
+              ></i>
 
               <span>
                 Email:
@@ -2858,10 +3272,9 @@
 
               <a
                 href="mailto:contacto@escalacomercial.pe"
-                class="text-white font-medium hover:text-blue-300 transition">
-
+                class="text-white font-medium hover:text-blue-300 transition"
+              >
                 contacto@escalacomercial.pe
-
               </a>
 
             </p>
@@ -2871,88 +3284,69 @@
         </div>
 
 
-        <!-- Redes -->
+        <!-- REDES -->
 
         <div>
 
           <h4
-            class="text-white font-semibold text-lg mb-4">
-
+            class="text-white font-semibold text-lg mb-4"
+          >
             Síguenos
-
           </h4>
 
-          <div
-            class="flex items-center gap-4 text-white">
 
+          <div
+            class="flex items-center gap-4 text-white"
+          >
 
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook de Escala Comercial"
-              class="footer-social">
-
-              <i
-                class="fa-brands fa-facebook-f">
-              </i>
-
+              class="footer-social"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
             </a>
-
 
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram de Escala Comercial"
-              class="footer-social">
-
-              <i
-                class="fa-brands fa-instagram">
-              </i>
-
+              class="footer-social"
+            >
+              <i class="fa-brands fa-instagram"></i>
             </a>
-
 
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok de Escala Comercial"
-              class="footer-social">
-
-              <i
-                class="fa-brands fa-tiktok">
-              </i>
-
+              class="footer-social"
+            >
+              <i class="fa-brands fa-tiktok"></i>
             </a>
-
 
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube de Escala Comercial"
-              class="footer-social">
-
-              <i
-                class="fa-brands fa-youtube">
-              </i>
-
+              class="footer-social"
+            >
+              <i class="fa-brands fa-youtube"></i>
             </a>
-
 
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn de Escala Comercial"
-              class="footer-social">
-
-              <i
-                class="fa-brands fa-linkedin-in">
-              </i>
-
+              class="footer-social"
+            >
+              <i class="fa-brands fa-linkedin-in"></i>
             </a>
 
           </div>
@@ -2964,21 +3358,20 @@
     </div>
 
 
-    <!-- Copyright -->
-
     <div
-      class="border-t border-slate-800">
+      class="border-t border-slate-800"
+    >
 
       <div
-        class="max-w-7xl mx-auto px-5 lg:px-8 py-6">
+        class="max-w-7xl mx-auto px-5 lg:px-8 py-6"
+      >
 
         <p
-          class="text-sm text-center text-slate-500">
-
+          class="text-sm text-center text-slate-500"
+        >
           © <span id="year"></span>
           Escala Comercial.
           Todos los derechos reservados.
-
         </p>
 
       </div>
@@ -2989,12 +3382,32 @@
 
 
   <!-- ==========================================
+       WHATSAPP FLOTANTE
+  =========================================== -->
+
+  <a
+    href="https://wa.me/51906524316?text=Hola%2C%20vi%20la%20web%20de%20Escala%20Comercial%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n."
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+  >
+
+    <i
+      class="fa-brands fa-whatsapp"
+      aria-hidden="true"
+    ></i>
+
+  </a>
+
+
+  <!-- ==========================================
        AOS
   =========================================== -->
 
   <script
-    src="https://unpkg.com/aos@2.3.4/dist/aos.js">
-  </script>
+    src="https://unpkg.com/aos@2.3.4/dist/aos.js"
+  ></script>
 
 
   <!-- ==========================================
@@ -3002,23 +3415,9 @@
   =========================================== -->
 
   <script
-    src="/scripts/scripts.js">
-  </script>
+    src="/scripts/scripts.js"
+  ></script>
 
-  <!-- ==========================================
-     WHATSAPP FLOTANTE
-=========================================== -->
-
-<a
-  href="https://wa.me/51906524316?text=Hola%2C%20vi%20la%20web%20de%20Escala%20Comercial%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n."
-  class="whatsapp-float"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Contactar por WhatsApp"
->
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
-  
 </body>
 
 </html>
