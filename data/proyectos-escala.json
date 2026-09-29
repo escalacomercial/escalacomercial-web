@@ -1,0 +1,33 @@
+[
+  {
+    "id": "proyecto-horne-137",
+    "proyecto": "Proyecto Horne",
+    "inmobiliaria": "Calicanto Inmobiliaria",
+    "distrito": "Barranco",
+    "tipo": "Departamentos",
+    "imagen": "/img/radar/proyecto-calicanto-horne.png",
+    "url": "https://www.grupocalicanto.pe/proyecto-horne-137/",
+    "descripcion": "Haz clic para ver departamentos disponibles.",
+    "activo": true,
+    "destacado": true,
+    "etiqueta": "Cliente destacado",
+    "estadoCliente": "Cliente activo",
+    "caracteristicas": [
+      {
+        "icono": "fa-building",
+        "titulo": "Departamentos",
+        "detalle": "de 1, 2 y 3 dormitorios"
+      },
+      {
+        "icono": "fa-location-dot",
+        "titulo": "Ubicación",
+        "detalle": "Barranco"
+      },
+      {
+        "icono": "fa-star",
+        "titulo": "Diseño moderno",
+        "detalle": "Barranco lo tiene todo"
+      }
+    ]
+  }
+]
