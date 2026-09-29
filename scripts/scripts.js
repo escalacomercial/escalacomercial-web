@@ -1,7 +1,7 @@
 // ======================================================
 // ESCALA COMERCIAL
 // scripts.js
-// Versión limpia y actualizada
+// Radar general + Proyectos Escala
 // ======================================================
 
 
@@ -12,37 +12,27 @@
 window.dataLayer = window.dataLayer || [];
 
 const RADAR_AUTOPLAY_MS = 4200;
+const RADAR_FEATURED_AUTOPLAY_MS = 5200;
 const TEAM_AUTOPLAY_MS = 3800;
+
+const RADAR_DATA_URL = "/data/proyectos.json";
+const RADAR_ESCALA_DATA_URL = "/data/proyectos-escala.json";
 
 
 // ======================================================
 // 2. ESTADO GLOBAL
 // ======================================================
 
-
-// ------------------------------------------------------
-// RADAR
-// ------------------------------------------------------
-
 let radarProyectos = [];
+let radarProyectosEscala = [];
 let radarResultados = [];
 
 let radarFiltroActual = "todos";
 let radarConsultaActual = "";
 
 let radarCarruselIntervalo = null;
-
-
-// ------------------------------------------------------
-// EQUIPO
-// ------------------------------------------------------
-
+let radarFeaturedIntervalo = null;
 let teamCarruselIntervalo = null;
-
-
-// ------------------------------------------------------
-// SCROLL DEPTH
-// ------------------------------------------------------
 
 const scrollMarcado = {
   25: false,
@@ -56,11 +46,6 @@ const scrollMarcado = {
 // 3. HELPERS GENERALES
 // ======================================================
 
-
-// ------------------------------------------------------
-// FORMATEAR TEXTO PARA TRACKING
-// ------------------------------------------------------
-
 function formatearTexto(texto) {
 
   const resultado = String(texto || "")
@@ -72,20 +57,13 @@ function formatearTexto(texto) {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 
-
   return resultado || "sin-texto";
-
 }
 
-
-// ------------------------------------------------------
-// DETECTAR SECCIÓN
-// ------------------------------------------------------
 
 function detectarSeccion(elemento) {
 
   let actual = elemento;
-
 
   while (
     actual &&
@@ -101,17 +79,12 @@ function detectarSeccion(elemento) {
         actual.getAttribute("data-section") ||
         "otros"
       );
-
     }
 
-
     actual = actual.parentElement;
-
   }
 
-
   return "otros";
-
 }
 
 
@@ -127,14 +100,12 @@ function iniciarAOS() {
     return;
   }
 
-
   AOS.init({
     duration: 700,
     once: true,
     offset: 70,
     easing: "ease-out"
   });
-
 }
 
 
@@ -147,15 +118,12 @@ function iniciarAnioFooter() {
   const year =
     document.getElementById("year");
 
-
   if (!year) {
     return;
   }
 
-
   year.textContent =
     new Date().getFullYear();
-
 }
 
 
@@ -170,11 +138,9 @@ function iniciarHeader() {
       "site-header"
     );
 
-
   if (!siteHeader) {
     return;
   }
-
 
   function actualizarHeader() {
 
@@ -182,12 +148,9 @@ function iniciarHeader() {
       "shadow-sm",
       window.scrollY > 20
     );
-
   }
 
-
   actualizarHeader();
-
 
   window.addEventListener(
     "scroll",
@@ -196,7 +159,6 @@ function iniciarHeader() {
       passive: true
     }
   );
-
 }
 
 
@@ -211,12 +173,10 @@ function iniciarMenuMovil() {
       "menu-toggle"
     );
 
-
   const menu =
     document.getElementById(
       "mobile-menu"
     );
-
 
   if (
     !toggle ||
@@ -225,10 +185,6 @@ function iniciarMenuMovil() {
     return;
   }
 
-
-  // ----------------------------------------------------
-  // ABRIR / CERRAR
-  // ----------------------------------------------------
 
   toggle.addEventListener(
     "click",
@@ -239,24 +195,17 @@ function iniciarMenuMovil() {
           "hidden"
         );
 
-
       menu.classList.toggle(
         "hidden"
       );
-
 
       toggle.setAttribute(
         "aria-expanded",
         String(!estabaAbierto)
       );
-
     }
   );
 
-
-  // ----------------------------------------------------
-  // CERRAR AL HACER CLIC EN UN LINK
-  // ----------------------------------------------------
 
   menu
     .querySelectorAll("a")
@@ -271,22 +220,15 @@ function iniciarMenuMovil() {
               "hidden"
             );
 
-
             toggle.setAttribute(
               "aria-expanded",
               "false"
             );
-
           }
         );
-
       }
     );
 
-
-  // ----------------------------------------------------
-  // CERRAR AL PASAR A DESKTOP
-  // ----------------------------------------------------
 
   window.addEventListener(
     "resize",
@@ -300,25 +242,21 @@ function iniciarMenuMovil() {
           "hidden"
         );
 
-
         toggle.setAttribute(
           "aria-expanded",
           "false"
         );
-
       }
-
     },
     {
       passive: true
     }
   );
-
 }
 
 
 // ======================================================
-// 8. TRACKING GENERAL DE CLICS
+// 8. TRACKING GENERAL
 // ======================================================
 
 function iniciarTrackingClicks() {
@@ -331,7 +269,6 @@ function iniciarTrackingClicks() {
         event.target.closest(
           "a, button"
         );
-
 
       if (!elemento) {
         return;
@@ -359,10 +296,6 @@ function iniciarTrackingClicks() {
         );
 
 
-      // ------------------------------------------------
-      // INTERACCIÓN GENERAL
-      // ------------------------------------------------
-
       window.dataLayer.push({
         event: "interaction",
         event_category: "home",
@@ -372,10 +305,6 @@ function iniciarTrackingClicks() {
         description: "-"
       });
 
-
-      // ------------------------------------------------
-      // CLIC EXTERNO
-      // ------------------------------------------------
 
       if (
         elemento.tagName === "A" &&
@@ -405,7 +334,6 @@ function iniciarTrackingClicks() {
               section: section,
               description: url.href
             });
-
           }
 
         } catch (error) {
@@ -414,14 +342,10 @@ function iniciarTrackingClicks() {
             "No se pudo analizar la URL:",
             elemento.href
           );
-
         }
-
       }
-
     }
   );
-
 }
 
 
@@ -436,12 +360,10 @@ function iniciarServicios() {
       "[data-service-tab]"
     );
 
-
   const servicePanels =
     document.querySelectorAll(
       "[data-service-panel]"
     );
-
 
   if (
     !serviceTabs.length ||
@@ -463,15 +385,10 @@ function iniciarServicios() {
               "data-service-tab"
             );
 
-
           if (!target) {
             return;
           }
 
-
-          // --------------------------------------------
-          // DESACTIVAR TABS
-          // --------------------------------------------
 
           serviceTabs.forEach(
             function (item) {
@@ -480,34 +397,13 @@ function iniciarServicios() {
                 "service-tab-active"
               );
 
-
               item.setAttribute(
                 "aria-selected",
                 "false"
               );
-
             }
           );
 
-
-          // --------------------------------------------
-          // ACTIVAR TAB
-          // --------------------------------------------
-
-          tab.classList.add(
-            "service-tab-active"
-          );
-
-
-          tab.setAttribute(
-            "aria-selected",
-            "true"
-          );
-
-
-          // --------------------------------------------
-          // OCULTAR PANELES
-          // --------------------------------------------
 
           servicePanels.forEach(
             function (panel) {
@@ -515,14 +411,19 @@ function iniciarServicios() {
               panel.classList.add(
                 "hidden"
               );
-
             }
           );
 
 
-          // --------------------------------------------
-          // MOSTRAR PANEL SELECCIONADO
-          // --------------------------------------------
+          tab.classList.add(
+            "service-tab-active"
+          );
+
+          tab.setAttribute(
+            "aria-selected",
+            "true"
+          );
+
 
           const activePanel =
             document.querySelector(
@@ -535,13 +436,8 @@ function iniciarServicios() {
             activePanel.classList.remove(
               "hidden"
             );
-
           }
 
-
-          // --------------------------------------------
-          // TRACKING
-          // --------------------------------------------
 
           window.dataLayer.push({
             event: "service_category_view",
@@ -552,18 +448,15 @@ function iniciarServicios() {
             description:
               "Cambio de categoría de servicios"
           });
-
         }
       );
-
     }
   );
-
 }
 
 
 // ======================================================
-// 10. FORMULARIO DE CONTACTO
+// 10. FORMULARIO CONTACTO
 // ======================================================
 
 function iniciarFormularioContacto() {
@@ -573,24 +466,17 @@ function iniciarFormularioContacto() {
       "formulario-contacto"
     );
 
-
   const toastExito =
     document.getElementById(
       "toast-exito"
     );
 
-
   if (!formulario) {
     return;
   }
 
-
   let toastTimer = null;
 
-
-  // ----------------------------------------------------
-  // MOSTRAR TOAST
-  // ----------------------------------------------------
 
   function mostrarToast(
     mensaje,
@@ -607,7 +493,6 @@ function iniciarFormularioContacto() {
       window.clearTimeout(
         toastTimer
       );
-
     }
 
 
@@ -645,7 +530,6 @@ function iniciarFormularioContacto() {
         "border-green-300",
         "text-green-800"
       );
-
     }
 
 
@@ -656,17 +540,11 @@ function iniciarFormularioContacto() {
           toastExito.classList.add(
             "hidden"
           );
-
         },
         4000
       );
-
   }
 
-
-  // ----------------------------------------------------
-  // ENVÍO
-  // ----------------------------------------------------
 
   formulario.addEventListener(
     "submit",
@@ -712,14 +590,9 @@ function iniciarFormularioContacto() {
 
       try {
 
-        // ----------------------------------------------
-        // ESTADO ENVIANDO
-        // ----------------------------------------------
-
         if (boton) {
 
           boton.disabled = true;
-
 
           boton.innerHTML = `
             <i
@@ -729,13 +602,8 @@ function iniciarFormularioContacto() {
 
             Enviando...
           `;
-
         }
 
-
-        // ----------------------------------------------
-        // FORMSPREE
-        // ----------------------------------------------
 
         const respuesta =
           await fetch(
@@ -751,20 +619,13 @@ function iniciarFormularioContacto() {
           );
 
 
-        if (
-          !respuesta.ok
-        ) {
+        if (!respuesta.ok) {
 
           throw new Error(
             `Formspree respondió HTTP ${respuesta.status}`
           );
-
         }
 
-
-        // ----------------------------------------------
-        // TRACKING
-        // ----------------------------------------------
 
         window.dataLayer.push({
           event: "form_submitted",
@@ -781,27 +642,7 @@ function iniciarFormularioContacto() {
         });
 
 
-        // ----------------------------------------------
-        // RESET
-        // ----------------------------------------------
-
         formulario.reset();
-
-
-        // Volvemos a dejar seleccionada
-        // la opción Llamada.
-
-        const llamada =
-          formulario.querySelector(
-            'input[name="preferencia_contacto"][value="Llamada"]'
-          );
-
-
-        if (llamada) {
-
-          llamada.checked = true;
-
-        }
 
 
         mostrarToast(
@@ -830,14 +671,10 @@ function iniciarFormularioContacto() {
 
           boton.innerHTML =
             textoOriginal;
-
         }
-
       }
-
     }
   );
-
 }
 
 
@@ -865,7 +702,6 @@ function iniciarScrollDepth() {
       scrollTicking = false;
 
       return;
-
     }
 
 
@@ -905,43 +741,31 @@ function iniciarScrollDepth() {
           "-";
 
 
-        if (
-          nivel === 25
-        ) {
+        if (nivel === 25) {
 
           descripcion =
             "inicio de desplazamiento";
-
         }
 
 
-        if (
-          nivel === 50
-        ) {
+        if (nivel === 50) {
 
           descripcion =
             "mitad de página";
-
         }
 
 
-        if (
-          nivel === 75
-        ) {
+        if (nivel === 75) {
 
           descripcion =
             "casi al final";
-
         }
 
 
-        if (
-          nivel === 100
-        ) {
+        if (nivel === 100) {
 
           descripcion =
             "llegó al footer";
-
         }
 
 
@@ -959,13 +783,11 @@ function iniciarScrollDepth() {
           description:
             descripcion
         });
-
       }
     );
 
 
     scrollTicking = false;
-
   }
 
 
@@ -973,9 +795,7 @@ function iniciarScrollDepth() {
     "scroll",
     function () {
 
-      if (
-        scrollTicking
-      ) {
+      if (scrollTicking) {
         return;
       }
 
@@ -986,13 +806,11 @@ function iniciarScrollDepth() {
       window.requestAnimationFrame(
         revisarScrollDepth
       );
-
     },
     {
       passive: true
     }
   );
-
 }
 
 
@@ -1002,12 +820,11 @@ function iniciarScrollDepth() {
 
 function iniciarTiempoEnSitio() {
 
-  const tiempos =
-    [
-      30,
-      60,
-      120
-    ];
+  const tiempos = [
+    30,
+    60,
+    120
+  ];
 
 
   tiempos.forEach(
@@ -1025,31 +842,21 @@ function iniciarTiempoEnSitio() {
             section: "-",
             description: "-"
           });
-
         },
         segundos * 1000
       );
-
     }
   );
-
 }
 
 
 // ======================================================
-// 13. EQUIPO ESCALA
+// 13. CARRUSEL EQUIPO
 // ======================================================
-
-
-// ------------------------------------------------------
-// DETENER AUTOPLAY
-// ------------------------------------------------------
 
 function detenerAutoplayEquipo() {
 
-  if (
-    !teamCarruselIntervalo
-  ) {
+  if (!teamCarruselIntervalo) {
     return;
   }
 
@@ -1061,13 +868,8 @@ function detenerAutoplayEquipo() {
 
   teamCarruselIntervalo =
     null;
-
 }
 
-
-// ------------------------------------------------------
-// OBTENER DISTANCIA DE MOVIMIENTO
-// ------------------------------------------------------
 
 function obtenerPasoCarruselEquipo() {
 
@@ -1113,13 +915,8 @@ function obtenerPasoCarruselEquipo() {
       .width +
     gap
   );
-
 }
 
-
-// ------------------------------------------------------
-// MOVER CARRUSEL
-// ------------------------------------------------------
 
 function moverCarruselEquipo(
   direccion
@@ -1140,9 +937,7 @@ function moverCarruselEquipo(
     obtenerPasoCarruselEquipo();
 
 
-  if (
-    paso <= 0
-  ) {
+  if (paso <= 0) {
     return;
   }
 
@@ -1150,22 +945,15 @@ function moverCarruselEquipo(
   const maxScroll =
     Math.max(
       0,
-
       carrusel.scrollWidth -
       carrusel.clientWidth
     );
 
 
-  if (
-    maxScroll <= 5
-  ) {
+  if (maxScroll <= 5) {
     return;
   }
 
-
-  // ----------------------------------------------------
-  // FINAL → PRINCIPIO
-  // ----------------------------------------------------
 
   if (
     direccion > 0 &&
@@ -1178,15 +966,9 @@ function moverCarruselEquipo(
       behavior: "smooth"
     });
 
-
     return;
-
   }
 
-
-  // ----------------------------------------------------
-  // PRINCIPIO → FINAL
-  // ----------------------------------------------------
 
   if (
     direccion < 0 &&
@@ -1198,15 +980,9 @@ function moverCarruselEquipo(
       behavior: "smooth"
     });
 
-
     return;
-
   }
 
-
-  // ----------------------------------------------------
-  // MOVIMIENTO NORMAL
-  // ----------------------------------------------------
 
   carrusel.scrollBy({
     left:
@@ -1215,13 +991,8 @@ function moverCarruselEquipo(
     behavior:
       "smooth"
   });
-
 }
 
-
-// ------------------------------------------------------
-// INICIAR AUTOPLAY
-// ------------------------------------------------------
 
 function iniciarAutoplayEquipo() {
 
@@ -1245,9 +1016,7 @@ function iniciarAutoplayEquipo() {
     );
 
 
-  if (
-    cards.length <= 1
-  ) {
+  if (cards.length <= 1) {
     return;
   }
 
@@ -1257,9 +1026,7 @@ function iniciarAutoplayEquipo() {
     carrusel.clientWidth;
 
 
-  if (
-    maxScroll <= 5
-  ) {
+  if (maxScroll <= 5) {
     return;
   }
 
@@ -1268,27 +1035,18 @@ function iniciarAutoplayEquipo() {
     window.setInterval(
       function () {
 
-        if (
-          document.hidden
-        ) {
+        if (document.hidden) {
           return;
         }
-
 
         moverCarruselEquipo(
           1
         );
-
       },
       TEAM_AUTOPLAY_MS
     );
-
 }
 
-
-// ------------------------------------------------------
-// INICIALIZAR CARRUSEL
-// ------------------------------------------------------
 
 function iniciarCarruselEquipo() {
 
@@ -1321,10 +1079,6 @@ function iniciarCarruselEquipo() {
   }
 
 
-  // ----------------------------------------------------
-  // ANTERIOR
-  // ----------------------------------------------------
-
   if (anterior) {
 
     anterior.addEventListener(
@@ -1335,18 +1089,11 @@ function iniciarCarruselEquipo() {
           -1
         );
 
-
         iniciarAutoplayEquipo();
-
       }
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // SIGUIENTE
-  // ----------------------------------------------------
 
   if (siguiente) {
 
@@ -1358,18 +1105,11 @@ function iniciarCarruselEquipo() {
           1
         );
 
-
         iniciarAutoplayEquipo();
-
       }
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // DETENER AL INTERACTUAR
-  // ----------------------------------------------------
 
   if (shell) {
 
@@ -1402,42 +1142,28 @@ function iniciarCarruselEquipo() {
           iniciarAutoplayEquipo,
           1000
         );
-
       },
       {
         passive: true
       }
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // INICIO
-  // ----------------------------------------------------
 
   window.setTimeout(
     iniciarAutoplayEquipo,
     700
   );
-
 }
 
 
 // ======================================================
-// 14. RADAR INMOBILIARIO
+// 14. RADAR — HELPERS
 // ======================================================
-
-
-// ------------------------------------------------------
-// NORMALIZAR TEXTO
-// ------------------------------------------------------
 
 function normalizarRadar(texto) {
 
-  return String(
-    texto || ""
-  )
+  return String(texto || "")
     .normalize("NFD")
     .replace(
       /[\u0300-\u036f]/g,
@@ -1449,19 +1175,12 @@ function normalizarRadar(texto) {
       " "
     )
     .trim();
-
 }
 
 
-// ------------------------------------------------------
-// ESCAPAR HTML
-// ------------------------------------------------------
-
 function escaparHTMLRadar(texto) {
 
-  return String(
-    texto || ""
-  )
+  return String(texto || "")
     .replace(
       /&/g,
       "&amp;"
@@ -1482,15 +1201,139 @@ function escaparHTMLRadar(texto) {
       /'/g,
       "&#039;"
     );
+}
 
+
+function escaparAtributoRadar(texto) {
+
+  return escaparHTMLRadar(
+    texto
+  );
+}
+
+
+function esValorActivoRadar(valor) {
+
+  if (
+    valor === undefined ||
+    valor === null ||
+    valor === ""
+  ) {
+    return true;
+  }
+
+
+  if (valor === true) {
+    return true;
+  }
+
+
+  if (valor === false) {
+    return false;
+  }
+
+
+  const normalizado =
+    normalizarRadar(
+      valor
+    );
+
+
+  return ![
+    "false",
+    "0",
+    "no",
+    "inactivo"
+  ].includes(
+    normalizado
+  );
 }
 
 
 // ------------------------------------------------------
-// FORMATEAR PEN
+// SANITIZAR ICONOS FONT AWESOME DEL JSON
 // ------------------------------------------------------
 
-function formatearPENRadar(valor) {
+function sanitizarIconoRadar(icono) {
+
+  const valor =
+    String(icono || "")
+      .trim();
+
+
+  if (
+    !valor ||
+    !/^[a-z0-9\-\s]+$/i.test(valor)
+  ) {
+
+    return "fa-circle";
+  }
+
+
+  const clases =
+    valor
+      .split(/\s+/)
+      .filter(Boolean)
+      .filter(
+        function (clase) {
+
+          return (
+            clase === "fa-solid" ||
+            clase === "fa-regular" ||
+            clase.startsWith("fa-")
+          );
+        }
+      );
+
+
+  if (
+    !clases.some(
+      function (clase) {
+
+        return (
+          clase === "fa-solid" ||
+          clase === "fa-regular"
+        );
+      }
+    )
+  ) {
+
+    clases.unshift(
+      "fa-solid"
+    );
+  }
+
+
+  if (
+    !clases.some(
+      function (clase) {
+
+        return (
+          clase.startsWith("fa-") &&
+          clase !== "fa-solid" &&
+          clase !== "fa-regular"
+        );
+      }
+    )
+  ) {
+
+    clases.push(
+      "fa-circle"
+    );
+  }
+
+
+  return clases.join(" ");
+}
+
+
+// ======================================================
+// 15. RADAR — PRECIOS
+// ======================================================
+
+function formatearPENRadar(
+  valor
+) {
 
   const numero =
     Number(valor);
@@ -1512,15 +1355,12 @@ function formatearPENRadar(valor) {
       maximumFractionDigits: 0
     }
   ).format(numero);
-
 }
 
 
-// ------------------------------------------------------
-// FORMATEAR USD
-// ------------------------------------------------------
-
-function formatearUSDRadar(valor) {
+function formatearUSDRadar(
+  valor
+) {
 
   const numero =
     Number(valor);
@@ -1543,13 +1383,8 @@ function formatearUSDRadar(valor) {
       }
     )
   );
-
 }
 
-
-// ------------------------------------------------------
-// PRECIO
-// ------------------------------------------------------
 
 function formatearPrecioRadar(
   proyecto
@@ -1572,7 +1407,6 @@ function formatearPrecioRadar(
         precioPEN
       )
     );
-
   }
 
 
@@ -1593,40 +1427,432 @@ function formatearPrecioRadar(
         precioUSD
       )
     );
-
   }
 
 
   return "";
-
 }
 
 
-// ------------------------------------------------------
-// CARGAR JSON
-// ------------------------------------------------------
+// ======================================================
+// 16. RADAR — PROYECTOS ESCALA
+// ======================================================
 
-async function cargarProyectosRadar() {
+function obtenerProyectoEscala(
+  proyecto
+) {
+
+  if (!proyecto) {
+    return null;
+  }
+
+
+  const idProyecto =
+    normalizarRadar(
+      proyecto.id
+    );
+
+
+  const nombreProyecto =
+    normalizarRadar(
+      proyecto.proyecto
+    );
+
+
+  const inmobiliariaProyecto =
+    normalizarRadar(
+      proyecto.inmobiliaria
+    );
+
+
+  return (
+    radarProyectosEscala.find(
+      function (destacado) {
+
+        const idDestacado =
+          normalizarRadar(
+            destacado.id
+          );
+
+
+        const nombreDestacado =
+          normalizarRadar(
+            destacado.proyecto
+          );
+
+
+        const inmobiliariaDestacada =
+          normalizarRadar(
+            destacado.inmobiliaria
+          );
+
+
+        // ----------------------------------------------
+        // PRIORIDAD 1: ID EXACTO
+        // ----------------------------------------------
+
+        if (
+          idProyecto &&
+          idDestacado &&
+          idProyecto === idDestacado
+        ) {
+          return true;
+        }
+
+
+        // ----------------------------------------------
+        // PRIORIDAD 2: NOMBRE DE PROYECTO
+        // ----------------------------------------------
+
+        if (
+          nombreProyecto &&
+          nombreDestacado &&
+          nombreProyecto ===
+            nombreDestacado
+        ) {
+
+          if (
+            inmobiliariaProyecto &&
+            inmobiliariaDestacada
+          ) {
+
+            return (
+              inmobiliariaProyecto ===
+              inmobiliariaDestacada
+            );
+          }
+
+
+          return true;
+        }
+
+
+        return false;
+      }
+    ) ||
+    null
+  );
+}
+
+
+function esProyectoClienteEscala(
+  proyecto
+) {
+
+  return Boolean(
+    obtenerProyectoEscala(
+      proyecto
+    )
+  );
+}
+
+
+function obtenerUrlProyectoClienteEscala(
+  proyecto
+) {
+
+  const proyectoEscala =
+    obtenerProyectoEscala(
+      proyecto
+    );
+
+
+  const url =
+    (
+      proyectoEscala &&
+      (
+        proyectoEscala.url ||
+        proyectoEscala.urlProyecto ||
+        proyectoEscala.enlace
+      )
+    ) ||
+    proyecto.url ||
+    proyecto.urlProyecto ||
+    proyecto.enlace ||
+    "";
+
+
+  return String(
+    url
+  ).trim();
+}
+
+
+// ======================================================
+// 17. UNIFICAR RADAR GENERAL + ESCALA
+// ======================================================
+
+function obtenerClaveProyectoRadar(
+  proyecto
+) {
+
+  const id =
+    normalizarRadar(
+      proyecto.id
+    );
+
+
+  if (id) {
+
+    return `id:${id}`;
+  }
+
+
+  const nombre =
+    normalizarRadar(
+      proyecto.proyecto
+    );
+
+
+  const inmobiliaria =
+    normalizarRadar(
+      proyecto.inmobiliaria
+    );
+
+
+  return (
+    `proyecto:${nombre}|${inmobiliaria}`
+  );
+}
+
+
+function buscarProyectoEquivalenteEnMapa(
+  mapa,
+  proyectoBuscado
+) {
+
+  const idBuscado =
+    normalizarRadar(
+      proyectoBuscado.id
+    );
+
+
+  const nombreBuscado =
+    normalizarRadar(
+      proyectoBuscado.proyecto
+    );
+
+
+  const inmobiliariaBuscada =
+    normalizarRadar(
+      proyectoBuscado.inmobiliaria
+    );
+
+
+  for (
+    const [clave, proyecto]
+    of mapa.entries()
+  ) {
+
+    const idProyecto =
+      normalizarRadar(
+        proyecto.id
+      );
+
+
+    const nombreProyecto =
+      normalizarRadar(
+        proyecto.proyecto
+      );
+
+
+    const inmobiliariaProyecto =
+      normalizarRadar(
+        proyecto.inmobiliaria
+      );
+
+
+    if (
+      idBuscado &&
+      idProyecto &&
+      idBuscado === idProyecto
+    ) {
+
+      return {
+        clave,
+        proyecto
+      };
+    }
+
+
+    if (
+      nombreBuscado &&
+      nombreProyecto &&
+      nombreBuscado ===
+        nombreProyecto
+    ) {
+
+      if (
+        inmobiliariaBuscada &&
+        inmobiliariaProyecto &&
+        inmobiliariaBuscada !==
+          inmobiliariaProyecto
+      ) {
+
+        continue;
+      }
+
+
+      return {
+        clave,
+        proyecto
+      };
+    }
+  }
+
+
+  return null;
+}
+
+
+function construirBaseRadar() {
+
+  const mapa =
+    new Map();
+
+
+  // ----------------------------------------------------
+  // PRIMERO: RADAR GENERAL
+  // ----------------------------------------------------
+
+  radarProyectos.forEach(
+    function (proyecto) {
+
+      mapa.set(
+        obtenerClaveProyectoRadar(
+          proyecto
+        ),
+        {
+          ...proyecto,
+          clienteEscala: false
+        }
+      );
+    }
+  );
+
+
+  // ----------------------------------------------------
+  // SEGUNDO: PROYECTOS ESCALA
+  // ----------------------------------------------------
+
+  radarProyectosEscala.forEach(
+    function (proyectoEscala) {
+
+      const coincidencia =
+        buscarProyectoEquivalenteEnMapa(
+          mapa,
+          proyectoEscala
+        );
+
+
+      if (coincidencia) {
+
+        const datosEscala =
+          Object.fromEntries(
+            Object.entries(
+              proyectoEscala
+            ).filter(
+              function ([, valor]) {
+
+                return (
+                  valor !== undefined &&
+                  valor !== null &&
+                  valor !== ""
+                );
+              }
+            )
+          );
+
+
+        mapa.set(
+          coincidencia.clave,
+          {
+            ...coincidencia.proyecto,
+            ...datosEscala,
+            clienteEscala: true
+          }
+        );
+
+
+        return;
+      }
+
+
+      const nuevoProyecto = {
+        ...proyectoEscala,
+        clienteEscala: true
+      };
+
+
+      mapa.set(
+        obtenerClaveProyectoRadar(
+          nuevoProyecto
+        ),
+        nuevoProyecto
+      );
+    }
+  );
+
+
+  radarProyectos =
+    Array.from(
+      mapa.values()
+    );
+}
+
+
+function ordenarResultadosRadar(
+  resultados
+) {
+
+  return [
+    ...resultados
+  ].sort(
+    function (a, b) {
+
+      const aCliente =
+        esProyectoClienteEscala(a)
+          ? 1
+          : 0;
+
+
+      const bCliente =
+        esProyectoClienteEscala(b)
+          ? 1
+          : 0;
+
+
+      return (
+        bCliente -
+        aCliente
+      );
+    }
+  );
+}
+
+
+// ======================================================
+// 18. CARGAR PROYECTOS ESCALA
+// ======================================================
+
+async function cargarProyectosEscalaRadar() {
 
   try {
 
     const response =
       await fetch(
-        "/data/proyectos.json",
+        RADAR_ESCALA_DATA_URL,
         {
           cache: "no-cache"
         }
       );
 
 
-    if (
-      !response.ok
-    ) {
+    if (!response.ok) {
 
       throw new Error(
         `HTTP ${response.status}`
       );
-
     }
 
 
@@ -1634,14 +1860,1155 @@ async function cargarProyectosRadar() {
       await response.json();
 
 
-    if (
-      !Array.isArray(data)
-    ) {
+    if (!Array.isArray(data)) {
+
+      throw new Error(
+        "proyectos-escala.json no contiene un array."
+      );
+    }
+
+
+    radarProyectosEscala =
+      data.filter(
+        function (proyecto) {
+
+          return (
+            proyecto &&
+            proyecto.proyecto &&
+            esValorActivoRadar(
+              proyecto.activo
+            )
+          );
+        }
+      );
+
+
+    console.log(
+      `⭐ Proyectos Escala cargados: ${radarProyectosEscala.length}`
+    );
+
+  } catch (error) {
+
+    radarProyectosEscala = [];
+
+
+    console.error(
+      "❌ Error cargando proyectos-escala.json:",
+      error
+    );
+
+
+    ocultarBloqueProyectosEscala();
+  }
+}
+
+
+// ======================================================
+// 19. RENDER PROYECTOS ESCALA
+// ======================================================
+
+function renderizarProyectosEscala() {
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  if (
+    !radarProyectosEscala.length
+  ) {
+
+    track.innerHTML = "";
+
+    ocultarBloqueProyectosEscala();
+
+    actualizarControlesRadarFeatured();
+
+    return;
+  }
+
+
+  mostrarBloqueProyectosEscala();
+
+
+  track.innerHTML =
+    radarProyectosEscala
+      .map(
+        function (
+          proyecto,
+          index
+        ) {
+
+          return crearCardProyectoEscala(
+            proyecto,
+            index
+          );
+        }
+      )
+      .join("");
+
+
+  track.scrollLeft =
+    0;
+
+
+  actualizarControlesRadarFeatured();
+
+
+  window.setTimeout(
+    iniciarAutoplayRadarFeatured,
+    350
+  );
+}
+
+
+// ======================================================
+// 20. CARD PROYECTO ESCALA
+// ======================================================
+
+function crearCardProyectoEscala(
+  proyecto,
+  index
+) {
+
+  const nombre =
+    proyecto.proyecto ||
+    "Proyecto inmobiliario";
+
+
+  const inmobiliaria =
+    proyecto.inmobiliaria ||
+    "Cliente Escala";
+
+
+  const distrito =
+    proyecto.distrito ||
+    proyecto.zona ||
+    "";
+
+
+  const tipo =
+    proyecto.tipo ||
+    "";
+
+
+  const imagen =
+    String(
+      proyecto.imagen ||
+      ""
+    ).trim();
+
+
+  const url =
+    String(
+      proyecto.url ||
+      proyecto.urlProyecto ||
+      proyecto.enlace ||
+      ""
+    ).trim();
+
+
+  const descripcion =
+    proyecto.descripcion ||
+    "";
+
+
+  const etiqueta =
+    proyecto.etiqueta ||
+    (
+      proyecto.destacado === true
+        ? "Cliente destacado"
+        : ""
+    );
+
+
+
+  // ----------------------------------------------------
+  // CARACTERÍSTICAS
+  //
+  // Si vienen en JSON, usamos esas.
+  // Si todavía no existen, construimos únicamente
+  // información derivada de campos que ya tenemos.
+  // ----------------------------------------------------
+
+  let caracteristicas =
+    Array.isArray(
+      proyecto.caracteristicas
+    )
+      ? proyecto.caracteristicas
+          .filter(
+            function (item) {
+
+              return (
+                item &&
+                (
+                  item.titulo ||
+                  item.detalle
+                )
+              );
+            }
+          )
+          .slice(
+            0,
+            3
+          )
+      : [];
+
+
+  if (
+    !caracteristicas.length
+  ) {
+
+    caracteristicas = [];
+
+
+    if (tipo) {
+
+      caracteristicas.push({
+        icono:
+          "fa-building",
+
+        titulo:
+          tipo,
+
+        detalle:
+          "Proyecto inmobiliario"
+      });
+    }
+
+
+    if (distrito) {
+
+      caracteristicas.push({
+        icono:
+          "fa-location-dot",
+
+        titulo:
+          "Ubicación",
+
+        detalle:
+          distrito
+      });
+    }
+
+
+    caracteristicas.push({
+      icono:
+        "fa-star",
+
+      titulo:
+        "Proyecto destacado",
+
+      detalle:
+        "Comercializado por Escala"
+    });
+  }
+
+
+  // ----------------------------------------------------
+  // IMAGEN
+  // ----------------------------------------------------
+
+  const contenidoMedia =
+    imagen
+      ? `
+          <img
+            src="${escaparAtributoRadar(
+              imagen
+            )}"
+            alt="${escaparAtributoRadar(
+              nombre
+            )} - ${escaparAtributoRadar(
+              inmobiliaria
+            )}"
+            loading="${
+              index === 0
+                ? "eager"
+                : "lazy"
+            }"
+          >
+        `
+      : `
+          <div
+            class="w-full h-full min-h-[250px] flex items-center justify-center text-blue-700"
+            aria-hidden="true"
+          >
+
+            <i
+              class="fa-solid fa-building text-4xl"
+            ></i>
+
+          </div>
+        `;
+
+
+  // ----------------------------------------------------
+  // UBICACIÓN SOBRE FOTO
+  // ----------------------------------------------------
+
+  const ubicacionMedia =
+    distrito
+      ? `
+          <span
+            class="radar-featured-location"
+          >
+
+            <i
+              class="fa-solid fa-location-dot"
+              aria-hidden="true"
+            ></i>
+
+            ${escaparHTMLRadar(
+              distrito
+            )}
+
+          </span>
+        `
+      : "";
+
+
+  // ----------------------------------------------------
+  // BADGE SOBRE IMAGEN
+  // ----------------------------------------------------
+
+  const badgeImagen =
+    etiqueta
+      ? `
+          <span
+            class="radar-featured-badge"
+          >
+
+            <i
+              class="fa-solid fa-star"
+              aria-hidden="true"
+            ></i>
+
+            ${escaparHTMLRadar(
+              etiqueta
+            )}
+
+          </span>
+        `
+      : "";
+
+
+  // ----------------------------------------------------
+  // ETIQUETA PRINCIPAL
+  // ----------------------------------------------------
+
+  const highlight =
+    etiqueta
+      ? `
+          <span
+            class="radar-featured-highlight"
+          >
+
+            <i
+              class="fa-solid fa-star"
+              aria-hidden="true"
+            ></i>
+
+            ${escaparHTMLRadar(
+              etiqueta
+            )}
+
+          </span>
+        `
+      : "";
+
+
+  // ----------------------------------------------------
+  // CARACTERÍSTICAS
+  // ----------------------------------------------------
+
+  const featuresHTML =
+    caracteristicas.length
+      ? `
+          <div
+            class="radar-featured-features"
+            aria-label="Características del proyecto"
+          >
+
+            ${caracteristicas
+              .map(
+                function (
+                  item
+                ) {
+
+                  const icono =
+                    sanitizarIconoRadar(
+                      item.icono ||
+                      "fa-circle"
+                    );
+
+
+                  const titulo =
+                    item.titulo ||
+                    "";
+
+
+                  const detalle =
+                    item.detalle ||
+                    "";
+
+
+                  return `
+                    <div
+                      class="radar-featured-feature"
+                    >
+
+                      <div
+                        class="radar-featured-feature-icon"
+                        aria-hidden="true"
+                      >
+
+                        <i
+                          class="${escaparAtributoRadar(
+                            icono
+                          )}"
+                        ></i>
+
+                      </div>
+
+
+                      <div
+                        class="radar-featured-feature-copy"
+                      >
+
+                        ${
+                          titulo
+                            ? `
+                              <strong
+                                class="radar-featured-feature-title"
+                              >
+                                ${escaparHTMLRadar(
+                                  titulo
+                                )}
+                              </strong>
+                            `
+                            : ""
+                        }
+
+
+                        ${
+                          detalle
+                            ? `
+                              <span
+                                class="radar-featured-feature-detail"
+                              >
+                                ${escaparHTMLRadar(
+                                  detalle
+                                )}
+                              </span>
+                            `
+                            : ""
+                        }
+
+                      </div>
+
+                    </div>
+                  `;
+                }
+              )
+              .join("")}
+
+          </div>
+        `
+      : "";
+
+
+  // ----------------------------------------------------
+  // BOTÓN
+  // ----------------------------------------------------
+
+  const accion =
+    url
+      ? `
+          <div
+            class="radar-featured-actions"
+          >
+
+            <span
+              class="radar-featured-action"
+            >
+
+              <span>
+                Ver proyecto
+              </span>
+
+              <i
+                class="fa-solid fa-arrow-right"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+          </div>
+        `
+      : "";
+
+
+  // ----------------------------------------------------
+  // CONTENIDO COMPLETO
+  // ----------------------------------------------------
+
+  const contenido = `
+
+    <!-- ================================================
+         1. IMAGEN
+    ================================================= -->
+
+    <div
+      class="radar-featured-media"
+    >
+
+      ${contenidoMedia}
+
+      ${badgeImagen}
+
+      ${ubicacionMedia}
+
+    </div>
+
+
+    <!-- ================================================
+         2. INFORMACIÓN PRINCIPAL
+    ================================================= -->
+
+    <div
+  class="radar-featured-content"
+>
+
+  <span
+    class="radar-featured-highlight"
+  >
+
+    <i
+      class="fa-solid fa-star"
+      aria-hidden="true"
+    ></i>
+
+    Cliente Escala
+
+  </span>
+
+
+  <h4
+    class="radar-featured-name"
+  >
+    ${escaparHTMLRadar(
+      nombre
+    )}
+  </h4>
+
+
+  <span
+    class="radar-featured-company"
+  >
+    ${escaparHTMLRadar(
+      inmobiliaria
+    )}
+  </span>
+
+
+  ${
+    descripcion
+      ? `
+        <p
+          class="radar-featured-copy"
+        >
+          ${escaparHTMLRadar(
+            descripcion
+          )}
+        </p>
+      `
+      : ""
+  }
+
+
+  ${accion}
+
+</div>
+
+
+    <!-- ================================================
+         3. CARACTERÍSTICAS
+    ================================================= -->
+
+    ${featuresHTML}
+  `;
+
+
+  // ----------------------------------------------------
+  // CON URL:
+  // TODA LA FICHA ES CLICKEABLE
+  // ----------------------------------------------------
+
+  if (url) {
+
+    return `
+      <article
+        class="radar-featured-card"
+        data-featured-project="true"
+        data-featured-index="${index}"
+        data-featured-project-id="${escaparAtributoRadar(
+          proyecto.id ||
+          ""
+        )}"
+      >
+
+        <a
+          href="${escaparAtributoRadar(
+            url
+          )}"
+          class="radar-featured-link"
+          aria-label="Ver proyecto ${escaparAtributoRadar(
+            nombre
+          )}"
+          data-featured-project-link="true"
+          data-featured-project-name="${escaparAtributoRadar(
+            nombre
+          )}"
+        >
+
+          ${contenido}
+
+        </a>
+
+      </article>
+    `;
+  }
+
+
+  // ----------------------------------------------------
+  // SIN URL
+  // ----------------------------------------------------
+
+  return `
+    <article
+      class="radar-featured-card"
+      data-featured-project="true"
+      data-featured-index="${index}"
+      data-featured-project-id="${escaparAtributoRadar(
+        proyecto.id ||
+        ""
+      )}"
+    >
+
+      <div
+        class="radar-featured-link"
+        aria-label="${escaparAtributoRadar(
+          nombre
+        )}"
+      >
+
+        ${contenido}
+
+      </div>
+
+    </article>
+  `;
+}
+
+
+// ======================================================
+// 21. MOSTRAR / OCULTAR PROYECTOS ESCALA
+// ======================================================
+
+function ocultarBloqueProyectosEscala() {
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  const shell =
+    track.closest(
+      ".radar-featured-shell"
+    );
+
+
+  if (shell) {
+
+    shell.classList.add(
+      "hidden"
+    );
+  }
+}
+
+
+function mostrarBloqueProyectosEscala() {
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  const shell =
+    track.closest(
+      ".radar-featured-shell"
+    );
+
+
+  if (shell) {
+
+    shell.classList.remove(
+      "hidden"
+    );
+  }
+}
+
+
+// ======================================================
+// 22. CARRUSEL PROYECTOS ESCALA
+// ======================================================
+
+function actualizarControlesRadarFeatured() {
+
+  const anterior =
+    document.getElementById(
+      "radar-featured-prev"
+    );
+
+
+  const siguiente =
+    document.getElementById(
+      "radar-featured-next"
+    );
+
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  const cantidad =
+    track.querySelectorAll(
+      ".radar-featured-card"
+    ).length;
+
+
+  const ocultar =
+    cantidad <= 1;
+
+
+  if (anterior) {
+
+    anterior.classList.toggle(
+      "hidden",
+      ocultar
+    );
+  }
+
+
+  if (siguiente) {
+
+    siguiente.classList.toggle(
+      "hidden",
+      ocultar
+    );
+  }
+}
+
+
+function detenerAutoplayRadarFeatured() {
+
+  if (!radarFeaturedIntervalo) {
+    return;
+  }
+
+
+  window.clearInterval(
+    radarFeaturedIntervalo
+  );
+
+
+  radarFeaturedIntervalo =
+    null;
+}
+
+
+function obtenerPasoRadarFeatured() {
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return 0;
+  }
+
+
+  const card =
+    track.querySelector(
+      ".radar-featured-card"
+    );
+
+
+  if (!card) {
+    return 0;
+  }
+
+
+  const estilos =
+    window.getComputedStyle(
+      track
+    );
+
+
+  const gap =
+    parseFloat(
+      estilos.columnGap ||
+      estilos.gap ||
+      "13"
+    ) || 13;
+
+
+  return (
+    card
+      .getBoundingClientRect()
+      .width +
+    gap
+  );
+}
+
+
+function moverRadarFeatured(
+  direccion
+) {
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  const paso =
+    obtenerPasoRadarFeatured();
+
+
+  if (paso <= 0) {
+    return;
+  }
+
+
+  const maxScroll =
+    Math.max(
+      0,
+      track.scrollWidth -
+      track.clientWidth
+    );
+
+
+  if (maxScroll <= 5) {
+    return;
+  }
+
+
+  if (
+    direccion > 0 &&
+    track.scrollLeft >=
+      maxScroll - 10
+  ) {
+
+    track.scrollTo({
+      left: 0,
+      behavior: "smooth"
+    });
+
+    return;
+  }
+
+
+  if (
+    direccion < 0 &&
+    track.scrollLeft <= 10
+  ) {
+
+    track.scrollTo({
+      left: maxScroll,
+      behavior: "smooth"
+    });
+
+    return;
+  }
+
+
+  track.scrollBy({
+    left:
+      direccion * paso,
+
+    behavior:
+      "smooth"
+  });
+}
+
+
+function iniciarAutoplayRadarFeatured() {
+
+  detenerAutoplayRadarFeatured();
+
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  const cards =
+    track.querySelectorAll(
+      ".radar-featured-card"
+    );
+
+
+  if (cards.length <= 1) {
+    return;
+  }
+
+
+  const maxScroll =
+    track.scrollWidth -
+    track.clientWidth;
+
+
+  if (maxScroll <= 5) {
+    return;
+  }
+
+
+  radarFeaturedIntervalo =
+    window.setInterval(
+      function () {
+
+        if (document.hidden) {
+          return;
+        }
+
+
+        moverRadarFeatured(
+          1
+        );
+      },
+      RADAR_FEATURED_AUTOPLAY_MS
+    );
+}
+
+
+function iniciarCarruselRadarFeatured() {
+
+  const track =
+    document.getElementById(
+      "radar-featured-track"
+    );
+
+
+  const anterior =
+    document.getElementById(
+      "radar-featured-prev"
+    );
+
+
+  const siguiente =
+    document.getElementById(
+      "radar-featured-next"
+    );
+
+
+  if (!track) {
+    return;
+  }
+
+
+  if (anterior) {
+
+    anterior.addEventListener(
+      "click",
+      function () {
+
+        moverRadarFeatured(
+          -1
+        );
+
+        iniciarAutoplayRadarFeatured();
+      }
+    );
+  }
+
+
+  if (siguiente) {
+
+    siguiente.addEventListener(
+      "click",
+      function () {
+
+        moverRadarFeatured(
+          1
+        );
+
+        iniciarAutoplayRadarFeatured();
+      }
+    );
+  }
+
+
+  track.addEventListener(
+    "mouseenter",
+    detenerAutoplayRadarFeatured
+  );
+
+
+  track.addEventListener(
+    "mouseleave",
+    iniciarAutoplayRadarFeatured
+  );
+
+
+  track.addEventListener(
+    "touchstart",
+    detenerAutoplayRadarFeatured,
+    {
+      passive: true
+    }
+  );
+
+
+  track.addEventListener(
+    "touchend",
+    function () {
+
+      window.setTimeout(
+        iniciarAutoplayRadarFeatured,
+        1000
+      );
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  // ----------------------------------------------------
+  // TRACKING PROYECTOS ESCALA
+  // ----------------------------------------------------
+
+  track.addEventListener(
+    "click",
+    function (event) {
+
+      const link =
+        event.target.closest(
+          "[data-featured-project-link]"
+        );
+
+
+      if (!link) {
+        return;
+      }
+
+
+      const proyecto =
+        link.getAttribute(
+          "data-featured-project-name"
+        ) ||
+        "proyecto-destacado";
+
+
+      window.dataLayer.push({
+        event:
+          "featured_project_click",
+
+        event_category:
+          "radar",
+
+        event_action:
+          "click",
+
+        event_label:
+          formatearTexto(
+            proyecto
+          ),
+
+        section:
+          "radar-inmobiliario",
+
+        description:
+          "Cliente Escala"
+      });
+    }
+  );
+}
+
+
+// ======================================================
+// 23. CARGAR PROYECTOS GENERALES
+// ======================================================
+
+async function cargarProyectosRadar() {
+
+  try {
+
+    const response =
+      await fetch(
+        RADAR_DATA_URL,
+        {
+          cache: "no-cache"
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        `HTTP ${response.status}`
+      );
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (!Array.isArray(data)) {
 
       throw new Error(
         "proyectos.json no contiene un array."
       );
-
     }
 
 
@@ -1653,16 +3020,18 @@ async function cargarProyectosRadar() {
             proyecto &&
             proyecto.proyecto
           );
-
         }
       );
 
 
     console.log(
-      `✅ Radar cargado: ${radarProyectos.length} proyectos`
+      `✅ Radar general cargado: ${radarProyectos.length} proyectos`
     );
 
   } catch (error) {
+
+    radarProyectos = [];
+
 
     console.error(
       "❌ Error cargando proyectos.json:",
@@ -1673,15 +3042,13 @@ async function cargarProyectosRadar() {
     mostrarErrorRadar(
       "No pudimos cargar la información inmobiliaria."
     );
-
   }
-
 }
 
 
-// ------------------------------------------------------
-// PREPARAR RADAR
-// ------------------------------------------------------
+// ======================================================
+// 24. PREPARAR BUSCADOR RADAR
+// ======================================================
 
 function prepararRadar() {
 
@@ -1703,10 +3070,6 @@ function prepararRadar() {
     );
 
 
-  // ----------------------------------------------------
-  // FORMULARIO
-  // ----------------------------------------------------
-
   if (formulario) {
 
     formulario.addEventListener(
@@ -1716,16 +3079,10 @@ function prepararRadar() {
         event.preventDefault();
 
         buscarZonaRadar();
-
       }
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // FILTROS
-  // ----------------------------------------------------
 
   filtros.forEach(
     function (boton) {
@@ -1751,7 +3108,6 @@ function prepararRadar() {
                 "aria-pressed",
                 "false"
               );
-
             }
           );
 
@@ -1772,7 +3128,6 @@ function prepararRadar() {
           ) {
 
             mostrarResultadosRadar();
-
           }
 
 
@@ -1787,17 +3142,11 @@ function prepararRadar() {
             description:
               "Cambio de filtro del radar"
           });
-
         }
       );
-
     }
   );
 
-
-  // ----------------------------------------------------
-  // SUGERENCIAS
-  // ----------------------------------------------------
 
   sugerencias.forEach(
     function (boton) {
@@ -1825,24 +3174,20 @@ function prepararRadar() {
 
             input.value =
               consulta;
-
           }
 
 
           buscarZonaRadar();
-
         }
       );
-
     }
   );
-
 }
 
 
-// ------------------------------------------------------
-// BUSCAR
-// ------------------------------------------------------
+// ======================================================
+// 25. BUSCAR RADAR
+// ======================================================
 
 function buscarZonaRadar() {
 
@@ -1866,20 +3211,16 @@ function buscarZonaRadar() {
     input.focus();
 
     return;
-
   }
 
 
-  if (
-    !radarProyectos.length
-  ) {
+  if (!radarProyectos.length) {
 
     mostrarErrorRadar(
       "La base de proyectos todavía se está cargando. Intenta nuevamente en unos segundos."
     );
 
     return;
-
   }
 
 
@@ -1905,14 +3246,13 @@ function buscarZonaRadar() {
     radarProyectos.filter(
       function (proyecto) {
 
-        const campos =
-          [
-            proyecto.proyecto,
-            proyecto.inmobiliaria,
-            proyecto.distrito,
-            proyecto.zona,
-            proyecto.direccion
-          ];
+        const campos = [
+          proyecto.proyecto,
+          proyecto.inmobiliaria,
+          proyecto.distrito,
+          proyecto.zona,
+          proyecto.direccion
+        ];
 
 
         return campos.some(
@@ -1923,11 +3263,15 @@ function buscarZonaRadar() {
             ).includes(
               consultaNormalizada
             );
-
           }
         );
-
       }
+    );
+
+
+  radarResultados =
+    ordenarResultadosRadar(
+      radarResultados
     );
 
 
@@ -1952,13 +3296,12 @@ function buscarZonaRadar() {
     description:
       `${radarResultados.length} resultados`
   });
-
 }
 
 
-// ------------------------------------------------------
-// FINALIZAR BÚSQUEDA
-// ------------------------------------------------------
+// ======================================================
+// 26. FINALIZAR BÚSQUEDA
+// ======================================================
 
 function finalizarBusquedaRadar(
   consulta
@@ -1974,7 +3317,6 @@ function finalizarBusquedaRadar(
 
     titulo.textContent =
       `Resultados para ${consulta}`;
-
   }
 
 
@@ -1984,13 +3326,12 @@ function finalizarBusquedaRadar(
 
 
   mostrarResultadosRadar();
-
 }
 
 
-// ------------------------------------------------------
-// FILTRAR RESULTADOS
-// ------------------------------------------------------
+// ======================================================
+// 27. FILTRAR RESULTADOS
+// ======================================================
 
 function obtenerResultadosFiltrados() {
 
@@ -1999,8 +3340,9 @@ function obtenerResultadosFiltrados() {
     radarFiltroActual === "proyectos"
   ) {
 
-    return radarResultados;
-
+    return ordenarResultadosRadar(
+      radarResultados
+    );
   }
 
 
@@ -2009,8 +3351,9 @@ function obtenerResultadosFiltrados() {
     "inmobiliarias"
   ) {
 
-    return radarResultados;
-
+    return ordenarResultadosRadar(
+      radarResultados
+    );
   }
 
 
@@ -2046,23 +3389,22 @@ function obtenerResultadosFiltrados() {
           clave,
           proyecto
         );
-
       }
-
     }
   );
 
 
-  return Array.from(
-    inmobiliarias.values()
+  return ordenarResultadosRadar(
+    Array.from(
+      inmobiliarias.values()
+    )
   );
-
 }
 
 
-// ------------------------------------------------------
-// MOSTRAR RESULTADOS
-// ------------------------------------------------------
+// ======================================================
+// 28. MOSTRAR RESULTADOS
+// ======================================================
 
 function mostrarResultadosRadar() {
 
@@ -2128,9 +3470,7 @@ function mostrarResultadosRadar() {
             ? "proyecto"
             : "proyectos"
         }`;
-
     }
-
   }
 
 
@@ -2138,9 +3478,7 @@ function mostrarResultadosRadar() {
   // SIN RESULTADOS
   // ----------------------------------------------------
 
-  if (
-    !resultados.length
-  ) {
+  if (!resultados.length) {
 
     container.innerHTML =
       "";
@@ -2151,7 +3489,6 @@ function mostrarResultadosRadar() {
       carouselShell.classList.add(
         "hidden"
       );
-
     }
 
 
@@ -2160,17 +3497,15 @@ function mostrarResultadosRadar() {
       noResults.classList.remove(
         "hidden"
       );
-
     }
 
 
     return;
-
   }
 
 
   // ----------------------------------------------------
-  // MOSTRAR CARRUSEL
+  // MOSTRAR RESULTADOS
   // ----------------------------------------------------
 
   if (carouselShell) {
@@ -2178,7 +3513,6 @@ function mostrarResultadosRadar() {
     carouselShell.classList.remove(
       "hidden"
     );
-
   }
 
 
@@ -2187,13 +3521,8 @@ function mostrarResultadosRadar() {
     noResults.classList.add(
       "hidden"
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // CREAR TARJETAS
-  // ----------------------------------------------------
 
   container.innerHTML =
     resultados
@@ -2212,7 +3541,6 @@ function mostrarResultadosRadar() {
               proyecto,
               index
             );
-
           }
 
 
@@ -2220,7 +3548,6 @@ function mostrarResultadosRadar() {
             proyecto,
             index
           );
-
         }
       )
       .join("");
@@ -2230,17 +3557,21 @@ function mostrarResultadosRadar() {
     0;
 
 
+  prepararLinksClientesRadar(
+    container
+  );
+
+
   window.setTimeout(
     iniciarAutoplayRadar,
     350
   );
-
 }
 
 
-// ------------------------------------------------------
-// CARD PROYECTO
-// ------------------------------------------------------
+// ======================================================
+// 29. CARD RESULTADO PROYECTO
+// ======================================================
 
 function crearCardProyectoRadar(
   proyecto,
@@ -2253,19 +3584,53 @@ function crearCardProyectoRadar(
     );
 
 
+  const proyectoEscala =
+    obtenerProyectoEscala(
+      proyecto
+    );
+
+
+  const esCliente =
+    Boolean(
+      proyectoEscala
+    );
+
+
+  const urlCliente =
+    obtenerUrlProyectoClienteEscala(
+      proyecto
+    );
+
+
+  const clases =
+    esCliente
+      ? "radar-result-card radar-result-client"
+      : "radar-result-card";
+
+
   return `
     <article
-      class="radar-result-card"
+      class="${clases}"
       data-radar-index="${index}"
-      data-radar-project-id="${escaparHTMLRadar(
-        proyecto.id || ""
+      data-radar-project-id="${escaparAtributoRadar(
+        proyecto.id ||
+        ""
       )}"
+      data-radar-client="${
+        esCliente
+          ? "true"
+          : "false"
+      }"
     >
 
       <span
         class="radar-result-type"
       >
-        Proyecto
+        ${
+          esCliente
+            ? "Proyecto destacado"
+            : "Proyecto"
+        }
       </span>
 
 
@@ -2325,7 +3690,9 @@ function crearCardProyectoRadar(
               ></i>
 
               <span>
-                ${precio}
+                ${escaparHTMLRadar(
+                  precio
+                )}
               </span>
 
             </div>
@@ -2348,15 +3715,43 @@ function crearCardProyectoRadar(
           : ""
       }
 
+
+      ${
+        esCliente &&
+        urlCliente
+          ? `
+            <a
+              href="${escaparAtributoRadar(
+                urlCliente
+              )}"
+              class="radar-result-client-link"
+              data-radar-client-link="true"
+              data-radar-client-project="${escaparAtributoRadar(
+                proyecto.proyecto ||
+                ""
+              )}"
+            >
+
+              Ver proyecto
+
+              <i
+                class="fa-solid fa-arrow-right"
+                aria-hidden="true"
+              ></i>
+
+            </a>
+          `
+          : ""
+      }
+
     </article>
   `;
-
 }
 
 
-// ------------------------------------------------------
-// CARD INMOBILIARIA
-// ------------------------------------------------------
+// ======================================================
+// 30. CARD RESULTADO INMOBILIARIA
+// ======================================================
 
 function crearCardInmobiliariaRadar(
   proyecto,
@@ -2384,13 +3779,18 @@ function crearCardInmobiliariaRadar(
           ) ===
           nombreNormalizado
         );
-
       }
     );
 
 
   const cantidad =
     proyectosEmpresa.length;
+
+
+  const tieneClienteEscala =
+    proyectosEmpresa.some(
+      esProyectoClienteEscala
+    );
 
 
   const distritos =
@@ -2401,7 +3801,6 @@ function crearCardInmobiliariaRadar(
             function (item) {
 
               return item.distrito;
-
             }
           )
           .filter(Boolean)
@@ -2418,16 +3817,31 @@ function crearCardInmobiliariaRadar(
       .join(", ");
 
 
+  const clases =
+    tieneClienteEscala
+      ? "radar-result-card radar-result-client"
+      : "radar-result-card";
+
+
   return `
     <article
-      class="radar-result-card"
+      class="${clases}"
       data-radar-index="${index}"
+      data-radar-client="${
+        tieneClienteEscala
+          ? "true"
+          : "false"
+      }"
     >
 
       <span
         class="radar-result-type"
       >
-        Inmobiliaria
+        ${
+          tieneClienteEscala
+            ? "Cliente Escala"
+            : "Inmobiliaria"
+        }
       </span>
 
 
@@ -2484,13 +3898,71 @@ function crearCardInmobiliariaRadar(
 
     </article>
   `;
-
 }
 
 
-// ------------------------------------------------------
-// ESTADO RADAR
-// ------------------------------------------------------
+// ======================================================
+// 31. TRACKING LINKS CLIENTES ESCALA
+// ======================================================
+
+function prepararLinksClientesRadar(
+  container
+) {
+
+  if (!container) {
+    return;
+  }
+
+
+  container
+    .querySelectorAll(
+      "[data-radar-client-link]"
+    )
+    .forEach(
+      function (link) {
+
+        link.addEventListener(
+          "click",
+          function () {
+
+            const proyecto =
+              link.getAttribute(
+                "data-radar-client-project"
+              ) ||
+              "proyecto-cliente";
+
+
+            window.dataLayer.push({
+              event:
+                "radar_client_project_click",
+
+              event_category:
+                "radar",
+
+              event_action:
+                "click",
+
+              event_label:
+                formatearTexto(
+                  proyecto
+                ),
+
+              section:
+                "radar-inmobiliario",
+
+              description:
+                "Cliente Escala"
+            });
+          }
+        );
+      }
+    );
+}
+
+
+// ======================================================
+// 32. ESTADO RADAR
+// ======================================================
 
 function mostrarEstadoRadar(
   cargando
@@ -2525,7 +3997,6 @@ function mostrarEstadoRadar(
     empty.classList.add(
       "hidden"
     );
-
   }
 
 
@@ -2534,7 +4005,6 @@ function mostrarEstadoRadar(
     content.classList.remove(
       "hidden"
     );
-
   }
 
 
@@ -2544,7 +4014,6 @@ function mostrarEstadoRadar(
       "hidden",
       !cargando
     );
-
   }
 
 
@@ -2556,15 +4025,13 @@ function mostrarEstadoRadar(
     carouselShell.classList.add(
       "hidden"
     );
-
   }
-
 }
 
 
-// ------------------------------------------------------
-// ERROR RADAR
-// ------------------------------------------------------
+// ======================================================
+// 33. ERROR RADAR
+// ======================================================
 
 function mostrarErrorRadar(
   mensaje
@@ -2600,7 +4067,6 @@ function mostrarErrorRadar(
 
     container.innerHTML =
       "";
-
   }
 
 
@@ -2609,7 +4075,6 @@ function mostrarErrorRadar(
     carouselShell.classList.add(
       "hidden"
     );
-
   }
 
 
@@ -2630,23 +4095,18 @@ function mostrarErrorRadar(
 
       texto.textContent =
         mensaje;
-
     }
-
   }
-
 }
 
 
-// ------------------------------------------------------
-// DETENER AUTOPLAY
-// ------------------------------------------------------
+// ======================================================
+// 34. CARRUSEL RESULTADOS RADAR
+// ======================================================
 
 function detenerAutoplayRadar() {
 
-  if (
-    !radarCarruselIntervalo
-  ) {
+  if (!radarCarruselIntervalo) {
     return;
   }
 
@@ -2658,13 +4118,8 @@ function detenerAutoplayRadar() {
 
   radarCarruselIntervalo =
     null;
-
 }
 
-
-// ------------------------------------------------------
-// OBTENER PASO CARRUSEL
-// ------------------------------------------------------
 
 function obtenerPasoCarruselRadar() {
 
@@ -2710,13 +4165,8 @@ function obtenerPasoCarruselRadar() {
       .width +
     gap
   );
-
 }
 
-
-// ------------------------------------------------------
-// MOVER CARRUSEL
-// ------------------------------------------------------
 
 function moverCarruselRadar(
   direccion
@@ -2737,9 +4187,7 @@ function moverCarruselRadar(
     obtenerPasoCarruselRadar();
 
 
-  if (
-    paso <= 0
-  ) {
+  if (paso <= 0) {
     return;
   }
 
@@ -2747,22 +4195,15 @@ function moverCarruselRadar(
   const maxScroll =
     Math.max(
       0,
-
       carrusel.scrollWidth -
       carrusel.clientWidth
     );
 
 
-  if (
-    maxScroll <= 5
-  ) {
+  if (maxScroll <= 5) {
     return;
   }
 
-
-  // ----------------------------------------------------
-  // FINAL → PRINCIPIO
-  // ----------------------------------------------------
 
   if (
     direccion > 0 &&
@@ -2775,15 +4216,9 @@ function moverCarruselRadar(
       behavior: "smooth"
     });
 
-
     return;
-
   }
 
-
-  // ----------------------------------------------------
-  // PRINCIPIO → FINAL
-  // ----------------------------------------------------
 
   if (
     direccion < 0 &&
@@ -2795,15 +4230,9 @@ function moverCarruselRadar(
       behavior: "smooth"
     });
 
-
     return;
-
   }
 
-
-  // ----------------------------------------------------
-  // MOVIMIENTO NORMAL
-  // ----------------------------------------------------
 
   carrusel.scrollBy({
     left:
@@ -2812,13 +4241,8 @@ function moverCarruselRadar(
     behavior:
       "smooth"
   });
-
 }
 
-
-// ------------------------------------------------------
-// INICIAR AUTOPLAY
-// ------------------------------------------------------
 
 function iniciarAutoplayRadar() {
 
@@ -2842,9 +4266,7 @@ function iniciarAutoplayRadar() {
     );
 
 
-  if (
-    cards.length <= 1
-  ) {
+  if (cards.length <= 1) {
     return;
   }
 
@@ -2854,9 +4276,7 @@ function iniciarAutoplayRadar() {
     carrusel.clientWidth;
 
 
-  if (
-    maxScroll <= 5
-  ) {
+  if (maxScroll <= 5) {
     return;
   }
 
@@ -2865,9 +4285,7 @@ function iniciarAutoplayRadar() {
     window.setInterval(
       function () {
 
-        if (
-          document.hidden
-        ) {
+        if (document.hidden) {
           return;
         }
 
@@ -2875,17 +4293,11 @@ function iniciarAutoplayRadar() {
         moverCarruselRadar(
           1
         );
-
       },
       RADAR_AUTOPLAY_MS
     );
-
 }
 
-
-// ------------------------------------------------------
-// PREPARAR CARRUSEL
-// ------------------------------------------------------
 
 function prepararCarruselRadar() {
 
@@ -2912,10 +4324,6 @@ function prepararCarruselRadar() {
   }
 
 
-  // ----------------------------------------------------
-  // ANTERIOR
-  // ----------------------------------------------------
-
   if (anterior) {
 
     anterior.addEventListener(
@@ -2926,18 +4334,11 @@ function prepararCarruselRadar() {
           -1
         );
 
-
         iniciarAutoplayRadar();
-
       }
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // SIGUIENTE
-  // ----------------------------------------------------
 
   if (siguiente) {
 
@@ -2949,18 +4350,11 @@ function prepararCarruselRadar() {
           1
         );
 
-
         iniciarAutoplayRadar();
-
       }
     );
-
   }
 
-
-  // ----------------------------------------------------
-  // PAUSA CON MOUSE
-  // ----------------------------------------------------
 
   carrusel.addEventListener(
     "mouseenter",
@@ -2973,10 +4367,6 @@ function prepararCarruselRadar() {
     iniciarAutoplayRadar
   );
 
-
-  // ----------------------------------------------------
-  // PAUSA TOUCH
-  // ----------------------------------------------------
 
   carrusel.addEventListener(
     "touchstart",
@@ -2995,19 +4385,17 @@ function prepararCarruselRadar() {
         iniciarAutoplayRadar,
         1000
       );
-
     },
     {
       passive: true
     }
   );
-
 }
 
 
-// ------------------------------------------------------
-// INICIALIZAR RADAR
-// ------------------------------------------------------
+// ======================================================
+// 35. INICIALIZAR RADAR
+// ======================================================
 
 async function initRadarInmobiliario() {
 
@@ -3022,18 +4410,63 @@ async function initRadarInmobiliario() {
   }
 
 
+  // ----------------------------------------------------
+  // PREPARAR INTERACCIONES
+  // ----------------------------------------------------
+
   prepararRadar();
 
   prepararCarruselRadar();
 
+  iniciarCarruselRadarFeatured();
 
-  await cargarProyectosRadar();
 
+  // ----------------------------------------------------
+  // CARGAR AMBOS JSON
+  // ----------------------------------------------------
+
+  await Promise.all([
+    cargarProyectosRadar(),
+    cargarProyectosEscalaRadar()
+  ]);
+
+
+  // ----------------------------------------------------
+  // UNIFICAR BASE
+  // ----------------------------------------------------
+
+  construirBaseRadar();
+
+
+  console.log(
+    `🏢 Base final Radar: ${radarProyectos.length} proyectos`
+  );
+
+
+  console.log(
+    `⭐ Clientes Escala activos: ${radarProyectosEscala.length}`
+  );
+
+
+  // ----------------------------------------------------
+  // MOSTRAR PROYECTOS ESCALA
+  // ----------------------------------------------------
+
+  if (
+    radarProyectosEscala.length
+  ) {
+
+    renderizarProyectosEscala();
+
+  } else {
+
+    ocultarBloqueProyectosEscala();
+  }
 }
 
 
 // ======================================================
-// 15. CONTROL DE VISIBILIDAD
+// 36. VISIBILIDAD PESTAÑA
 // ======================================================
 
 function iniciarControlVisibilidad() {
@@ -3042,20 +4475,21 @@ function iniciarControlVisibilidad() {
     "visibilitychange",
     function () {
 
-      if (
-        document.hidden
-      ) {
+      if (document.hidden) {
 
         detenerAutoplayRadar();
+
+        detenerAutoplayRadarFeatured();
 
         detenerAutoplayEquipo();
 
         return;
-
       }
 
 
       iniciarAutoplayEquipo();
+
+      iniciarAutoplayRadarFeatured();
 
 
       if (
@@ -3063,22 +4497,20 @@ function iniciarControlVisibilidad() {
       ) {
 
         iniciarAutoplayRadar();
-
       }
-
     }
   );
-
 }
 
 
 // ======================================================
-// 16. CONTROL DE RESIZE
+// 37. RESIZE
 // ======================================================
 
 function iniciarControlResize() {
 
-  let resizeTimer = null;
+  let resizeTimer =
+    null;
 
 
   window.addEventListener(
@@ -3096,30 +4528,28 @@ function iniciarControlResize() {
 
             iniciarAutoplayEquipo();
 
+            iniciarAutoplayRadarFeatured();
+
 
             if (
               radarResultados.length
             ) {
 
               iniciarAutoplayRadar();
-
             }
-
           },
           250
         );
-
     },
     {
       passive: true
     }
   );
-
 }
 
 
 // ======================================================
-// 17. INICIALIZAR TODO
+// 38. INICIALIZAR TODO
 // ======================================================
 
 document.addEventListener(
@@ -3169,7 +4599,7 @@ document.addEventListener(
 
 
     // --------------------------------------------------
-    // COMPORTAMIENTO GLOBAL
+    // GLOBAL
     // --------------------------------------------------
 
     iniciarControlVisibilidad();
