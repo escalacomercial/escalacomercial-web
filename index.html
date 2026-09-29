@@ -2470,142 +2470,166 @@
     </section>
 
 
-    <!-- ==========================================
-         5. RADAR INMOBILIARIO
-    =========================================== -->
+<!-- ==========================================
+     5. RADAR INMOBILIARIO
+=========================================== -->
 
-    <section
-      id="radar-inmobiliario"
-      data-section="radar-inmobiliario"
-      class="radar-section relative py-16 lg:py-20 bg-white overflow-hidden"
-    >
+<section
+  id="radar-inmobiliario"
+  data-section="radar-inmobiliario"
+  class="radar-section relative py-6 lg:py-8 bg-white overflow-hidden"
+>
 
-      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
 
-        <div class="max-w-3xl mb-7 lg:mb-8">
+    <!-- ========================================
+         ENCABEZADO
+    ========================================= -->
 
-          <div
-            class="w-10 h-1 bg-blue-700 rounded-full mb-4"
+    <div class="max-w-3xl mb-5 lg:mb-6">
+
+      <div
+        class="w-10 h-1 bg-blue-700 rounded-full mb-4"
+        aria-hidden="true"
+      ></div>
+
+
+      <p
+        class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+      >
+        Radar inmobiliario
+      </p>
+
+
+      <h2
+        class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight"
+      >
+
+        Explora proyectos inmobiliarios
+
+        <span class="text-blue-700">
+          por zona.
+        </span>
+
+      </h2>
+
+    </div>
+
+
+    <!-- ========================================
+         BUSCADOR
+    ========================================= -->
+
+    <div class="radar-search-card">
+
+      <form
+        id="radar-form"
+        class="radar-search-form"
+      >
+
+        <div class="radar-search-field">
+
+          <i
+            class="fa-solid fa-location-dot radar-search-icon"
             aria-hidden="true"
-          ></div>
+          ></i>
 
-          <p
-            class="text-amber-500 uppercase tracking-[0.18em] font-semibold text-sm mb-3"
+
+          <input
+            id="radar-query"
+            type="search"
+            placeholder="Ej. Barranco, Miraflores, Edifica..."
+            autocomplete="off"
+            aria-label="Buscar distrito, proyecto o inmobiliaria"
           >
-            Radar inmobiliario
-          </p>
-
-
-          <h2
-            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-950 leading-tight"
-          >
-
-            Explora proyectos inmobiliarios
-
-            <span class="text-blue-700">
-              por zona.
-            </span>
-
-          </h2>
 
         </div>
 
 
-        <!-- ========================================
-             BUSCADOR
-        ========================================= -->
-
-        <div class="radar-search-card">
-
-          <form
-            id="radar-form"
-            class="radar-search-form"
-          >
-
-            <div class="radar-search-field">
-
-              <i
-                class="fa-solid fa-location-dot radar-search-icon"
-                aria-hidden="true"
-              ></i>
-
-              <input
-                id="radar-query"
-                type="search"
-                placeholder="Ej. Barranco, Miraflores, Edifica..."
-                autocomplete="off"
-                aria-label="Buscar distrito, proyecto o inmobiliaria"
-              >
-
-            </div>
-
-
-            <button
-              id="radar-submit"
-              type="submit"
-              class="radar-search-button"
-            >
-
-              <i
-                class="fa-solid fa-magnifying-glass"
-                aria-hidden="true"
-              ></i>
-
-              Buscar
-
-            </button>
-
-          </form>
-
-
-          <div
-            class="radar-filters"
-            aria-label="Filtrar resultados"
-          >
-
-            <button
-              type="button"
-              class="radar-filter radar-filter-active"
-              data-radar-filter="todos"
-              aria-pressed="true"
-            >
-              Todos
-            </button>
-
-            <button
-              type="button"
-              class="radar-filter"
-              data-radar-filter="proyectos"
-              aria-pressed="false"
-            >
-              Proyectos
-            </button>
-
-            <button
-              type="button"
-              class="radar-filter"
-              data-radar-filter="inmobiliarias"
-              aria-pressed="false"
-            >
-              Inmobiliarias
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <!-- ========================================
-             ESTADO INICIAL
-        ========================================= -->
-
-        <div
-          id="radar-empty"
-          class="radar-empty"
+        <button
+          id="radar-submit"
+          type="submit"
+          class="radar-search-button"
         >
 
-          <div class="radar-empty-icon">
+          <i
+            class="fa-solid fa-magnifying-glass"
+            aria-hidden="true"
+          ></i>
+
+          Buscar
+
+        </button>
+
+      </form>
+
+
+      <!-- ======================================
+           FILTROS
+      ======================================= -->
+
+      <div
+        class="radar-filters"
+        aria-label="Filtrar resultados"
+      >
+
+        <button
+          type="button"
+          class="radar-filter radar-filter-active"
+          data-radar-filter="todos"
+          aria-pressed="true"
+        >
+          Todos
+        </button>
+
+
+        <button
+          type="button"
+          class="radar-filter"
+          data-radar-filter="proyectos"
+          aria-pressed="false"
+        >
+          Proyectos
+        </button>
+
+
+        <button
+          type="button"
+          class="radar-filter"
+          data-radar-filter="inmobiliarias"
+          aria-pressed="false"
+        >
+          Inmobiliarias
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================
+         PROYECTOS COMERCIALIZADOS POR ESCALA
+
+         Los proyectos se cargan desde:
+         /data/proyectos-escala.json
+    ========================================= -->
+
+    <div class="radar-featured-shell">
+
+
+      <!-- ======================================
+           BARRA SUPERIOR
+      ======================================= -->
+
+      <div class="radar-featured-bar">
+
+
+        <!-- IZQUIERDA -->
+
+        <div class="radar-featured-bar-main">
+
+          <div class="radar-featured-bar-icon">
 
             <i
               class="fa-solid fa-building-circle-check"
@@ -2614,94 +2638,38 @@
 
           </div>
 
-          <h3>
-            Descubre proyectos e inmobiliarias en distintas zonas
-          </h3>
 
-          <p>
-            Consulta una selección referencial de proyectos,
-            inmobiliarias y precios disponibles públicamente.
+          <p class="radar-featured-bar-title">
+            Proyecto comercializado por Escala
           </p>
 
         </div>
 
 
-        <!-- ========================================
-             RESULTADOS
-        ========================================= -->
+        <!-- DERECHA -->
 
-        <div
-          id="radar-content"
-          class="hidden"
-        >
-
-          <div
-            class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4"
-          >
-
-            <div>
-
-              <p class="text-sm text-slate-500 mb-1">
-                Radar de mercado
-              </p>
-
-              <h3
-                id="radar-result-title"
-                class="text-xl sm:text-2xl font-bold text-slate-950"
-              >
-                Explorando la zona
-              </h3>
-
-            </div>
+        <div class="radar-featured-bar-actions">
 
 
-            <span
-              class="inline-flex self-start sm:self-auto items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold"
-            >
-
-              <i
-                class="fa-solid fa-building"
-                aria-hidden="true"
-              ></i>
-
-              <span id="radar-result-count">
-                0 proyectos
-              </span>
-
-            </span>
-
-          </div>
+          <span class="radar-featured-bar-message">
+            Conectamos grandes proyectos con más personas
+          </span>
 
 
-          <!-- LOADING -->
+          <!-- ====================================
+               CONTROLES DEL CARRUSEL
 
-          <div
-            id="radar-loading"
-            class="hidden radar-loading"
-          >
+               JS los ocultará automáticamente
+               si existe solamente 1 proyecto.
+          ===================================== -->
 
-            <i
-              class="fa-solid fa-circle-notch fa-spin"
-              aria-hidden="true"
-            ></i>
-
-            Consultando proyectos...
-
-          </div>
-
-
-          <!-- CARRUSEL -->
-
-          <div
-            id="radar-carousel-shell"
-            class="radar-carousel-shell"
-          >
+          <div class="radar-featured-controls">
 
             <button
-              id="radar-prev"
+              id="radar-featured-prev"
               type="button"
-              class="radar-carousel-arrow radar-carousel-arrow-left"
-              aria-label="Ver proyectos anteriores"
+              class="radar-featured-arrow"
+              aria-label="Ver proyecto comercializado anterior"
             >
 
               <i
@@ -2712,18 +2680,11 @@
             </button>
 
 
-            <div
-              id="radar-results"
-              class="radar-carousel"
-              aria-live="polite"
-            ></div>
-
-
             <button
-              id="radar-next"
+              id="radar-featured-next"
               type="button"
-              class="radar-carousel-arrow radar-carousel-arrow-right"
-              aria-label="Ver proyectos siguientes"
+              class="radar-featured-arrow"
+              aria-label="Ver siguiente proyecto comercializado"
             >
 
               <i
@@ -2735,57 +2696,251 @@
 
           </div>
 
-
-          <!-- SIN RESULTADOS -->
-
-          <div
-            id="radar-no-results"
-            class="hidden radar-no-results"
-          >
-
-            <div class="radar-no-results-icon">
-
-              <i
-                class="fa-solid fa-magnifying-glass"
-                aria-hidden="true"
-              ></i>
-
-            </div>
-
-            <h4>
-              No encontramos resultados
-            </h4>
-
-            <p>
-              Prueba con otro distrito,
-              proyecto o inmobiliaria.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div
-          class="flex items-start gap-2 mt-5 text-xs text-slate-400 leading-relaxed"
-        >
-
-          <i
-            class="fa-solid fa-circle-info mt-0.5"
-            aria-hidden="true"
-          ></i>
-
-          <p>
-            Información referencial construida a partir de fuentes públicas.
-            No representa la totalidad de proyectos disponibles en el mercado
-            y puede cambiar con el tiempo.
-          </p>
-
         </div>
 
       </div>
 
-    </section>
+
+      <!-- ======================================
+           PROYECTOS ESCALA
+
+           Este contenedor queda vacío.
+
+           scripts.js generará aquí cada ficha
+           utilizando proyectos-escala.json.
+
+           Cada ficha podrá contener:
+
+           - imagen
+           - Cliente destacado
+           - Cliente activo
+           - proyecto
+           - inmobiliaria
+           - descripción
+           - botón Ver proyecto
+           - características dinámicas
+      ======================================= -->
+
+      <div
+        id="radar-featured-track"
+        class="radar-featured-track"
+        aria-label="Proyectos comercializados por Escala"
+        aria-live="polite"
+      ></div>
+
+    </div>
+
+
+    <!-- ========================================
+         ESTADO INICIAL
+
+         Se mantiene porque scripts.js utiliza
+         este ID, pero permanece oculto cuando
+         existen proyectos Escala.
+    ========================================= -->
+
+    <div
+      id="radar-empty"
+      class="radar-empty hidden"
+    >
+
+      <div class="radar-empty-icon">
+
+        <i
+          class="fa-solid fa-building-circle-check"
+          aria-hidden="true"
+        ></i>
+
+      </div>
+
+
+      <h3>
+        Descubre proyectos e inmobiliarias en distintas zonas
+      </h3>
+
+
+      <p>
+        Consulta una selección referencial de proyectos,
+        inmobiliarias y precios disponibles públicamente.
+      </p>
+
+    </div>
+
+
+    <!-- ========================================
+         RESULTADOS DE BÚSQUEDA
+    ========================================= -->
+
+    <div
+      id="radar-content"
+      class="hidden"
+    >
+
+
+      <!-- ======================================
+           CABECERA RESULTADOS
+      ======================================= -->
+
+      <div class="radar-results-header">
+
+        <div>
+
+          <p class="radar-results-eyebrow">
+            Radar de mercado
+          </p>
+
+
+          <h3
+            id="radar-result-title"
+            class="radar-results-title"
+          >
+            Explorando la zona
+          </h3>
+
+        </div>
+
+
+        <span class="radar-results-count">
+
+          <i
+            class="fa-solid fa-building"
+            aria-hidden="true"
+          ></i>
+
+
+          <span id="radar-result-count">
+            0 proyectos
+          </span>
+
+        </span>
+
+      </div>
+
+
+      <!-- ======================================
+           LOADING
+      ======================================= -->
+
+      <div
+        id="radar-loading"
+        class="hidden radar-loading"
+      >
+
+        <i
+          class="fa-solid fa-circle-notch fa-spin"
+          aria-hidden="true"
+        ></i>
+
+        Consultando proyectos...
+
+      </div>
+
+
+      <!-- ======================================
+           CARRUSEL RESULTADOS
+      ======================================= -->
+
+      <div
+        id="radar-carousel-shell"
+        class="radar-carousel-shell"
+      >
+
+        <button
+          id="radar-prev"
+          type="button"
+          class="radar-carousel-arrow radar-carousel-arrow-left"
+          aria-label="Ver proyectos anteriores"
+        >
+
+          <i
+            class="fa-solid fa-chevron-left"
+            aria-hidden="true"
+          ></i>
+
+        </button>
+
+
+        <div
+          id="radar-results"
+          class="radar-carousel"
+          aria-live="polite"
+        ></div>
+
+
+        <button
+          id="radar-next"
+          type="button"
+          class="radar-carousel-arrow radar-carousel-arrow-right"
+          aria-label="Ver proyectos siguientes"
+        >
+
+          <i
+            class="fa-solid fa-chevron-right"
+            aria-hidden="true"
+          ></i>
+
+        </button>
+
+      </div>
+
+
+      <!-- ======================================
+           SIN RESULTADOS
+      ======================================= -->
+
+      <div
+        id="radar-no-results"
+        class="hidden radar-no-results"
+      >
+
+        <div class="radar-no-results-icon">
+
+          <i
+            class="fa-solid fa-magnifying-glass"
+            aria-hidden="true"
+          ></i>
+
+        </div>
+
+
+        <h4>
+          No encontramos resultados
+        </h4>
+
+
+        <p>
+          Prueba con otro distrito,
+          proyecto o inmobiliaria.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================
+         NOTA LEGAL / FUENTE
+    ========================================= -->
+
+    <div class="radar-source-note">
+
+      <i
+        class="fa-solid fa-circle-info"
+        aria-hidden="true"
+      ></i>
+
+
+      <p>
+        Información referencial construida a partir de fuentes públicas.
+        No representa la totalidad de proyectos disponibles en el mercado
+        y puede cambiar con el tiempo.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
 
     <!-- ==========================================
