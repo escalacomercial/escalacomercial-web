@@ -336,7 +336,7 @@ textarea {
 
   gap: 0.55rem;
 
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.38rem;
 
   color: var(--escala-navy-700);
 
@@ -592,8 +592,8 @@ textarea {
 
 
 .metodo-result-icon {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
 
   flex-shrink: 0;
 
@@ -1537,6 +1537,369 @@ textarea {
 
 
 /* ======================================================
+   INTERACCIÓN MULTIPRODUCTO
+====================================================== */
+
+.multi-escala {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* ------------------------------------------------------
+   BLOQUE COMPLETO
+------------------------------------------------------ */
+
+.multi-escala:hover {
+  border-color:
+    rgba(18, 61, 121, 0.20);
+
+  box-shadow:
+    0 18px 42px rgba(6, 21, 47, 0.09);
+}
+
+
+/* ------------------------------------------------------
+   PASOS DE ENTRADA
+------------------------------------------------------ */
+
+.multi-entry-step {
+  padding: 0.45rem;
+
+  border-radius: 0.7rem;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.multi-entry-step:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 6px 18px rgba(6, 21, 47, 0.06);
+}
+
+
+.multi-entry-step:hover .multi-entry-icon {
+  background:
+    var(--escala-navy-700);
+
+  color:
+    #ffffff;
+
+  transform:
+    scale(1.06);
+}
+
+
+.multi-entry-icon {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.multi-entry-step:hover .multi-entry-icon-gold {
+  background:
+    var(--escala-gold-400);
+
+  color:
+    var(--escala-navy-950);
+}
+
+
+/* ------------------------------------------------------
+   CRM
+------------------------------------------------------ */
+
+.multi-crm {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.multi-crm:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(18, 61, 121, 0.28);
+
+  box-shadow:
+    0 8px 20px rgba(6, 21, 47, 0.07);
+}
+
+
+/* ------------------------------------------------------
+   REGLAS
+------------------------------------------------------ */
+
+.multi-rule {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.multi-rule:hover {
+  transform:
+    translateY(-2px);
+}
+
+
+.multi-rule-respect:hover {
+  border-color:
+    rgba(18, 61, 121, 0.20);
+
+  box-shadow:
+    0 6px 16px rgba(6, 21, 47, 0.05);
+}
+
+
+.multi-rule-enter:hover {
+  border-color:
+    rgba(242, 181, 29, 0.42);
+
+  box-shadow:
+    0 10px 24px rgba(6, 21, 47, 0.14);
+}
+
+
+/* ------------------------------------------------------
+   PROCESO MULTIPRODUCTO
+------------------------------------------------------ */
+
+.multi-process-step {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+
+  border-radius: 0.7rem;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+.multi-process-step:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 8px 20px rgba(6, 21, 47, 0.07);
+}
+
+
+.multi-process-step:hover .multi-process-icon {
+  transform:
+    scale(1.08);
+
+  background:
+    var(--escala-navy-700);
+
+  color:
+    #ffffff;
+}
+
+
+.multi-process-icon {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+
+/* Proyecto ideal conserva identidad dorada */
+
+.multi-process-highlight:hover {
+  border-color:
+    rgba(242, 181, 29, 0.34);
+
+  background:
+    #fff6d9;
+
+  box-shadow:
+    0 8px 22px rgba(227, 163, 0, 0.09);
+}
+
+
+.multi-process-highlight:hover .multi-process-icon {
+  background:
+    var(--escala-gold-400);
+
+  color:
+    var(--escala-navy-950);
+}
+
+
+/* ------------------------------------------------------
+   FLECHAS
+------------------------------------------------------ */
+
+.multi-entry-arrow,
+.multi-process-arrow {
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.multi-escala:hover .multi-entry-arrow,
+.multi-escala:hover .multi-process-arrow {
+  color:
+    var(--escala-gold-500);
+}
+
+
+.multi-process-step:hover + .multi-process-arrow {
+  transform:
+    translateX(2px);
+
+  color:
+    var(--escala-gold-500);
+}
+
+
+/* ------------------------------------------------------
+   BENEFICIOS
+------------------------------------------------------ */
+
+.multi-footer > div {
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+
+.multi-footer > div:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(227, 163, 0, 0.20);
+
+  background:
+    var(--escala-gold-50);
+}
+
+
+/* ======================================================
+   EFECTO SECUENCIAL
+   CUANDO EL USUARIO PASA POR TODO MULTIPRODUCTO
+====================================================== */
+
+.multi-escala:hover .multi-process-step {
+  animation:
+    multiStepPulse 0.55s ease both;
+}
+
+
+.multi-escala:hover .multi-process-step:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+
+.multi-escala:hover .multi-process-step:nth-of-type(2) {
+  animation-delay: 0.06s;
+}
+
+
+.multi-escala:hover .multi-process-step:nth-of-type(3) {
+  animation-delay: 0.12s;
+}
+
+
+.multi-escala:hover .multi-process-step:nth-of-type(4) {
+  animation-delay: 0.18s;
+}
+
+
+.multi-escala:hover .multi-process-step:nth-of-type(5) {
+  animation-delay: 0.24s;
+}
+
+
+.multi-escala:hover .multi-process-step:nth-of-type(6) {
+  animation-delay: 0.30s;
+}
+
+
+@keyframes multiStepPulse {
+
+  0% {
+    transform:
+      translateY(0);
+
+    box-shadow:
+      none;
+  }
+
+  50% {
+    transform:
+      translateY(-2px);
+
+    box-shadow:
+      0 7px 18px rgba(6, 21, 47, 0.06);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+
+    box-shadow:
+      none;
+  }
+
+}
+
+
+/* ======================================================
+   MOBILE
+   SIN ANIMACIÓN SECUENCIAL
+====================================================== */
+
+@media (max-width: 767px) {
+
+  .multi-escala:hover .multi-process-step {
+    animation:
+      none;
+  }
+
+
+  .multi-entry-step:hover,
+  .multi-rule:hover,
+  .multi-process-step:hover,
+  .multi-footer > div:hover,
+  .multi-crm:hover {
+    transform:
+      none;
+  }
+
+}
+
+
+/* ======================================================
    8. SERVICIOS
 ====================================================== */
 
@@ -2364,7 +2727,7 @@ textarea {
 
   color: var(--escala-white);
 
-  font-size: 0.83rem;
+  font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -2390,17 +2753,17 @@ textarea {
   background:
     radial-gradient(
       circle at 92% 10%,
-      rgba(29, 100, 181, 0.08),
+      rgba(29, 100, 181, 0.07),
       transparent 26%
     ),
     radial-gradient(
-      circle at 6% 90%,
+      circle at 7% 90%,
       rgba(18, 61, 121, 0.025),
-      transparent 26%
+      transparent 28%
     ),
     linear-gradient(
       180deg,
-      #f4f8fd 0%,
+      #f6f9fd 0%,
       var(--escala-bg-radar) 100%
     ) !important;
 
@@ -2412,9 +2775,8 @@ textarea {
   content: "";
 
   position: absolute;
-
-  left: 50%;
   top: 0;
+  left: 50%;
 
   width: min(80%, 1050px);
   height: 1px;
@@ -2425,7 +2787,7 @@ textarea {
     linear-gradient(
       90deg,
       transparent,
-      rgba(18, 61, 121, 0.20),
+      rgba(18, 61, 121, 0.18),
       transparent
     );
 
@@ -2445,16 +2807,15 @@ textarea {
   border: 1px solid rgba(18, 61, 121, 0.13);
   border-radius: 1.15rem;
 
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.97);
 
-  box-shadow: 0 9px 28px rgba(6, 21, 47, 0.065);
+  box-shadow: 0 10px 28px rgba(6, 21, 47, 0.055);
 }
 
 .radar-search-card::before {
   content: "";
 
   position: absolute;
-
   left: 1rem;
   right: 1rem;
   top: 0;
@@ -2465,14 +2826,13 @@ textarea {
     linear-gradient(
       90deg,
       transparent,
-      rgba(18, 61, 121, 0.20),
+      rgba(18, 61, 121, 0.17),
       transparent
     );
 }
 
 .radar-search-form {
   display: grid;
-
   grid-template-columns: 1fr auto;
 
   gap: 0.75rem;
@@ -2497,7 +2857,6 @@ textarea {
 
 .radar-search-field input {
   width: 100%;
-
   box-sizing: border-box;
 
   padding: 0.92rem 1rem 0.92rem 2.8rem;
@@ -2524,7 +2883,7 @@ textarea {
 .radar-search-field input:focus {
   border-color: var(--escala-navy-600);
 
-  background: var(--escala-white);
+  background: #ffffff;
 
   box-shadow: 0 0 0 3px rgba(23, 79, 150, 0.10);
 }
@@ -2537,7 +2896,6 @@ textarea {
   min-width: 135px;
 
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
@@ -2555,15 +2913,15 @@ textarea {
       var(--escala-navy-700)
     );
 
-  color: var(--escala-white);
+  color: #ffffff;
 
-  font-weight: 600;
+  font-weight: 700;
 
   box-shadow: 0 5px 13px rgba(6, 21, 47, 0.12);
 
   transition:
-    background 0.2s ease,
     transform 0.2s ease,
+    background 0.2s ease,
     box-shadow 0.2s ease;
 }
 
@@ -2577,7 +2935,7 @@ textarea {
       var(--escala-navy-600)
     );
 
-  box-shadow: 0 7px 16px rgba(6, 21, 47, 0.16);
+  box-shadow: 0 8px 18px rgba(6, 21, 47, 0.16);
 }
 
 
@@ -2587,7 +2945,6 @@ textarea {
 
 .radar-filters {
   display: flex;
-
   flex-wrap: wrap;
 
   gap: 0.5rem;
@@ -2601,7 +2958,7 @@ textarea {
   border: 1px solid rgba(18, 61, 121, 0.12);
   border-radius: 999px;
 
-  background: var(--escala-white);
+  background: #ffffff;
 
   color: var(--escala-slate-600);
 
@@ -2609,10 +2966,10 @@ textarea {
   font-weight: 600;
 
   transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
+    transform 0.2s ease,
     background 0.2s ease,
-    transform 0.2s ease;
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .radar-filter:hover {
@@ -2633,52 +2990,699 @@ textarea {
 
 
 /* ======================================================
-   SUGERENCIAS RADAR
+   PROYECTOS COMERCIALIZADOS POR ESCALA
 ====================================================== */
 
-.radar-suggestions {
-  display: flex;
+.radar-featured-shell {
+  position: relative;
 
-  align-items: center;
-  flex-wrap: wrap;
+  margin-top: 1.15rem;
 
-  gap: 0.5rem;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
 }
 
-.radar-suggestions-label {
-  margin-right: 0.2rem;
+
+/* ======================================================
+   BARRA SUPERIOR
+====================================================== */
+
+.radar-featured-bar {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding: 0.5rem 0.75rem;
+
+  border: 1px solid rgba(23, 79, 150, 0.18);
+  border-radius: 0.95rem;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(239, 246, 255, 0.96),
+      rgba(248, 251, 255, 0.96)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.radar-featured-bar-main {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.72rem;
+}
+
+.radar-featured-bar-icon {
+  width: 2.15rem;
+  height: 2.15rem;
+
+  flex: 0 0 2.15rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(18, 61, 121, 0.10);
+  border-radius: 0.78rem;
+
+  background: rgba(255, 255, 255, 0.80);
+
+  color: var(--escala-navy-700);
+
+  font-size: 0.88rem;
+}
+
+.radar-featured-bar-title {
+  margin: 0;
+
+  color: var(--escala-navy-900);
+
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.radar-featured-bar-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  flex-shrink: 0;
+}
+
+.radar-featured-bar-message {
+  color: var(--escala-navy-600);
+
+  font-size: 0.72rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.radar-featured-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 0.4rem;
+}
+
+.radar-featured-arrow {
+  width: 2rem;
+  height: 2rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(18, 61, 121, 0.13);
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: var(--escala-navy-800);
+
+  font-size: 0.62rem;
+
+  box-shadow: 0 4px 12px rgba(6, 21, 47, 0.055);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.radar-featured-arrow:hover {
+  transform: translateY(-1px);
+
+  border-color: rgba(227, 163, 0, 0.34);
+
+  background: var(--escala-gold-50);
+
+  color: var(--escala-gold-700);
+
+  box-shadow: 0 6px 16px rgba(6, 21, 47, 0.08);
+}
+
+
+/* ======================================================
+   TRACK DESTACADOS
+====================================================== */
+
+.radar-featured-track {
+  display: flex;
+
+  gap: 0.85rem;
+
+  width: 100%;
+
+  margin-top: 0.45rem;
+  padding: 0.05rem 0.05rem 0.28rem;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  overscroll-behavior-inline: contain;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+
+.radar-featured-track::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ======================================================
+   CARD DESTACADA
+====================================================== */
+
+.radar-featured-card {
+  position: relative;
+
+  flex: 0 0 100%;
+  min-width: 100%;
+
+  overflow: hidden;
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  border: 1px solid rgba(227, 163, 0, 0.72);
+  border-radius: 1rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fffefa 100%
+    );
+
+  box-shadow:
+    0 10px 24px rgba(6, 21, 47, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.radar-featured-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(227, 163, 0, 0.95);
+
+  box-shadow:
+    0 14px 32px rgba(6, 21, 47, 0.09);
+}
+
+
+/* ======================================================
+   ESTRUCTURA HORIZONTAL
+   IMAGEN | CONTENIDO | CARACTERÍSTICAS
+====================================================== */
+
+.radar-featured-link {
+  width: 100%;
+  min-height: 195px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(320px, 36%)
+    minmax(0, 39%)
+    minmax(230px, 25%);
+
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+/* ======================================================
+   IMAGEN
+====================================================== */
+
+.radar-featured-media {
+  position: relative;
+
+  min-height: 195px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #dce6f0,
+      #edf2f7
+    );
+}
+
+.radar-featured-media::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 21, 47, 0.015) 45%,
+      rgba(6, 21, 47, 0.20) 100%
+    );
+
+  pointer-events: none;
+}
+
+.radar-featured-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 195px;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform 0.45s ease;
+}
+
+.radar-featured-card:hover .radar-featured-media img {
+  transform: scale(1.025);
+}
+
+
+/* ======================================================
+   UBICACIÓN SOBRE IMAGEN
+   Se genera dinámicamente desde JS
+====================================================== */
+
+.radar-featured-location {
+  position: absolute;
+
+  left: 0.85rem;
+  bottom: 0.8rem;
+
+  z-index: 4;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  padding: 0.42rem 0.68rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+
+  background: rgba(6, 21, 47, 0.82);
+
+  color: #ffffff;
+
+  font-size: 0.64rem;
+  font-weight: 700;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  box-shadow: 0 4px 14px rgba(6, 21, 47, 0.16);
+}
+
+.radar-featured-location i {
+  color: #ffffff;
+  font-size: 0.62rem;
+}
+
+
+/* ======================================================
+   BADGE CLIENTE DESTACADO SOBRE LA FOTO
+   Se oculta para evitar duplicarlo con la etiqueta
+   del contenido principal.
+====================================================== */
+
+.radar-featured-badge {
+  display: none !important;
+}
+
+
+/* ======================================================
+   CONTENIDO PRINCIPAL
+====================================================== */
+
+.radar-featured-content {
+  position: relative;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 0.72rem 1.15rem 0.72rem 1.8rem;
+}
+
+.radar-featured-content > .radar-featured-name {
+  order: 1;
+}
+
+.radar-featured-content > .radar-featured-meta {
+  order: 2;
+}
+
+.radar-featured-content > .radar-featured-copy {
+  order: 3;
+}
+
+.radar-featured-content > .radar-featured-actions {
+  order: 4;
+}
+
+.radar-featured-content::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0.7rem;
+  right: 0;
+  bottom: 0.7rem;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(18, 61, 121, 0.13),
+      transparent
+    );
+}
+
+.radar-featured-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  gap: 0.3rem;
+
+  margin-bottom: 0.18rem;
+}
+
+.radar-featured-company {
+  display: block;
+
+  color: var(--escala-navy-700);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.radar-featured-status {
+  display: none !important;
+}
+
+.radar-featured-status::before {
+  display: none !important;
+}
+
+.radar-featured-name {
+  margin: 0 0 0.16rem;
+
+  color: var(--escala-navy-950);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.03;
+
+  letter-spacing: -0.035em;
+}
+
+.radar-featured-copy {
+  max-width: 620px;
+
+  margin: 0.34rem 0 0;
 
   color: var(--escala-slate-500);
 
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.83rem;
+  line-height: 1.45;
 }
 
-.radar-suggestion {
-  padding: 0.38rem 0.7rem;
 
-  border: 1px solid var(--escala-slate-200);
+/* ======================================================
+   ETIQUETA CLIENTE DESTACADO
+   Se muestra en el contenido principal
+====================================================== */
+
+.radar-featured-highlight {
+  position: absolute;
+
+  top: 0.72rem;
+  right: 1rem;
+
+  z-index: 3;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.35rem;
+
+  margin: 0;
+  padding: 0.3rem 0.58rem;
+
   border-radius: 999px;
 
-  background: transparent;
+  background:
+    linear-gradient(
+      135deg,
+      var(--escala-gold-100),
+      var(--escala-gold-200)
+    );
 
-  color: var(--escala-slate-600);
+  color: var(--escala-gold-700);
 
-  font-size: 0.76rem;
-  font-weight: 600;
+  font-size: 0.62rem;
+  font-weight: 800;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
+  white-space: nowrap;
 }
 
-.radar-suggestion:hover {
-  border-color: rgba(18, 61, 121, 0.22);
+.radar-featured-highlight i {
+  font-size: 0.58rem;
+}
+
+
+/* ======================================================
+   ACCIONES
+====================================================== */
+
+.radar-featured-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.85rem;
+
+  margin-top: 0.55rem;
+}
+
+.radar-featured-action {
+  min-width: 155px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  padding: 0.58rem 0.95rem;
+
+  border-radius: 0.75rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--escala-navy-800),
+      var(--escala-navy-700)
+    );
+
+  color: #ffffff;
+
+  font-size: 0.76rem;
+  font-weight: 800;
+
+  box-shadow: 0 6px 16px rgba(6, 21, 47, 0.12);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.radar-featured-action i {
+  color: var(--escala-gold-300);
+
+  font-size: 0.66rem;
+
+  transition: transform 0.2s ease;
+}
+
+.radar-featured-card:hover .radar-featured-action {
+  background:
+    linear-gradient(
+      135deg,
+      var(--escala-navy-700),
+      var(--escala-navy-600)
+    );
+}
+
+.radar-featured-card:hover .radar-featured-action i {
+  transform: translateX(3px);
+}
+
+.radar-featured-secondary {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  color: var(--escala-navy-700);
+
+  font-size: 0.74rem;
+  font-weight: 700;
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.radar-featured-secondary i {
+  color: var(--escala-navy-700);
+
+  font-size: 0.64rem;
+}
+
+
+/* ======================================================
+   CARACTERÍSTICAS DEL PROYECTO
+   Se generan desde proyectos-escala.json
+====================================================== */
+
+.radar-featured-features {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 0.52rem;
+
+  padding: 0.7rem 0.95rem;
+}
+
+.radar-featured-feature {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 0.68rem;
+}
+
+.radar-featured-feature-icon {
+  width: 2.2rem;
+  height: 2.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
 
   background: #edf4fb;
 
-  color: var(--escala-navy-900);
+  color: var(--escala-navy-700);
+
+  font-size: 0.76rem;
+}
+
+.radar-featured-feature-copy {
+  min-width: 0;
+}
+
+.radar-featured-feature-title {
+  display: block;
+
+  margin: 0;
+
+  color: var(--escala-navy-950);
+
+  font-size: 0.71rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.radar-featured-feature-detail {
+  display: block;
+
+  margin-top: 0.08rem;
+
+  color: var(--escala-slate-500);
+
+  font-size: 0.64rem;
+  line-height: 1.35;
+}
+
+
+/* ======================================================
+   TAGS LEGACY
+   Se mantienen por compatibilidad
+====================================================== */
+
+.radar-featured-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.38rem;
+
+  margin-top: 0.75rem;
+}
+
+.radar-featured-tags span {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.3rem 0.5rem;
+
+  border: 1px solid rgba(18, 61, 121, 0.09);
+  border-radius: 999px;
+
+  background: #f5f8fc;
+
+  color: var(--escala-slate-600);
+
+  font-size: 0.55rem;
+  font-weight: 600;
 }
 
 
@@ -2691,99 +3695,55 @@ textarea {
 
   overflow: hidden;
 
-  margin-top: 1.35rem;
-  padding: 2.35rem 1.4rem;
+  margin-top: 1rem;
+  padding: 1.65rem 1.2rem;
 
   text-align: center;
 
-  border: 1px solid rgba(18, 61, 121, 0.11);
-  border-radius: 1.15rem;
+  border: 1px solid rgba(18, 61, 121, 0.10);
+  border-radius: 1rem;
 
   background: rgba(255, 255, 255, 0.72);
-
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80);
-}
-
-.radar-empty::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  bottom: -85px;
-
-  width: 360px;
-  height: 130px;
-
-  transform: translateX(-50%);
-
-  border-radius: 999px 999px 0 0;
-
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(18, 61, 121, 0.045),
-      transparent 68%
-    );
-
-  pointer-events: none;
 }
 
 .radar-empty-icon {
-  position: relative;
-  z-index: 2;
+  width: 3rem;
+  height: 3rem;
 
-  width: 3.35rem;
-  height: 3.35rem;
-
-  margin: 0 auto 0.9rem;
+  margin: 0 auto 0.75rem;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(18, 61, 121, 0.13);
-  border-radius: 0.95rem;
+  border: 1px solid rgba(18, 61, 121, 0.12);
+  border-radius: 0.85rem;
 
-  background:
-    linear-gradient(
-      135deg,
-      #edf4fb,
-      #e3eef9
-    );
+  background: #eaf2fb;
 
   color: var(--escala-navy-700);
 
-  font-size: 1.15rem;
-
-  box-shadow: 0 7px 18px rgba(18, 61, 121, 0.06);
+  font-size: 1rem;
 }
 
 .radar-empty h3 {
-  position: relative;
-  z-index: 2;
-
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 
   color: var(--escala-navy-950);
 
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
 .radar-empty p {
-  position: relative;
-  z-index: 2;
-
   max-width: 520px;
 
   margin: 0 auto;
 
   color: var(--escala-slate-500);
 
-  font-size: 0.84rem;
-  line-height: 1.55;
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 
@@ -2792,26 +3752,80 @@ textarea {
 ====================================================== */
 
 #radar-content {
-  margin-top: 1.35rem;
+  margin-top: 1rem;
 }
 
-.radar-loading {
-  padding: 1.5rem 1rem;
-
+.radar-results-header {
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 
-  align-items: center;
-  justify-content: center;
+  gap: 1rem;
 
-  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.radar-results-eyebrow {
+  margin: 0 0 0.12rem;
 
   color: var(--escala-slate-500);
 
-  font-size: 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
+
+.radar-results-title {
+  margin: 0;
+
+  color: var(--escala-slate-950);
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.radar-results-count {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  padding: 0.42rem 0.68rem;
+
+  border-radius: 999px;
+
+  background: #eaf2fb;
+
+  color: var(--escala-navy-700);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.radar-loading {
+  padding: 1.25rem 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.65rem;
+
+  color: var(--escala-slate-500);
+
+  font-size: 0.82rem;
+}
+
+
+/* ======================================================
+   CARRUSEL RESULTADOS
+====================================================== */
 
 .radar-carousel-shell {
   position: relative;
+
   width: 100%;
 }
 
@@ -2827,7 +3841,7 @@ textarea {
 
   overscroll-behavior-inline: contain;
 
-  padding: 0.25rem 0.1rem 0.7rem;
+  padding: 0.2rem 0.1rem 0.65rem;
 
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -2843,17 +3857,18 @@ textarea {
 
 
 /* ======================================================
-   TARJETAS RADAR
+   TARJETAS RESULTADOS
 ====================================================== */
 
 .radar-result-card {
+  position: relative;
+
   flex: 0 0 calc(33.333% - 0.7rem);
 
   min-width: 260px;
-  min-height: 185px;
+  min-height: 182px;
 
   display: flex;
-
   flex-direction: column;
 
   padding: 1rem;
@@ -2864,23 +3879,79 @@ textarea {
   border: 1px solid rgba(18, 61, 121, 0.12);
   border-radius: 1rem;
 
-  background: var(--escala-white);
+  background: #ffffff;
 
   box-shadow: 0 5px 16px rgba(15, 23, 42, 0.045);
 
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .radar-result-card:hover {
   transform: translateY(-2px);
 
-  border-color: rgba(18, 61, 121, 0.26);
+  border-color: rgba(18, 61, 121, 0.24);
 
-  box-shadow: 0 9px 23px rgba(15, 23, 42, 0.075);
+  box-shadow: 0 9px 23px rgba(15, 23, 42, 0.07);
 }
+
+
+/* ======================================================
+   RESULTADO CLIENTE ESCALA
+====================================================== */
+
+.radar-result-card.radar-result-client {
+  border-color: rgba(227, 163, 0, 0.34);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fffdf6 100%
+    );
+
+  box-shadow: 0 8px 22px rgba(227, 163, 0, 0.06);
+}
+
+.radar-result-card.radar-result-client::before {
+  content: "CLIENTE ESCALA";
+
+  position: absolute;
+
+  top: 0.7rem;
+  right: 0.7rem;
+
+  z-index: 3;
+
+  padding: 0.25rem 0.42rem;
+
+  border-radius: 999px;
+
+  background: var(--escala-gold-400);
+
+  color: var(--escala-navy-950);
+
+  font-size: 0.47rem;
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+}
+
+.radar-result-card.radar-result-client:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(227, 163, 0, 0.56);
+
+  box-shadow: 0 12px 28px rgba(227, 163, 0, 0.10);
+}
+
+
+/* ======================================================
+   CONTENIDO RESULTADOS
+====================================================== */
 
 .radar-result-type {
   align-self: flex-start;
@@ -2901,6 +3972,12 @@ textarea {
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.radar-result-card.radar-result-client .radar-result-type {
+  background: var(--escala-gold-50);
+
+  color: var(--escala-gold-700);
 }
 
 .radar-result-card h4 {
@@ -2924,7 +4001,6 @@ textarea {
 
 .radar-result-address {
   display: flex;
-
   align-items: flex-start;
 
   gap: 0.4rem;
@@ -2949,7 +4025,6 @@ textarea {
 
 .radar-result-price {
   display: inline-flex;
-
   align-items: center;
 
   gap: 0.35rem;
@@ -2965,6 +4040,7 @@ textarea {
 
 .radar-result-price i {
   color: var(--escala-gold-500);
+
   font-size: 0.68rem;
 }
 
@@ -2988,7 +4064,42 @@ textarea {
 
 
 /* ======================================================
-   FLECHAS RADAR
+   LINK RESULTADO CLIENTE
+====================================================== */
+
+.radar-result-client-link {
+  align-self: flex-start;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  margin-top: 0.65rem;
+
+  color: var(--escala-navy-700);
+
+  font-size: 0.67rem;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+.radar-result-client-link i {
+  color: var(--escala-gold-500);
+
+  font-size: 0.55rem;
+
+  transition: transform 0.2s ease;
+}
+
+.radar-result-client-link:hover i {
+  transform: translateX(3px);
+}
+
+
+/* ======================================================
+   FLECHAS CARRUSEL RESULTADOS
 ====================================================== */
 
 .radar-carousel-arrow {
@@ -3002,7 +4113,6 @@ textarea {
   height: 2.35rem;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -3011,7 +4121,7 @@ textarea {
   border: 1px solid rgba(18, 61, 121, 0.12);
   border-radius: 999px;
 
-  background: var(--escala-white);
+  background: #ffffff;
 
   color: var(--escala-navy-800);
 
@@ -3020,7 +4130,6 @@ textarea {
   transition:
     background 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
@@ -3042,11 +4151,11 @@ textarea {
 
 
 /* ======================================================
-   SIN RESULTADOS RADAR
+   SIN RESULTADOS
 ====================================================== */
 
 .radar-no-results {
-  padding: 2.5rem 1.25rem;
+  padding: 2rem 1.2rem;
 
   text-align: center;
 
@@ -3063,7 +4172,6 @@ textarea {
   margin: 0 auto 0.85rem;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -3090,6 +4198,361 @@ textarea {
 
   font-size: 0.82rem;
   line-height: 1.5;
+}
+
+
+/* ======================================================
+   NOTA LEGAL / FUENTE
+====================================================== */
+
+.radar-source-note {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.45rem;
+
+  margin-top: 0.8rem;
+
+  color: var(--escala-slate-400);
+
+  font-size: 0.66rem;
+  line-height: 1.45;
+}
+
+.radar-source-note i {
+  margin-top: 0.12rem;
+
+  color: #9cafc8;
+
+  font-size: 0.62rem;
+}
+
+.radar-source-note p {
+  margin: 0;
+}
+
+
+/* ======================================================
+   RADAR TABLET
+====================================================== */
+
+@media (max-width: 1023px) {
+
+  .radar-featured-bar-message {
+    display: none;
+  }
+
+  .radar-featured-link {
+    grid-template-columns:
+      minmax(280px, 38%)
+      minmax(0, 62%);
+  }
+
+  .radar-featured-features {
+    grid-column: 2;
+    padding-top: 0;
+    padding-left: 1.5rem;
+
+    display: grid;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 0.65rem;
+  }
+
+  .radar-featured-feature {
+    grid-template-columns:
+      2rem minmax(0, 1fr);
+
+    gap: 0.5rem;
+  }
+
+  .radar-featured-feature-icon {
+    width: 2rem;
+    height: 2rem;
+
+    font-size: 0.72rem;
+  }
+
+  .radar-featured-content::after {
+    display: none;
+  }
+
+  .radar-result-card {
+    flex-basis:
+      calc(50% - 0.5rem);
+  }
+
+}
+
+
+/* ======================================================
+   RADAR TABLET PEQUEÑO
+====================================================== */
+
+@media (max-width: 767px) {
+
+  .radar-featured-bar {
+    align-items: center;
+  }
+
+  .radar-featured-link {
+    grid-template-columns:
+      220px minmax(0, 1fr);
+  }
+
+  .radar-featured-media,
+  .radar-featured-media img {
+    min-height: 200px;
+  }
+
+  .radar-featured-content {
+    padding:
+      1rem 1.05rem;
+  }
+
+  .radar-featured-name {
+    font-size:
+      1.42rem;
+  }
+
+  .radar-featured-features {
+    grid-template-columns:
+      1fr;
+
+    padding:
+      0 1.05rem 1rem;
+  }
+
+  .radar-search-card {
+    padding:
+      0.9rem;
+  }
+
+}
+
+
+/* ======================================================
+   RADAR MOBILE
+====================================================== */
+
+@media (max-width: 639px) {
+
+  .radar-section {
+    background:
+      linear-gradient(
+        180deg,
+        #f5f9fd 0%,
+        #eef4fb 100%
+      ) !important;
+  }
+
+  .radar-search-form {
+    grid-template-columns:
+      1fr;
+  }
+
+  .radar-search-button {
+    width:
+      100%;
+  }
+
+  .radar-search-field input {
+    padding-top:
+      0.86rem;
+
+    padding-bottom:
+      0.86rem;
+  }
+
+  .radar-featured-shell {
+    margin-top:
+      0.85rem;
+  }
+
+  .radar-featured-bar {
+    padding:
+      0.58rem 0.65rem;
+  }
+
+  .radar-featured-bar-icon {
+    width:
+      2.15rem;
+
+    height:
+      2.15rem;
+
+    flex-basis:
+      2.15rem;
+  }
+
+  .radar-featured-bar-title {
+    font-size:
+      0.75rem;
+  }
+
+  .radar-featured-controls {
+    display:
+      none;
+  }
+
+  .radar-featured-link {
+    grid-template-columns:
+      1fr;
+
+    min-height:
+      0;
+  }
+
+  .radar-featured-media,
+  .radar-featured-media img {
+    height:
+      180px;
+
+    min-height:
+      180px;
+  }
+
+  .radar-featured-content {
+    padding:
+      1rem;
+  }
+
+  .radar-featured-highlight {
+    position: static;
+
+    order: 0;
+
+    align-self: flex-start;
+
+    margin-bottom: 0.45rem;
+  }
+
+  .radar-featured-content > .radar-featured-name {
+    order: 1;
+  }
+
+  .radar-featured-content > .radar-featured-meta {
+    order: 2;
+  }
+
+  .radar-featured-content > .radar-featured-copy {
+    order: 3;
+  }
+
+  .radar-featured-content > .radar-featured-actions {
+    order: 4;
+  }
+
+  .radar-featured-content::after {
+    display:
+      none;
+  }
+
+  .radar-featured-name {
+    font-size:
+      1.45rem;
+  }
+
+  .radar-featured-copy {
+    font-size:
+      0.76rem;
+  }
+
+  .radar-featured-actions {
+    margin-top:
+      0.85rem;
+  }
+
+  .radar-featured-action {
+    min-width:
+      145px;
+  }
+
+  .radar-featured-features {
+    grid-column:
+      auto;
+
+    padding:
+      0 1rem 1rem;
+
+    display:
+      grid;
+
+    grid-template-columns:
+      1fr;
+
+    gap:
+      0.7rem;
+  }
+
+  .radar-featured-feature {
+    grid-template-columns:
+      2.2rem minmax(0, 1fr);
+  }
+
+  .radar-featured-feature-icon {
+    width:
+      2.2rem;
+
+    height:
+      2.2rem;
+  }
+
+  .radar-result-card {
+    flex:
+      0 0 84%;
+
+    min-width:
+      84%;
+
+    min-height:
+      180px;
+  }
+
+  .radar-carousel-arrow {
+    display:
+      none;
+  }
+
+  .radar-results-header {
+    align-items:
+      flex-start;
+  }
+
+  .radar-source-note {
+    font-size:
+      0.62rem;
+  }
+
+}
+
+
+/* ======================================================
+   RADAR MOBILE PEQUEÑO
+====================================================== */
+
+@media (max-width: 420px) {
+
+  .radar-featured-media,
+  .radar-featured-media img {
+    height:
+      160px;
+
+    min-height:
+      160px;
+  }
+
+  .radar-featured-name {
+    font-size:
+      1.32rem;
+  }
+
+  .radar-featured-action {
+    width:
+      100%;
+  }
+
 }
 
 
@@ -3849,7 +5312,7 @@ textarea {
 
 
 /* ======================================================
-   22. FOCUS / ACCESIBILIDAD
+   21. FOCUS / ACCESIBILIDAD
 ====================================================== */
 
 a:focus-visible,
@@ -3863,7 +5326,7 @@ select:focus-visible {
 
 
 /* ======================================================
-   23. REDUCIR MOVIMIENTO
+   22. REDUCIR MOVIMIENTO
 ====================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -3882,366 +5345,4 @@ select:focus-visible {
 
     scroll-behavior: auto !important;
   }
-}
-
-/* ======================================================
-   INTERACCIÓN MULTIPRODUCTO
-====================================================== */
-
-.multi-escala {
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-}
-
-
-/* ------------------------------------------------------
-   BLOQUE COMPLETO
------------------------------------------------------- */
-
-.multi-escala:hover {
-  border-color:
-    rgba(18, 61, 121, 0.20);
-
-  box-shadow:
-    0 18px 42px rgba(6, 21, 47, 0.09);
-}
-
-
-/* ------------------------------------------------------
-   PASOS DE ENTRADA
------------------------------------------------------- */
-
-.multi-entry-step {
-  padding: 0.45rem;
-
-  border-radius: 0.7rem;
-
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-
-.multi-entry-step:hover {
-  transform:
-    translateY(-2px);
-
-  background:
-    #ffffff;
-
-  box-shadow:
-    0 6px 18px rgba(6, 21, 47, 0.06);
-}
-
-
-.multi-entry-step:hover .multi-entry-icon {
-  background:
-    var(--escala-navy-700);
-
-  color:
-    #ffffff;
-
-  transform:
-    scale(1.06);
-}
-
-
-.multi-entry-icon {
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
-}
-
-
-.multi-entry-step:hover .multi-entry-icon-gold {
-  background:
-    var(--escala-gold-400);
-
-  color:
-    var(--escala-navy-950);
-}
-
-
-/* ------------------------------------------------------
-   CRM
------------------------------------------------------- */
-
-.multi-crm {
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-
-.multi-crm:hover {
-  transform:
-    translateY(-2px);
-
-  border-color:
-    rgba(18, 61, 121, 0.28);
-
-  box-shadow:
-    0 8px 20px rgba(6, 21, 47, 0.07);
-}
-
-
-/* ------------------------------------------------------
-   REGLAS
------------------------------------------------------- */
-
-.multi-rule {
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-}
-
-
-.multi-rule:hover {
-  transform:
-    translateY(-2px);
-}
-
-
-.multi-rule-respect:hover {
-  border-color:
-    rgba(18, 61, 121, 0.20);
-
-  box-shadow:
-    0 6px 16px rgba(6, 21, 47, 0.05);
-}
-
-
-.multi-rule-enter:hover {
-  border-color:
-    rgba(242, 181, 29, 0.42);
-
-  box-shadow:
-    0 10px 24px rgba(6, 21, 47, 0.14);
-}
-
-
-/* ------------------------------------------------------
-   PROCESO MULTIPRODUCTO
------------------------------------------------------- */
-
-.multi-process-step {
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-
-  border-radius: 0.7rem;
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-
-.multi-process-step:hover {
-  transform:
-    translateY(-3px);
-
-  background:
-    #ffffff;
-
-  box-shadow:
-    0 8px 20px rgba(6, 21, 47, 0.07);
-}
-
-
-.multi-process-step:hover .multi-process-icon {
-  transform:
-    scale(1.08);
-
-  background:
-    var(--escala-navy-700);
-
-  color:
-    #ffffff;
-}
-
-
-.multi-process-icon {
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
-}
-
-
-/* Proyecto ideal conserva identidad dorada */
-
-.multi-process-highlight:hover {
-  border-color:
-    rgba(242, 181, 29, 0.34);
-
-  background:
-    #fff6d9;
-
-  box-shadow:
-    0 8px 22px rgba(227, 163, 0, 0.09);
-}
-
-
-.multi-process-highlight:hover .multi-process-icon {
-  background:
-    var(--escala-gold-400);
-
-  color:
-    var(--escala-navy-950);
-}
-
-
-/* ------------------------------------------------------
-   FLECHAS
------------------------------------------------------- */
-
-.multi-entry-arrow,
-.multi-process-arrow {
-  transition:
-    color 0.25s ease,
-    transform 0.25s ease;
-}
-
-
-.multi-escala:hover .multi-entry-arrow,
-.multi-escala:hover .multi-process-arrow {
-  color:
-    var(--escala-gold-500);
-}
-
-
-.multi-process-step:hover + .multi-process-arrow {
-  transform:
-    translateX(2px);
-
-  color:
-    var(--escala-gold-500);
-}
-
-
-/* ------------------------------------------------------
-   BENEFICIOS
------------------------------------------------------- */
-
-.multi-footer > div {
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    background 0.22s ease;
-}
-
-
-.multi-footer > div:hover {
-  transform:
-    translateY(-2px);
-
-  border-color:
-    rgba(227, 163, 0, 0.20);
-
-  background:
-    var(--escala-gold-50);
-}
-
-
-/* ======================================================
-   EFECTO SECUENCIAL
-   CUANDO EL USUARIO PASA POR TODO MULTIPRODUCTO
-====================================================== */
-
-.multi-escala:hover .multi-process-step {
-  animation:
-    multiStepPulse 0.55s ease both;
-}
-
-
-.multi-escala:hover .multi-process-step:nth-of-type(1) {
-  animation-delay: 0s;
-}
-
-
-.multi-escala:hover .multi-process-step:nth-of-type(2) {
-  animation-delay: 0.06s;
-}
-
-
-.multi-escala:hover .multi-process-step:nth-of-type(3) {
-  animation-delay: 0.12s;
-}
-
-
-.multi-escala:hover .multi-process-step:nth-of-type(4) {
-  animation-delay: 0.18s;
-}
-
-
-.multi-escala:hover .multi-process-step:nth-of-type(5) {
-  animation-delay: 0.24s;
-}
-
-
-.multi-escala:hover .multi-process-step:nth-of-type(6) {
-  animation-delay: 0.30s;
-}
-
-
-@keyframes multiStepPulse {
-
-  0% {
-    transform:
-      translateY(0);
-
-    box-shadow:
-      none;
-  }
-
-  50% {
-    transform:
-      translateY(-2px);
-
-    box-shadow:
-      0 7px 18px rgba(6, 21, 47, 0.06);
-  }
-
-  100% {
-    transform:
-      translateY(0);
-
-    box-shadow:
-      none;
-  }
-
-}
-
-
-/* ======================================================
-   MOBILE
-   SIN ANIMACIÓN SECUENCIAL
-====================================================== */
-
-@media (max-width: 767px) {
-
-  .multi-escala:hover .multi-process-step {
-    animation:
-      none;
-  }
-
-
-  .multi-entry-step:hover,
-  .multi-rule:hover,
-  .multi-process-step:hover,
-  .multi-footer > div:hover,
-  .multi-crm:hover {
-    transform:
-      none;
-  }
-
 }
